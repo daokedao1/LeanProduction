@@ -21,7 +21,7 @@ class Demo extends React.Component {
     return (
 
         <div className="allData">
-          <BreadcrumbCustom first="注水泵实时数据" second="总览数据" />
+          <BreadcrumbCustom first="数据总览" second="总览数据" />
           <div className="allData_m">
             <h3>华北油田采油三厂楚一联合注水站监控中心</h3>
             <div className="allData_t">

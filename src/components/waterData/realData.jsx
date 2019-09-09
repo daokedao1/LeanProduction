@@ -7,7 +7,7 @@ class Demo extends React.Component {
   render() {
     return (
         <div className="realData">
-          <BreadcrumbCustom first="注水泵实时数据" second="实时数据" />
+          <BreadcrumbCustom first="数据总览" second="实时数据" />
           <div className="realData_t">
             <div className="t_l">
               <img src={pumpinfor} alt="" />

@@ -71,7 +71,7 @@ class App extends Component {
                             <Routes auth={auth} />
                         </Content>
                         <Footer style={{ textAlign: 'center' }}>
-                            每日一淘 ©{new Date().getFullYear()} Created by zzy
+                            {/* 每日一淘 ©{new Date().getFullYear()} Created by zzy */}
                         </Footer>
                     </Layout>
                 </Layout>

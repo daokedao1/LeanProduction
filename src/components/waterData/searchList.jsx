@@ -19,7 +19,8 @@ class SearchList extends React.Component {
           <Option key={index} value="">{item.name}</Option>
         ))}
       </Select>
-      <DatePicker className="middel" placeholder="请选择时间" onChange={this.onChange} />
+      {this.props.time ===1?'':<DatePicker className="middel" placeholder="请选择时间" onChange={this.onChange} />}
+
       <Button type="primary">查询</Button>
       {this.props.type==='1'? <Button type="primary">导出Excle</Button>:''}
         

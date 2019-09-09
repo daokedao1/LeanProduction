@@ -13,35 +13,77 @@ class HistoryLine extends React.Component {
     this.change = this.change.bind(this);
     this.state={
       mapData : [
-        {
-        stroke:'#0fd59d',
-        dataKey:'出口压力',
-        arr:[
-          {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
-          {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
-          {name: 'Page C', uv: 200, pv: 9800, amt: 2290},
-          {name: 'Page D', uv: 280, pv: 3908, amt: 2000},
-          {name: 'Page E', uv: 180, pv: 4800, amt: 2181},
-          {name: 'Page F', uv: 2390, pv: 300, amt: 2500},
-          {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
-          ],
-        show:true
-      },
-      {
-        stroke:'#1BAAE4',
-        dataKey:'进口压力',
-        arr:[
-          {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
-          {name: 'Page B', uv: 300, pv: 1398, amt: 2210},
-          {name: 'Page C', uv: 2001, pv: 9800, amt: 2290},
-          {name: 'Page D', uv: 2820, pv: 3908, amt: 2000},
-          {name: 'Page E', uv: 1840, pv: 4800, amt: 2181},
-          {name: 'Page F', uv: 20, pv: 300, amt: 2500},
-          {name: 'Page G', uv: 190, pv: 4300, amt: 2100},
-          ],
-        show:true
-      },
-    ],
+        [
+          {
+            stroke:'#0fd59d',
+            dataKey:'出口压力',
+            show:true,
+            arr:[
+              {name: '22:32:57', 进口压力: 3, 出口压力: 23, amt: 87},
+              {name: '22:55:33', 进口压力: 3.7, 出口压力: 25, amt: 87},
+              {name: '00:16:23', 进口压力: 4, 出口压力: 24.8, amt: 87},
+              {name: '23:16:55', 进口压力: 5, 出口压力: 23, amt: 87},
+              {name: '23:17:43', 进口压力: 3, 出口压力: 23, amt: 87},
+              {name: '23:18:28', 进口压力: 2.9, 出口压力: 23, amt: 87},
+              {name: '23:18:35', 进口压力: 2.3, 出口压力: 23, amt: 87},
+          ]
+          },
+          {
+            stroke:'#1BAAE4',
+            dataKey:'进口压力',
+            show:true,
+
+          },
+        ],
+        [
+          {
+            stroke:'#0fd59d',
+            dataKey:'润滑油温度',
+            show:true,
+            arr:[
+              {name: '22:32:57', 润滑油温度: 3, 润滑油液位: 23, 电机温度: 87},
+              {name: '22:55:33', 润滑油温度: 3.7, 润滑油液位: 25, 电机温度: 87},
+              {name: '00:16:23', 润滑油温度: 4, 润滑油液位: 24.8, 电机温度: 87},
+              {name: '23:16:55', 润滑油温度: 5, 润滑油液位: 23, 电机温度: 87},
+              {name: '23:17:43', 润滑油温度: 3, 润滑油液位: 23, 电机温度: 87},
+              {name: '23:18:28', 润滑油温度: 2.9, 润滑油液位: 23, 电机温度: 87},
+              {name: '23:18:35', 润滑油温度: 2.3, 润滑油液位: 23, 电机温度: 87},
+          ]
+          },
+          {
+            stroke:'#1BAAE4',
+            dataKey:'润滑油液位',
+            show:true
+          },
+          {
+            stroke:'#1BAAE4',
+            dataKey:'电机温度',
+            show:true
+          },
+        ],
+        [
+          {
+            stroke:'#0fd59d',
+            dataKey:'电机A相电流',
+            show:true,
+            arr:[
+              {name: '22:32:57', 电机A相电流: 3, 电机B相电流: 23, amt: 87},
+              {name: '22:55:33', 电机A相电流: 3.7, 电机B相电流: 25, amt: 87},
+              {name: '00:16:23', 电机A相电流: 4, 电机B相电流: 24.8, amt: 87},
+              {name: '23:16:55', 电机A相电流: 5, 电机B相电流: 23, amt: 87},
+              {name: '23:17:43', 电机A相电流: 3, 电机B相电流: 23, amt: 87},
+              {name: '23:18:28', 电机A相电流: 2.9, 电机B相电流: 23, amt: 87},
+              {name: '23:18:35', 电机A相电流: 2.3, 电机B相电流: 23, amt: 87},
+            ]
+          },
+          {
+            stroke:'#1BAAE4',
+            dataKey:'电机B相电流',
+            show:true
+          },
+        ]
+  
+    ],  
 
         
     }
@@ -56,20 +98,22 @@ class HistoryLine extends React.Component {
  
     return (
         <div className="realLine">
-        <BreadcrumbCustom first="注水泵实时数据" second="历史数据" />
+        <BreadcrumbCustom first="数据总览" second="历史数据" />
         <SearchList type="0" />
           <div className="realLine_b" >
           <h2>历史曲线</h2>
-
-          <Row gutter={16}>
+          {this.state.mapData.map((item,index)=>(
+          <Row key={index} gutter={16}>
                     <Col className="gutter-row" md={20}>
                         <div className="gutter-box">
                             <Card bordered={false}>
-                                <RechartsSimpleLineChart type="1" change={this.change} data={this.state.mapData} />
+                                <RechartsSimpleLineChart type="1" change={this.change} data={item} />
                             </Card>
                         </div>
                     </Col>
                 </Row>
+            ))}
+
           </div>
         </div>
     )

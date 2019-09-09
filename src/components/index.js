@@ -39,6 +39,9 @@ import historyData from './waterData/historyData';
 import historyLine from './waterData/historyLine';
 import realData from './waterData/realData';
 import realLine from './waterData/realLine';
+import alertSet from './waterData/alertSet';
+import alertRecord from './waterData/alertRecord';
+
 //*************
 import Main from './main'
 import DataOverView from './dataoverview'
@@ -91,4 +94,6 @@ export default {
     realData,
     historyLine,
     realLine,
+    alertSet,
+    alertRecord
 };

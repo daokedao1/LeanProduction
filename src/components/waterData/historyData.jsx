@@ -29,7 +29,7 @@ class Demo extends React.Component {
   const data=[];
     return (
       <div className="historyLine">
-          <BreadcrumbCustom first="注水泵实时数据" second="历史数据" />
+          <BreadcrumbCustom first="数据总览" second="历史数据" />
           <SearchList type="1" />
           <Table bordered columns={columns} dataSource={data} />
       </div>
