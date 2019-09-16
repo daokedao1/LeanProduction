@@ -2,7 +2,7 @@ import React from 'react'
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import { Button,Row, Col, Car, Card} from 'antd';
 import RechartsSimpleLineChart from '../charts/RechartsSimpleLineChart';
-
+import {POST} from '../../axios/tools'
 import '../../style/waterData/realLine.less'
 class RealLine extends React.Component {
   constructor(props){
@@ -84,6 +84,7 @@ class RealLine extends React.Component {
     ],  
   
     }
+   const data=POST('/wTimeData/listForEach');
     // React.axios('/wTimeData/listForEach','post1',{})
   }
   tab(item){

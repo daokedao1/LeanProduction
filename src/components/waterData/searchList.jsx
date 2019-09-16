@@ -23,8 +23,6 @@ class SearchList extends React.Component {
 
       <Button type="primary">查询</Button>
       {this.props.type==='1'? <Button type="primary">导出Excle</Button>:''}
-        
-     
 
     </div>
     )
