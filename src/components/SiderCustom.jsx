@@ -70,7 +70,11 @@ class SiderCustom extends Component {
                 collapsed={collapsed}
                 style={{ overflowY: 'auto' }}
             >
-                <div className="logo" style={{lineHeight:'32px',textAlign:'center'}}></div>
+                
+                <div className="logo" style={{lineHeight:'32px',textAlign:'center',fontSize:"12px"}}>
+                    {/* <img src={img} alt=""/> */}
+                    注水泵远程智能诊断监控系统
+                </div>
                 <SiderMenu
                     menus={routes.menus}
                     onClick={this.menuClick}

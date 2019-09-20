@@ -10,6 +10,7 @@ import { gitOauthToken, gitOauthInfo } from '../axios';
 import { queryString } from '../utils';
 import { withRouter } from 'react-router-dom';
 import { PwaInstaller } from './widget';
+import img from '../style//imgs/petrochinalogo-white.png';
 
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -63,7 +64,9 @@ class HeaderCustom extends Component {
     render() {
         const { responsive = { data: {} }, path } = this.props;
         return (
-            <Header className="custom-theme header" >
+            <Header  className="custom-theme header" >
+              <img style={{marginLeft:"9px",width:"40px"}} src={img} alt=""/>
+
                 {
                     responsive.data.isMobile ? (
                         <Popover content={<SiderCustom path={path} popoverHide={this.popoverHide} />} trigger="click" placement="bottomLeft" visible={this.state.visible} onVisibleChange={this.handleVisibleChange}>
@@ -77,6 +80,9 @@ class HeaderCustom extends Component {
                         />
                     )
                 }
+              
+                
+
                 <Menu
                     mode="horizontal"
                     style={{ lineHeight: '64px', float: 'right' }}
