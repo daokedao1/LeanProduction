@@ -69,8 +69,9 @@ const env = process.env.NODE_ENV || 'development'
         "Content-Type": "application/json",
          "Authorization":header
      };
+     const newUrl='http://119.90.248.34:51029'+url;
      return new Promise((resolve, reject) => {
-        ruquest=axios.post(url, data, {
+        ruquest=axios.post(newUrl, data, {
             headers
           });
           ruquest.then(function(res) {
