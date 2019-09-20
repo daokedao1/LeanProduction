@@ -23,71 +23,86 @@ const sel=(<Select defaultValue="开启" style={{ width: 90 }} >
 //     util: `db`,
 //   });
 // }
-const data = [
+let data = [
   {
     name:"出口压力",
     key:"1",
     ut:'MPa',
-    age: 13,
+    age: 0,
     state: '',
     util: `db`,
+    value:"EXPORT_PRESSURE",
+
   },
   {
     name:"进口压力",
     key:"2",
    ut:'MPa',
-   age: 13,
+   age: 0,
    state: '',
    util: `db`,
+   value:"EXPORT_PRESSURE",
+
  },
  {
   name:"电机温度",
   key:"3",
    ut:'℃',
-   age: 13,
+   age: 0,
    state: '',
    util: `db`,
+   value:"MOTOR_TEMPERATURE",
+
  },
  {
   name:"润滑油温度",
   key:"4",
    ut:'℃',
-   age: 13,
+   age: 0,
    state: '',
    util: `db`,
+   value:"MOTOR_TEMPERATURE",
+
  },
  {
   name:"润滑油液位",
   key:"5",
    ut:'CM',
-   age: 13,
+   age: 0,
    state: '',
    util: `db`,
+   value:"MOTOR_TEMPERATURE",
+
  },
  {
   name:"电机A相电流",
   key:"6",
    ut:'A',
-   age: 13,
+   age: 0,
    state: '',
    util: `db`,
+   value:"MOTOR_TEMPERATURE",
+
  },
  {
   name:"电机B相电流",
   key:"7",
    ut:'A', 
-   age: 13,
+   age: 0,
    state: '',
    util: `db`,
+   value:"MOTOR_B_PHASE_CURRENT",
+   
 
  },
  {
   name:"电机B相电流",
   key:"8",
    ut:'A',
-   age: 13,
+   age: 0,
    state: '',
    util: `db`,
+   value:"MOTOR_B_PHASE_CURRENT",
 
  }
  ];
@@ -142,7 +157,17 @@ class EditableCell extends React.Component {
 class EditableTable extends React.Component {
   constructor(props) {
     super(props);
+    let obj= Cookies.get('allData');
+    console.log(obj)
+
+    if(obj){
+      obj=JSON.parse(obj);
+      this.setState({ data: obj, editingKey: '' });
+      data=obj;
+      console.log(data)
+    }
     this.state = { data, editingKey: '' };
+  
     this.columns = [
       {
         title: '模拟量名称',
@@ -226,6 +251,7 @@ class EditableTable extends React.Component {
         this.setState({ data: newData, editingKey: '' });
 
         Cookies.set('allData',newData)
+
         
         // store.dispatch({dataList:newData,type:'dataList'})
       } else {

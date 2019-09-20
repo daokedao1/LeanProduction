@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker';
 import configureStore from './redux/store';
 import Page from './Page';
-
+import {PersistGate} from 'redux-persist/integration/react' 
 // import { AppContainer } from 'react-hot-loader';
 import reducer, { key } from './redux/common'
 import './style/lib/animate.css';

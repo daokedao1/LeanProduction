@@ -15,7 +15,90 @@ class Demo extends React.Component {
     this.state={
       pumpList:[],
       visible: false,
-      allData:[]
+      allData:[
+        {
+          name:"出口压力",
+          key:"1",
+          ut:'MPa',
+          age: 13,
+          state: '',
+          util: `db`,
+          value:"EXPORT_PRESSURE",
+      
+        },
+        {
+          name:"进口压力",
+          key:"2",
+         ut:'MPa',
+         age: 13,
+         state: '',
+         util: `db`,
+         value:"EXPORT_PRESSURE",
+      
+       },
+       {
+        name:"电机温度",
+        key:"3",
+         ut:'℃',
+         age: 13,
+         state: '',
+         util: `db`,
+         value:"MOTOR_TEMPERATURE",
+      
+       },
+       {
+        name:"润滑油温度",
+        key:"4",
+         ut:'℃',
+         age: 13,
+         state: '',
+         util: `db`,
+         value:"MOTOR_TEMPERATURE",
+      
+       },
+       {
+        name:"润滑油液位",
+        key:"5",
+         ut:'CM',
+         age: 13,
+         state: '',
+         util: `db`,
+         value:"MOTOR_TEMPERATURE",
+      
+       },
+       {
+        name:"电机A相电流",
+        key:"6",
+         ut:'A',
+         age: 13,
+         state: '',
+         util: `db`,
+         value:"MOTOR_TEMPERATURE",
+      
+       },
+       {
+        name:"电机B相电流",
+        key:"7",
+         ut:'A', 
+         age: 13,
+         state: '',
+         util: `db`,
+         value:"MOTOR_B_PHASE_CURRENT",
+         
+      
+       },
+       {
+        name:"电机B相电流",
+        key:"8",
+         ut:'A',
+         age: 13,
+         state: '',
+         util: `db`,
+         value:"MOTOR_B_PHASE_CURRENT",
+      
+       }
+       ],
+      block:false
     };
     this.init()
    
@@ -24,11 +107,34 @@ class Demo extends React.Component {
     const data= await POST('/wTimeData/listForEach',{
     },Authorization)
     this.setState({pumpList:data.data.timeDataList})
-   const allData= Cookies.get('allData')
-   this.setState({allData:JSON.parse(allData)})
-   console.log()
+   let allData= Cookies.get('allData');
+   if(allData){
+    allData=JSON.parse(allData);
+    this.setState({allData:allData});
+   }
+   this.trund(this.state.allData,data.data.timeDataList)
+  //  this.setState({allData:allData});
+  }
+  trund(allData,data){
+    for(let val of data){
+    for(let item of allData){
+        for(let key in val){
+          if(item.value==key){
+            if(item.age>val[key]){
+              val.block=true;
+            }
+          }
+        }
+
+    }
+  }
+    this.setState({pumpList:data})
+    console.log(data)
   }
   popBlock(item){
+    if(item.block){
+      return
+    }
     this.setState({visible:true})
     setCookie('infor',[])
   }
@@ -56,7 +162,6 @@ class Demo extends React.Component {
         title:"进口压力",
         value:"EXPORT_PRESSURE",
         ut:'MPa'
-
       },
       {
         title:"电机温度",
@@ -106,9 +211,9 @@ class Demo extends React.Component {
    >
      <div>
      <p>{`注水磊出现异常需要维修`}</p>
-     <p>{`1、`}</p>
-     <p>{`2、`}</p>
-     <p>{`3、`}</p>
+     <p>{`1、注水泵的排出压力传感器"`}</p>
+     <p>{`2、注水泵的外输管线流程`}</p>
+     <p>{`3、注水泵的外输管线闸门是否开启`}</p>
      </div>
  
    </Modal>
@@ -127,7 +232,7 @@ class Demo extends React.Component {
                   
                   <img src={pump} alt="" />
                   <List
-                    header={<div onClick={()=>this.popBlock(itemm)} className={i>2?'':"headerList"}>{itemm.name}</div>}
+                    header={<div onClick={()=>this.popBlock(itemm)} className={itemm.block?'':"headerList"}>{itemm.name}</div>}
                     bordered
                     dataSource={data}
                     renderItem={(item) => (
