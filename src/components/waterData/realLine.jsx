@@ -98,9 +98,9 @@ class RealLine extends React.Component {
             show:true
           },
         ]
-  
-    ],  
-  
+
+    ],
+
     }
    this.init();
    setInterval(()=>{this.init()},10000)
@@ -121,7 +121,16 @@ class RealLine extends React.Component {
     this.setState({mapData:this.state.mapData});
 }
   render() {
-    const data=[{"address":"2","name":"1#注水泵","id":2, uv: 4000, pv: 2400, amt: 2400},{"address":"1","name":"2#注水泵","id":1, uv: 4000, pv: 2400, amt: 2400},{"address":"3","name":"3#注水泵","id":3, uv: 4000, pv: 2400, amt: 2400},{"address":"4","name":"4#注水泵","id":4, uv: 4000, pv: 2400, amt: 2400},{"address":"5","name":"5#注水泵","id":5, uv: 4000, pv: 2400, amt: 2400},{"address":"6","name":"6#注水泵","id":6},{"address":"7","name":"7#注水泵","id":7},{"address":"8","name":"8#注水泵","id":8}];
+    const data=[
+      {"address":"2","name":"1#注水泵","id":2},
+      {"address":"1","name":"2#注水泵","id":1},
+      {"address":"3","name":"3#注水泵","id":3},
+      {"address":"4","name":"4#注水泵","id":4},
+      {"address":"5","name":"5#注水泵","id":5},
+      {"address":"6","name":"6#注水泵","id":6},
+      {"address":"7","name":"7#注水泵","id":7},
+      {"address":"8","name":"8#注水泵","id":8}
+    ];
     return (
         <div className="realLine">
           <BreadcrumbCustom first="数据总览" second="实时曲线" />

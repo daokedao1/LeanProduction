@@ -3,14 +3,10 @@ import React,{Component} from 'react';
 import { Form, Icon, Input, Button, Checkbox,message } from 'antd';
 import { PwaInstaller } from '../widget';
 import {saveAuthInfo} from '../../redux/common';
-// import {login} from '../../axios'
 import {POST} from '../../axios/tools'
 import {setCookie} from './../../utils/index'
-
 import {connect} from 'react-redux'
-
 const FormItem = Form.Item;
-
 @connect(state => {
   console.log(state)
     return {
@@ -27,14 +23,10 @@ class Login extends Component {
       };
 
     }
-    componentDidMount() {
-        // console.log(this)
-
-    }
     componentDidUpdate(prevProps) { // React 16.3+弃用componentWillReceiveProps
       //console.log('zzy')
         const { auth: nextAuth = {}, history } = this.props;
-          // console.log(nextAuth)
+
         if (nextAuth && nextAuth.uid) { // 判断是否登陆
 
             localStorage.setItem('user', JSON.stringify(nextAuth.userName));
