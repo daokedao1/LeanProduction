@@ -57,7 +57,7 @@ class Login extends Component {
                         setCookie('Authorization',res.data.Authorization)
                         this.props.history.push('/');
                      }
-                    
+
                  })
 
             }
@@ -84,7 +84,7 @@ class Login extends Component {
                             {getFieldDecorator('password', {
                                 rules: [{ required: true, message: '请输入密码!' }],
                             })(
-                                <Input  prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="管理员输入admin" />
+                                <Input  prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码" />
                             )}
                         </FormItem>
                         <FormItem>
