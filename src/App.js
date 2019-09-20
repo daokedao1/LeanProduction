@@ -5,15 +5,15 @@ import SiderCustom from './components/SiderCustom';
 import HeaderCustom from './components/HeaderCustom';
 import { Layout } from 'antd';
 import { ThemePicker } from './components/widget';
-import {connect} from 'react-redux'
+// import {connect} from 'react-redux'
 
 const { Content, Footer } = Layout;
 
-@connect(state => {
-    return {
-        auth: state.default.auth
-        }
-}, {})
+// @connect(state => {
+//     return {
+//         auth: state.default.auth
+//         }
+// }, {})
 class App extends Component {
   constructor(props) {
       super(props)

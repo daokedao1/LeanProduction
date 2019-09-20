@@ -7,6 +7,7 @@ import DocumentTitle from 'react-document-title';
 import AllComponents from '../components';
 import routesConfig from './config';
 import queryString from 'query-string';
+import {getCookie} from '../utils/index'
 
 export default class CRouter extends Component {
     requireAuth = (permission, component) => {
@@ -23,9 +24,9 @@ export default class CRouter extends Component {
 
         let userStorage = localStorage.getItem('user');
         let usertokentime = parseInt(localStorage.getItem('usertokentime') || 0);
-
+        const Authorization=getCookie("Authorization");
         // if (process.env.NODE_ENV === 'production' && !permissions) {
-        if (userStorage === null || (new Date().getTime()-usertokentime)>(7200*1000)) {
+        if (!Authorization) {
             // 线上环境判断是否登录
             localStorage.setItem('user','');
             localStorage.setItem('usertokentime','');

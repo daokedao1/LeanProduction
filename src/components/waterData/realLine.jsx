@@ -3,19 +3,25 @@ import BreadcrumbCustom from '../BreadcrumbCustom';
 import { Button,Row, Col, Car, Card} from 'antd';
 import RechartsSimpleLineChart from '../charts/RechartsSimpleLineChart';
 import {POST} from '../../axios/tools'
+import {getCookie,setCookie} from '../../utils/index'
+
 import '../../style/waterData/realLine.less'
+const Authorization=getCookie("Authorization");
+
 class RealLine extends React.Component {
   constructor(props){
     super(props);
     this.change = this.change.bind(this);
     this.state={
       currentLineName:'1#注水泵',
+      pumpList:[],
       mapData : [
         [
           {
             stroke:'#0fd59d',
-            dataKey:'出口压力',
+            dataKey:'EXPORT_PRESSURE',
             show:true,
+            name:"进口压力",
             arr:[
               {name: '22:32:57', 进口压力: 3, 出口压力: 23, amt: 87},
               {name: '22:55:33', 进口压力: 3.7, 出口压力: 25, amt: 87},
@@ -28,15 +34,17 @@ class RealLine extends React.Component {
           },
           {
             stroke:'#1BAAE4',
-            dataKey:'进口压力',
+            dataKey:'IMPORT_PRESSURE',
             show:true,
+            name:"出口压力",
 
           },
         ],
         [
           {
             stroke:'#0fd59d',
-            dataKey:'润滑油温度',
+            dataKey:'LUBRICATING_OIL_TEMPERATURE',
+            name:'润滑油温度',
             show:true,
             arr:[
               {name: '22:32:57', 润滑油温度: 3, 润滑油液位: 23, 电机温度: 87},
@@ -50,19 +58,22 @@ class RealLine extends React.Component {
           },
           {
             stroke:'#1BAAE4',
-            dataKey:'润滑油液位',
+            dataKey:'LUBRICATING_OIL_LEVEL',
+            name:"润滑油液位",
             show:true
           },
           {
-            stroke:'#1BAAE4',
-            dataKey:'电机温度',
+            stroke:'#ec7259',
+            dataKey:'MOTOR_TEMPERATURE',
+            name:'电机温度',
             show:true
           },
         ],
         [
           {
             stroke:'#0fd59d',
-            dataKey:'电机A相电流',
+            name:'电机A相电流',
+            dataKey:'MOTOR_A_PHASE_CURRENT',
             show:true,
             arr:[
               {name: '22:32:57', 电机A相电流: 3, 电机B相电流: 23, amt: 87},
@@ -76,7 +87,14 @@ class RealLine extends React.Component {
           },
           {
             stroke:'#1BAAE4',
-            dataKey:'电机B相电流',
+            name:'电机B相电流',
+            dataKey:'MOTOR_B_PHASE_CURRENT',
+            show:true
+          },
+          {
+            stroke:'#ec7259',
+            name:'电机C相电流',
+            dataKey:'MOTOR_C_PHASE_CURRENT',
             show:true
           },
         ]
@@ -84,8 +102,15 @@ class RealLine extends React.Component {
     ],  
   
     }
-   const data=POST('/wTimeData/listForEach');
+   this.init();
+   setInterval(()=>{this.init()},1000)
+
     // React.axios('/wTimeData/listForEach','post1',{})
+  }
+  async init(){
+    const data= await POST('/wTimeData/listForEach',{
+    },Authorization);
+    this.setState({pumpList:data.data.timeDataList})
   }
   tab(item){
     this.setState({currentLineName:item.name});
@@ -97,7 +122,6 @@ class RealLine extends React.Component {
 }
   render() {
     const data=[{"address":"2","name":"1#注水泵","id":2, uv: 4000, pv: 2400, amt: 2400},{"address":"1","name":"2#注水泵","id":1, uv: 4000, pv: 2400, amt: 2400},{"address":"3","name":"3#注水泵","id":3, uv: 4000, pv: 2400, amt: 2400},{"address":"4","name":"4#注水泵","id":4, uv: 4000, pv: 2400, amt: 2400},{"address":"5","name":"5#注水泵","id":5, uv: 4000, pv: 2400, amt: 2400},{"address":"6","name":"6#注水泵","id":6},{"address":"7","name":"7#注水泵","id":7},{"address":"8","name":"8#注水泵","id":8}];
- 
     return (
         <div className="realLine">
           <BreadcrumbCustom first="数据总览" second="实时曲线" />
@@ -118,7 +142,7 @@ class RealLine extends React.Component {
 
                         <div className="gutter-box">
                             <Card title={this.state.currentLineName} bordered={false}>
-                                <RechartsSimpleLineChart key={index} change={this.change} data={item} />
+                                <RechartsSimpleLineChart key={index} change={this.change} pumpList={this.state.pumpList} data={item} />
                             </Card>
                         </div>
 

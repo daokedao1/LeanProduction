@@ -3,7 +3,10 @@ import React,{Component} from 'react';
 import { Form, Icon, Input, Button, Checkbox,message } from 'antd';
 import { PwaInstaller } from '../widget';
 import {saveAuthInfo} from '../../redux/common';
-import {login} from '../../axios'
+// import {login} from '../../axios'
+import {POST} from '../../axios/tools'
+import {setCookie} from './../../utils/index'
+
 import {connect} from 'react-redux'
 
 const FormItem = Form.Item;
@@ -43,14 +46,19 @@ class Login extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
-                if(values.userName!='admin' &&values.password!='admin' ){
-                    message.info('用户名或密码不正确，请重新输入！');
-                }else{
-                  login(values).then(res=>{
-                      this.props.saveAuthInfo(res)
-                  })
-                }
+                // if(values.userName!='admin' &&values.password!='admin' ){
+                //     message.info('用户名或密码不正确，请重新输入！');
+                // }else{
+                 POST('/login',{
+                     ...values
+                 }).then(res=>{
+                     if(res.data.result){
+                        this.props.saveAuthInfo(res);
+                        setCookie('Authorization',res.data.Authorization)
+                        this.props.history.push('/');
+                     }
+                    
+                 })
 
             }
         });
@@ -66,7 +74,7 @@ class Login extends Component {
                     </div>
                     <Form onSubmit={this.handleSubmit} style={{maxWidth: '300px'}}>
                         <FormItem>
-                            {getFieldDecorator('userName', {
+                            {getFieldDecorator('loginId', {
                                 rules: [{ required: true, message: '请输入用户名!' }],
                             })(
                                 <Input  prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="管理员输入admin" />
@@ -80,12 +88,12 @@ class Login extends Component {
                             )}
                         </FormItem>
                         <FormItem>
-                            {getFieldDecorator('remember', {
+                            {/* {getFieldDecorator('remember', {
                                 valuePropName: 'checked',
                                 initialValue: true,
                             })(
                                 <Checkbox>记住我</Checkbox>
-                            )}
+                            )} */}
                             <span className="login-form-forgot" href="" style={{float: 'right'}}>忘记密码</span>
                             <Button type="primary" htmlType="submit" className="login-form-button" style={{width: '100%'}}>
                                 登录

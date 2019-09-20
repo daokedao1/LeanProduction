@@ -18,7 +18,9 @@ class Demo extends React.Component {
       <div className="historyLine">
           <BreadcrumbCustom first="数据总览" second="报警记录" />
           <SearchList />
-          <Table bordered columns={columns} dataSource={data} />
+          <Table 
+        
+           bordered columns={columns} dataSource={data} />
       </div>
     )
   }

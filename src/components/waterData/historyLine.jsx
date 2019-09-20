@@ -5,19 +5,24 @@ import { Row, Col, Card} from 'antd';
 import SearchList from './searchList'
 
 import RechartsSimpleLineChart from '../charts/RechartsSimpleLineChart';
-
+import {POST} from '../../axios/tools'
+import {getCookie,setCookie} from '../../utils/index'
 import '../../style/waterData/realLine.less'
+const Authorization=getCookie("Authorization");
+
 class HistoryLine extends React.Component {
   constructor(props){
     super(props);
     this.change = this.change.bind(this);
     this.state={
+      pumpList:[],
       mapData : [
         [
           {
             stroke:'#0fd59d',
-            dataKey:'出口压力',
+            dataKey:'EXPORT_PRESSURE',
             show:true,
+            name:"进口压力",
             arr:[
               {name: '22:32:57', 进口压力: 3, 出口压力: 23, amt: 87},
               {name: '22:55:33', 进口压力: 3.7, 出口压力: 25, amt: 87},
@@ -30,15 +35,17 @@ class HistoryLine extends React.Component {
           },
           {
             stroke:'#1BAAE4',
-            dataKey:'进口压力',
+            dataKey:'IMPORT_PRESSURE',
             show:true,
+            name:"出口压力",
 
           },
         ],
         [
           {
             stroke:'#0fd59d',
-            dataKey:'润滑油温度',
+            dataKey:'LUBRICATING_OIL_TEMPERATURE',
+            name:'润滑油温度',
             show:true,
             arr:[
               {name: '22:32:57', 润滑油温度: 3, 润滑油液位: 23, 电机温度: 87},
@@ -52,19 +59,22 @@ class HistoryLine extends React.Component {
           },
           {
             stroke:'#1BAAE4',
-            dataKey:'润滑油液位',
+            dataKey:'LUBRICATING_OIL_LEVEL',
+            name:"润滑油液位",
             show:true
           },
           {
-            stroke:'#1BAAE4',
-            dataKey:'电机温度',
+            stroke:'#ec7259',
+            dataKey:'MOTOR_TEMPERATURE',
+            name:'电机温度',
             show:true
           },
         ],
         [
           {
             stroke:'#0fd59d',
-            dataKey:'电机A相电流',
+            name:'电机A相电流',
+            dataKey:'MOTOR_A_PHASE_CURRENT',
             show:true,
             arr:[
               {name: '22:32:57', 电机A相电流: 3, 电机B相电流: 23, amt: 87},
@@ -78,7 +88,14 @@ class HistoryLine extends React.Component {
           },
           {
             stroke:'#1BAAE4',
-            dataKey:'电机B相电流',
+            name:'电机B相电流',
+            dataKey:'MOTOR_B_PHASE_CURRENT',
+            show:true
+          },
+          {
+            stroke:'#ec7259',
+            name:'电机C相电流',
+            dataKey:'MOTOR_C_PHASE_CURRENT',
             show:true
           },
         ]
@@ -88,6 +105,17 @@ class HistoryLine extends React.Component {
         
     }
     // React.axios('/wTimeData/listForEach','post1',{})
+    this.init();
+  }
+  async init(){
+    const data= await POST('/wHistoryData/oneHistory',{
+      id:1,
+      startDate: "2019-08-01",
+      endDate: "2019-08-02",
+      pageNumber: "1",
+      pageSize: "1000"	
+    },Authorization);
+    this.setState({pumpList:data.data.tableData})
   }
   change(item){
     item.show=!item.show;
@@ -107,7 +135,7 @@ class HistoryLine extends React.Component {
                     <Col className="gutter-row" md={20}>
                         <div className="gutter-box">
                             <Card bordered={false}>
-                                <RechartsSimpleLineChart type="1" change={this.change} data={item} />
+                                <RechartsSimpleLineChart type="1" pumpList={this.state.pumpList} change={this.change} data={item} />
                             </Card>
                         </div>
                     </Col>
