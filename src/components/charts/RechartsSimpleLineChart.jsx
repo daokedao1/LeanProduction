@@ -46,7 +46,6 @@ class RechartsSimpleLineChart extends React.Component {
             { this.props.data.map((item,index)=>(
                 <div>
                 <Checkbox checked={item.show} key={index} onChange={()=>this.props.change(item)}>{item.name}</Checkbox>
-
                 </div>
             ))
             }

@@ -103,7 +103,7 @@ class RealLine extends React.Component {
   
     }
    this.init();
-   setInterval(()=>{this.init()},1000)
+   setInterval(()=>{this.init()},10000)
 
     // React.axios('/wTimeData/listForEach','post1',{})
   }
