@@ -12,6 +12,8 @@ class RealLine extends React.Component {
   constructor(props){
     super(props);
     this.change = this.change.bind(this);
+    const Authorization=getCookie("Authorization");
+    
     this.state={
       currentLineName:'1#注水泵',
       pumpList:[],
@@ -102,12 +104,12 @@ class RealLine extends React.Component {
     ],  
   
     }
-   this.init();
+   this.init(Authorization);
    setInterval(()=>{this.init()},10000)
 
     // React.axios('/wTimeData/listForEach','post1',{})
   }
-  async init(){
+  async init(Authorization){
     const data= await POST('/wTimeData/listForEach',{
     },Authorization);
     this.setState({pumpList:data.data.timeDataList})

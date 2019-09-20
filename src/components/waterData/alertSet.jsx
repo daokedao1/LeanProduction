@@ -190,7 +190,7 @@ class EditableTable extends React.Component {
       },
       {
         title: '单位',
-        dataIndex: 'util',
+        dataIndex: 'ut',
         width: '20%',
         editable: false,
       },

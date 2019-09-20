@@ -103,7 +103,11 @@ class Demo extends React.Component {
     this.init()
    
   }
+
   async init(){
+    debugger
+    const Authorization=getCookie("Authorization");
+    console.log(Authorization)
     const data= await POST('/wTimeData/listForEach',{
     },Authorization)
     this.setState({pumpList:data.data.timeDataList})
