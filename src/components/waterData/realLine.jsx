@@ -14,6 +14,7 @@ class RealLine extends React.Component {
     this.change = this.change.bind(this);
     this.state={
       currentLineName:'1#注水泵',
+      curtabid:1,
       pumpList:[],
       mapData : [
         [
@@ -102,19 +103,36 @@ class RealLine extends React.Component {
     ],
 
     }
-   this.init();
-   setInterval(()=>{this.init()},10000)
 
-    // React.axios('/wTimeData/listForEach','post1',{})
   }
-  async init(){
+  componentDidMount() {
+    console.log(1);
+    this.initAllData(1)
+  }
+
+  async initAllData(id = 1){
+    const data= await POST('/wTimeData/oneCurrent',
+    {"id":id,
+      "currentColumn":{
+        "chart1":["EXPORT_PRESSURE","IMPORT_PRESSURE"],
+        "chart2":["LUBRICATING_OIL_TEMPERATURE","LUBRICATING_OIL_LEVEL","MOTOR_TEMPERATURE"],
+        "chart3":["MOTOR_A_PHASE_CURRENT","MOTOR_B_PHASE_CURRENT","MOTOR_C_PHASE_CURRENT","MOTOR_A_PHASE_VOLTAGE","MOTOR_B_PHASE_VOLTAGE","MOTOR_C_PHASE_VOLTAGE"],
+        "chart4":["CYLINDER1_NOISE","CYLINDER2_NOISE","CYLINDER3_NOISE","CYLINDER4_NOISE","CYLINDER5_NOISE"]
+      }
+    }
+    ,Authorization);
+    this.setState({pumpList:data.data.timeDataList})
+  }
+  async initData(){
     const data= await POST('/wTimeData/listForEach',{
     },Authorization);
     this.setState({pumpList:data.data.timeDataList})
   }
   tab(item){
-    this.setState({currentLineName:item.name});
-    this.setState({data:item});
+    this.setState({
+      curtabid:item.id,
+      currentLineName:item.name
+    });
   }
   change(item){
     item.show=!item.show;
@@ -122,14 +140,14 @@ class RealLine extends React.Component {
 }
   render() {
     const data=[
-      {"address":"2","name":"1#注水泵","id":2},
-      {"address":"1","name":"2#注水泵","id":1},
-      {"address":"3","name":"3#注水泵","id":3},
-      {"address":"4","name":"4#注水泵","id":4},
-      {"address":"5","name":"5#注水泵","id":5},
-      {"address":"6","name":"6#注水泵","id":6},
-      {"address":"7","name":"7#注水泵","id":7},
-      {"address":"8","name":"8#注水泵","id":8}
+      {"name":"1#注水泵","id":1},
+      {"name":"2#注水泵","id":2},
+      {"name":"3#注水泵","id":3},
+      {"name":"4#注水泵","id":4},
+      {"name":"5#注水泵","id":5},
+      {"name":"6#注水泵","id":6},
+      {"name":"7#注水泵","id":7},
+      {"name":"8#注水泵","id":8}
     ];
     return (
         <div className="realLine">
@@ -137,7 +155,7 @@ class RealLine extends React.Component {
           <div className="realLine_t">
             <div className="t_l">
            { data.map((item,index)=>(
-             <Button onClick={()=>this.tab(item)} key={index} type="primary" >
+             <Button onClick={()=>this.tab(item)} key={index} type={item.id === this.state.curtabid?'primary':'dashed'} >
                {item.name}
              </Button>
            )
