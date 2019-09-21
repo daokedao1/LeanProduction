@@ -29,9 +29,7 @@ import Cssmodule from './cssmodule';
 import MapUi from './ui/map';
 import QueryParams from './extension/QueryParams';
 //*********************
-import OverView from './operate/overview';
-import ConversionAnalysis from './operate/conversionanalysis';
-import FlowAnalysis from './operate/flowanalysis';
+
 
 import allData from './waterData/allData';
 import course from './waterData/course';
@@ -80,9 +78,6 @@ export default {
     MapUi,
     QueryParams,
 
-    OverView,
-    ConversionAnalysis,
-    FlowAnalysis,
 
     Main,
     DataOverView,

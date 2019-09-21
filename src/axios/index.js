@@ -41,46 +41,6 @@ export const getBbcNews = () => GET(config.NEWS_BBC).then(res=>res);
 
 // easy-mock数据交互
 // 管理员权限获取
-export const login = (param = {}) => GET(config.MOCK_AUTH_ADMIN,param ).then(res=>{
-  return res
-}).catch(err=>err)
-
-export const getOperateOverviewList = (param = {}) => GET(config.OPERATE_OVERVIEW_LIST,param ).then(res=>{
-  return res
-}).catch(err=>err)
-
-// UV 趋势图
-export const getOperateOverviewUvTrend = (param = {}) => GET(config.OPERATE_OVERVIEW_UV_TREND,param ).then(res=>{
-  return res
-}).catch(err=>err)
-//转化分析-转化分析列表
-    export const getOperateConverList = (param = {}) => GET(config.OPERATE_CONVER_LIST,param ).then(res=>{
-      return res
-    }).catch(err=>err)
-    // 转化分析-转化分析下钻列表
-    export const getOperateConverDrillList = (param = {}) => GET(config.OPERATE_CONVER_DRILL_LIST,param ).then(res=>{
-      return res
-    }).catch(err=>err)
-
-
-    //资源类型分布
-    export const getOperateConverResurceDiagramList = (param = {}) => GET(config.OPERATE_RESOURCEDIAGRAM_LIST,param ).then(res=>{
-      return res
-    }).catch(err=>err)
-    //指标趋势图
-    export const getOperateIndexTrend = (param = {}) => GET(config.OPERATE_INDEX_TREND,param ).then(res=>{
-      return res
-    }).catch(err=>err)
-    //资源位TOP
-    export const getOperateResourceTop = (param = {}) => GET(config.OPERATE_RESOURCETOP_LIST,param ).then(res=>{
-      return res
-    }).catch(err=>err)
-//流量分析
-    //用户列表
-    export const getOperateFlowGetUser = (param = {}) => GET(config.OPERATE_FLOW_GETUSEER_LIST,param ).then(res=>{
-      return res
-    }).catch(err=>err)
-    //柱状趋势图
-    export const getOperateGetUserUvTrend = (param = {}) => GET(config.OPERATE_FLOW_GETUSEERUV_TREND,param ).then(res=>{
-      return res
-    }).catch(err=>err)
+// export const login = (param = {}) => GET(config.MOCK_AUTH_ADMIN,param ).then(res=>{
+//   return res
+// }).catch(err=>err)

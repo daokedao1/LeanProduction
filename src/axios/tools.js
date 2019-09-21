@@ -80,6 +80,13 @@ const env = process.env.NODE_ENV || 'development'
             } else {
               reject(res.data);
             }
+                 if (env === 'development') {
+                     console.group('调用网络接口成功');
+                     console.log('[请求的Url]:', url);
+                     console.log('[请求的Data]:', data);
+                     console.log('[请求的Result]:', res.data);
+                     console.groupEnd();
+                 }
           })
           .catch(function(error) {
             // handle error

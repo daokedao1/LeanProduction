@@ -32,6 +32,7 @@ class Login extends Component {
         const { auth: nextAuth = {}, history } = this.props;
 
         if (nextAuth && nextAuth.uid) { // 判断是否登陆
+            console.log(new Date().getTime());
             localStorage.setItem('user', JSON.stringify(nextAuth.userName));
             localStorage.setItem('usertokentime', new Date().getTime());
             history.push('/');
@@ -50,6 +51,7 @@ class Login extends Component {
                      if(res.data.result){
                         this.props.saveAuthInfo(res);
                         setCookie('Authorization',res.data.Authorization)
+                        setCookie('usertokentime',new Date().getTime())
                         localData.set('allData',dataList);
                         this.props.history.push('/');
                      }
