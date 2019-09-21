@@ -59,8 +59,9 @@ class App extends Component {
         return (
             <DocumentTitle title={title}>
                 <Layout>
-                    // {!responsive.data.isMobile && <SiderCustom collapsed={this.state.collapsed} />}
-            
+                  {!responsive.data.isMobile && <SiderCustom collapsed={this.state.collapsed} />}
+
+
                     <Layout style={{ flexDirection: 'column' }}>
                         <HeaderCustom
                             toggle={this.toggle}

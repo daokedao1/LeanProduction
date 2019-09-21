@@ -16,6 +16,7 @@ class RealLine extends React.Component {
     
     this.state={
       currentLineName:'1#注水泵',
+      curtabid:1,
       pumpList:[],
       mapData : [
         [
@@ -100,37 +101,72 @@ class RealLine extends React.Component {
             show:true
           },
         ]
-  
-    ],  
-  
+
+    ],
+
     }
+<<<<<<< HEAD
    this.init(Authorization);
    setInterval(()=>{this.init()},10000)
+=======
+>>>>>>> 4d09ff9c8aef2641304ac1bcc2482abc55b61251
 
-    // React.axios('/wTimeData/listForEach','post1',{})
   }
+<<<<<<< HEAD
   async init(Authorization){
+=======
+  componentDidMount() {
+    console.log(1);
+    this.initAllData(1)
+  }
+
+  async initAllData(id = 1){
+    const data= await POST('/wTimeData/oneCurrent',
+    {"id":id,
+      "currentColumn":{
+        "chart1":["EXPORT_PRESSURE","IMPORT_PRESSURE"],
+        "chart2":["LUBRICATING_OIL_TEMPERATURE","LUBRICATING_OIL_LEVEL","MOTOR_TEMPERATURE"],
+        "chart3":["MOTOR_A_PHASE_CURRENT","MOTOR_B_PHASE_CURRENT","MOTOR_C_PHASE_CURRENT","MOTOR_A_PHASE_VOLTAGE","MOTOR_B_PHASE_VOLTAGE","MOTOR_C_PHASE_VOLTAGE"],
+        "chart4":["CYLINDER1_NOISE","CYLINDER2_NOISE","CYLINDER3_NOISE","CYLINDER4_NOISE","CYLINDER5_NOISE"]
+      }
+    }
+    ,Authorization);
+    this.setState({pumpList:data.data.timeDataList})
+  }
+  async initData(){
+>>>>>>> 4d09ff9c8aef2641304ac1bcc2482abc55b61251
     const data= await POST('/wTimeData/listForEach',{
     },Authorization);
     this.setState({pumpList:data.data.timeDataList})
   }
   tab(item){
-    this.setState({currentLineName:item.name});
-    this.setState({data:item});
+    this.setState({
+      curtabid:item.id,
+      currentLineName:item.name
+    });
   }
   change(item){
     item.show=!item.show;
     this.setState({mapData:this.state.mapData});
 }
   render() {
-    const data=[{"address":"2","name":"1#注水泵","id":2, uv: 4000, pv: 2400, amt: 2400},{"address":"1","name":"2#注水泵","id":1, uv: 4000, pv: 2400, amt: 2400},{"address":"3","name":"3#注水泵","id":3, uv: 4000, pv: 2400, amt: 2400},{"address":"4","name":"4#注水泵","id":4, uv: 4000, pv: 2400, amt: 2400},{"address":"5","name":"5#注水泵","id":5, uv: 4000, pv: 2400, amt: 2400},{"address":"6","name":"6#注水泵","id":6},{"address":"7","name":"7#注水泵","id":7},{"address":"8","name":"8#注水泵","id":8}];
+    const data=[
+      {"name":"1#注水泵","id":1},
+      {"name":"2#注水泵","id":2},
+      {"name":"3#注水泵","id":3},
+      {"name":"4#注水泵","id":4},
+      {"name":"5#注水泵","id":5},
+      {"name":"6#注水泵","id":6},
+      {"name":"7#注水泵","id":7},
+      {"name":"8#注水泵","id":8}
+    ];
     return (
         <div className="realLine">
           <BreadcrumbCustom first="数据总览" second="实时曲线" />
           <div className="realLine_t">
             <div className="t_l">
            { data.map((item,index)=>(
-             <Button onClick={()=>this.tab(item)} key={index} type="primary" >
+             <Button onClick={()=>this.tab(item)} key={index} type={item.id === this.state.curtabid?'primary':'dashed'} >
                {item.name}
              </Button>
            )

@@ -3,14 +3,10 @@ import React,{Component} from 'react';
 import { Form, Icon, Input, Button, Checkbox,message } from 'antd';
 import { PwaInstaller } from '../widget';
 import {saveAuthInfo} from '../../redux/common';
-// import {login} from '../../axios'
 import {POST} from '../../axios/tools'
 import {setCookie} from './../../utils/index'
-
 import {connect} from 'react-redux'
-
 const FormItem = Form.Item;
-
 @connect(state => {
   console.log(state)
     return {
@@ -27,14 +23,10 @@ class Login extends Component {
       };
 
     }
-    componentDidMount() {
-        // console.log(this)
-
-    }
     componentDidUpdate(prevProps) { // React 16.3+弃用componentWillReceiveProps
       //console.log('zzy')
         const { auth: nextAuth = {}, history } = this.props;
-          // console.log(nextAuth)
+
         if (nextAuth && nextAuth.uid) { // 判断是否登陆
 
             localStorage.setItem('user', JSON.stringify(nextAuth.userName));
@@ -57,7 +49,7 @@ class Login extends Component {
                         setCookie('Authorization',res.data.Authorization)
                         this.props.history.push('/');
                      }
-                    
+
                  })
 
             }
@@ -84,7 +76,7 @@ class Login extends Component {
                             {getFieldDecorator('password', {
                                 rules: [{ required: true, message: '请输入密码!' }],
                             })(
-                                <Input  prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="管理员输入admin" />
+                                <Input  prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码" />
                             )}
                         </FormItem>
                         <FormItem>
