@@ -1,14 +1,17 @@
 
 import React from 'react'
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { Row, Col, Card} from 'antd';
+import { Row, Col, Card,Select,DatePicker,Button} from 'antd';
 import SearchList from './searchList'
+import locale from 'antd/es/date-picker/locale/zh_CN';
+import 'moment/locale/zh-cn';
 
 import RechartsSimpleLineChart from '../charts/RechartsSimpleLineChart';
 import {POST} from '../../axios/tools'
 import {getCookie,setCookie} from '../../utils/index'
 import '../../style/waterData/realLine.less'
 const Authorization=getCookie("Authorization");
+const { Option } = Select;
 
 class HistoryLine extends React.Component {
   constructor(props){
@@ -16,6 +19,11 @@ class HistoryLine extends React.Component {
     this.change = this.change.bind(this);
     this.state={
       pumpList:[],
+      dropList:[],
+      dataList:[],
+      id:'',
+      startDate:'',
+      endDate:'',
       mapData : [
         [
           {
@@ -107,19 +115,77 @@ class HistoryLine extends React.Component {
     // React.axios('/wTimeData/listForEach','post1',{})
     this.init();
   }
+  handleChange(value) {
+    this.setState({
+      id:value
+    })
+  
+  }
+  componentDidMount() {
+    POST('/wInfo/pumpList',{},Authorization).then((res)=>{
+        if(res.code == 200 && res.data.pumpList){
+            this.setState({
+              dropList:res.data.pumpList
+            })
+        }
+    })
+  }
+  onSearchBtnClick(){
+    if(!this.state.id){
+      message.warning('请选择水泵！');
+      return false
+    }
+    if(!this.state.startDate){
+      message.warning('请选择查询时间！');
+      return false
+    }
+    let param = {
+      id:this.state.id,
+      pageNumber:1,
+      pageSize:500,
+      startDate:this.state.startDate,
+      endDate:this.state.endDate,
+    }
+    this.setState({
+      loading:true
+    })
+    POST('/wHistoryData/oneHistory',param,Authorization).then((res)=>{
+        let data = [];
+        if(res.code == 200 && res.data.tableData){
+            data = res.data.tableData
+        }
+        this.setState({
+          pumpList:data,
+          loading:false,
+        })
+    })
+  }
   async init(){
-    const data= await POST('/wHistoryData/oneHistory',{
-      id:1,
-      startDate: "2019-08-01",
-      endDate: "2019-08-02",
-      pageNumber: "1",
-      pageSize: "1000"	
-    },Authorization);
-    this.setState({pumpList:data.data.tableData})
+  //   const data= await POST('/wHistoryData/oneHistory',{
+  //     id:1,
+  //     startDate: "2019-08-01",
+  //     endDate: "2019-08-02",
+  //     pageNumber: "1",
+  //     pageSize: "1000"	
+  //   },Authorization);
+  //   let sliceArr=[];
+  //   let arr=data.data.tableData
+  // //   let i=0;
+  // //   while (i < arr.length) {
+  // //    sliceArr.push(arr[i])
+  // //    i+=3;
+  // //  }
+  //   this.setState({pumpList:arr})
   }
   change(item){
     item.show=!item.show;
     this.setState({mapData:this.state.mapData});
+}
+onDateChange(date, dateString){
+  this.setState({
+    startDate:dateString,
+    endDate:dateString,
+  })
 }
   render() {
     const data=[{"address":"2","name":"1#注水泵","id":2, uv: 4000, pv: 2400, amt: 2400},{"address":"1","name":"2#注水泵","id":1, uv: 4000, pv: 2400, amt: 2400},{"address":"3","name":"3#注水泵","id":3, uv: 4000, pv: 2400, amt: 2400},{"address":"4","name":"4#注水泵","id":4, uv: 4000, pv: 2400, amt: 2400},{"address":"5","name":"5#注水泵","id":5, uv: 4000, pv: 2400, amt: 2400},{"address":"6","name":"6#注水泵","id":6},{"address":"7","name":"7#注水泵","id":7},{"address":"8","name":"8#注水泵","id":8}];
@@ -127,7 +193,13 @@ class HistoryLine extends React.Component {
     return (
         <div className="realLine">
         <BreadcrumbCustom first="数据总览" second="历史数据" />
-        <SearchList type="0" />
+        <Select placeholder="请选择水泵" style={{ width: 140 ,marginLeft:'10px'}} onChange={this.handleChange.bind(this)}>
+              {this.state.dropList.map((item,index)=>(
+                <Option key={index} value={item.id}>{item.name}</Option>
+              ))}
+        </Select>
+            <DatePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD" placeholder="请选择时间" onChange={this.onDateChange.bind(this)} />
+            <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onSearchBtnClick.bind(this)}>查询</Button>
           <div className="realLine_b" >
           <h2>历史曲线</h2>
           {this.state.mapData.map((item,index)=>(

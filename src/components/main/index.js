@@ -17,6 +17,9 @@ class Main extends React.Component {
     callback(key) {
       console.log(key);
     }
+     lx(){
+      console.log(123123213)
+  }
     render() {
       const columns = [
         {
@@ -120,10 +123,12 @@ class Main extends React.Component {
       ];
         return (
             <div className="gutter-example">
-            <Tabs defaultActiveKey="1" onChange={this.callback.bind(this)}>
-               <TabPane tab="地图" key="1">
-                 <Tencent />
+
+            <Tabs  defaultActiveKey="1" onChange={this.callback.bind(this)}>
+              <TabPane tab="地图" key="1">
+              <Tencent  />
                </TabPane>
+         
                <TabPane tab="列表" key="2" style={{background:'#fff'}}>
                   <Table  columns={columns} dataSource={data} />
                </TabPane>

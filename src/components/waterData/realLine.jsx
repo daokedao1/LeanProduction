@@ -117,7 +117,7 @@ class RealLine extends React.Component {
 componentWillMount () {
  this.timer= setInterval(()=>{
     this.initData();
-  },1000)
+  },10000)
 }
 componentWillUnmount () {
     clearInterval(this.timer)
@@ -140,10 +140,10 @@ componentWillUnmount () {
     let obj={};
     let sliceArr=[];
     let dataList=[];
-   let data1= this.handleData(chart1);
-   let data2= this.handleData(chart2);
-   let data3= this.handleData(chart3);
-   arr=dataList.concat(data1,data2,data3)
+    arr= this.handleData(chart1,chart2,chart3);
+  //  let data2= this.handleData(chart2);
+  //  let data3= this.handleData(chart3);
+  //  arr=dataList.concat(data1,data2,data3)
    
    let i=0;
    while (i < arr.length) {
@@ -151,20 +151,23 @@ componentWillUnmount () {
     i+=100;
   }
   console.log(sliceArr)
-
+  // sliceArr=arr.slice(sliceArr.length-10000);
+  debugger
     this.setState({pumpList:sliceArr,loading:false})
   }
-  handleData(chart){
+  handleData(chart,chart1,chart2){
     let obj={};
+    let chartArr=[chart,chart1,chart2];
     let arr=[];
-      for(let key of chart.rows){
+    for(let v of chartArr)
+      for(let key of v.rows){
         for(let item in key){
-          for(let i in chart.columns){
+          for(let i in v.columns){
             if(item===i){
               if(item==='0'){
-                obj[chart.columns[i]]=key[item].substring(6);
+                obj[v.columns[i]]=key[item].substring(6);
               }else{
-                obj[chart.columns[i]]=key[item];
+                obj[v.columns[i]]=key[item];
               }
               arr.push(obj)
             }

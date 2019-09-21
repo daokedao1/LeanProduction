@@ -10,7 +10,6 @@ const EditableContext = React.createContext();
 class AlertSet extends React.Component {
   constructor(props) {
     super(props);
-    console.log(localStorage.getItem('allData').length);
     let obj= JSON.parse(localStorage.getItem('allData'))
     this.state = {
       dataList:obj
