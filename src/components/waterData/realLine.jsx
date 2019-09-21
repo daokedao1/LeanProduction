@@ -106,20 +106,19 @@ class RealLine extends React.Component {
 
     }
    this.init(Authorization);
-   setInterval(()=>{this.init()},10000)
+   setInterval(()=>{this.initData()},1000)
 
   }
   componentDidMount() {
 
   }
   async init(Authorization){
-    this.initData();
     this.initAllData(1)
   
   }
   async initAllData(id = 1){
     const data= await POST('/wTimeData/oneCurrent',
-    {"id":this.state.curtabid,
+    {"id":id,
       "currentColumn":{
         "chart1":["EXPORT_PRESSURE","IMPORT_PRESSURE"],
         "chart2":["LUBRICATING_OIL_TEMPERATURE","LUBRICATING_OIL_LEVEL","MOTOR_TEMPERATURE"],
@@ -135,7 +134,8 @@ class RealLine extends React.Component {
     let arr=[];
     let obj={};
    let data1= this.handleData(chart1,chart2,chart3);
-   let lx=data1.slice(0,1000);
+   let lx=data1.slice(35000,data1.length);
+   console.log(data1)
     arr=[...pumpList,...lx];
     this.setState({pumpList:arr})
   }
@@ -145,14 +145,17 @@ class RealLine extends React.Component {
     let arr=[];
     for(let v of data){
       for(let key of v.rows){
-        for(let item of key){
+        for(let item in key){
           for(let i in v.columns){
-            if(v.columns[i]==="date"){
-              obj.INSERT_DATE=item;
-            }else{
-              obj[v.columns[i]]=item;
+            if(item===i){
+              if(item==='0'){
+                obj[v.columns[i]]=key[item].substring(10);
+              }else{
+                obj[v.columns[i]]=key[item];
+              }
+              arr.push(obj)
+           
             }
-          arr.push(obj)
         }
       }
       }
@@ -163,10 +166,13 @@ class RealLine extends React.Component {
   async initData(){
     const data= await POST('/wTimeData/listForEach',{
     },Authorization);
-    console.log(data.data.timeDataList)
-    this.setState({pumpList:data.data.timeDataList})
+    const {pumpList}=this.state;
+    pumpList.push(data.data.timeDataList)
+    console.log(pumpList);
+    this.setState({pumpList:pumpList})
   }
   tab(item){
+    this.initAllData(item.id);
     this.setState({
       curtabid:item.id,
       currentLineName:item.name
