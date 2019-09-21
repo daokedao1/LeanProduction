@@ -23,7 +23,7 @@ class RechartsSimpleLineChart extends React.Component {
                             margin={{top: 5, right: 30, left: 20, bottom: 5}}
                         >
                 
-                            <XAxis dataKey="INSERT_DATE" />
+                            <XAxis allowDataOverflow={true} dataKey="INSERT_DATE" />
                             <YAxis />
                             <CartesianGrid strokeDasharray="3 3" />
                             <Tooltip />
@@ -31,7 +31,7 @@ class RechartsSimpleLineChart extends React.Component {
                             {
                                 this.props.data.map((item,index)=>(
                                     
-                                    item.show?<Line key={index} type="monotone" name={item.name} key={item.name} dataKey={item.dataKey} stroke={item.stroke} activeDot={{r: 8}} />:''
+                                    item.show?<Line  key={index} type="monotone" name={item.name} key={item.name} dataKey={item.dataKey} stroke={item.stroke} activeDot={{r: 8}} />:''
                                 ))
                             }
                           {

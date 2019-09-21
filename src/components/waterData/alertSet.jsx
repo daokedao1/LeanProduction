@@ -7,8 +7,6 @@ import { Table, Input, InputNumber, Popconfirm, Form,Select } from 'antd';
 import {setCookie,getCookie} from './../../utils/index'
 import { createStore } from 'redux';
 import {reducer} from '../../redux/reducers'
-import localData from '../../utils/localStorage'
-
 import Cookies from 'js-cookie'
 const { Option } = Select;
 // const data = [];
@@ -16,8 +14,98 @@ const sel=(<Select defaultValue="开启" style={{ width: 90 }} >
     <Option value="开启">开启</Option>
     <Option value="关闭">关闭</Option>
 </Select>);
-const dataList=localData.get("allData");
-console.log(dataList)
+// for (let i = 1; i < 9; i++) {
+//   data.push({
+//     key: i.toString(),
+//     name: `泵头${i}#缸噪声`,
+//     age: 13,
+//     state: '',
+//     util: `db`,
+//   });
+// }
+let data = [
+  {
+    name:"出口压力",
+    key:"1",
+    ut:'MPa',
+    age: 0,
+    state: '',
+    util: `db`,
+    value:"EXPORT_PRESSURE",
+
+  },
+  {
+    name:"进口压力",
+    key:"2",
+   ut:'MPa',
+   age: 0,
+   state: '',
+   util: `db`,
+   value:"EXPORT_PRESSURE",
+
+ },
+ {
+  name:"电机温度",
+  key:"3",
+   ut:'℃',
+   age: 0,
+   state: '',
+   util: `db`,
+   value:"MOTOR_TEMPERATURE",
+
+ },
+ {
+  name:"润滑油温度",
+  key:"4",
+   ut:'℃',
+   age: 0,
+   state: '',
+   util: `db`,
+   value:"MOTOR_TEMPERATURE",
+
+ },
+ {
+  name:"润滑油液位",
+  key:"5",
+   ut:'CM',
+   age: 0,
+   state: '',
+   util: `db`,
+   value:"MOTOR_TEMPERATURE",
+
+ },
+ {
+  name:"电机A相电流",
+  key:"6",
+   ut:'A',
+   age: 0,
+   state: '',
+   util: `db`,
+   value:"MOTOR_TEMPERATURE",
+
+ },
+ {
+  name:"电机B相电流",
+  key:"7",
+   ut:'A', 
+   age: 0,
+   state: '',
+   util: `db`,
+   value:"MOTOR_B_PHASE_CURRENT",
+   
+
+ },
+ {
+  name:"电机B相电流",
+  key:"8",
+   ut:'A',
+   age: 0,
+   state: '',
+   util: `db`,
+   value:"MOTOR_B_PHASE_CURRENT",
+
+ }
+ ];
 
 const EditableContext = React.createContext();
 const store = createStore(reducer);
@@ -69,15 +157,16 @@ class EditableCell extends React.Component {
 class EditableTable extends React.Component {
   constructor(props) {
     super(props);
-    console.log(dataList)
-    this.state = {
-       data0:dataList[0].arr,
-       data1:dataList[1].arr,
-       data2:dataList[2].arr,
-       data4:dataList[3].arr,
-       data4:dataList[4].arr,
-      
-      editingKey: '' };
+    let obj= Cookies.get('allData');
+    console.log(obj)
+
+    if(obj){
+      obj=JSON.parse(obj);
+      this.setState({ data: obj, editingKey: '' });
+      data=obj;
+      console.log(data)
+    }
+    this.state = { data, editingKey: '' };
   
     this.columns = [
       {
@@ -145,13 +234,13 @@ class EditableTable extends React.Component {
   handleChange(value) {
     console.log(`selected ${value}`);
   }
-  save(form, key,data) {
+  save(form, key) {
   let  that=this;
     form.validateFields((error, row) => {
       if (error) {
         return;
       }
-      const newData = [...this.state[data]];
+      const newData = [...this.state.data];
       const index = newData.findIndex(item => key === item.key);
       if (index > -1) {
         const item = newData[index];
@@ -159,7 +248,9 @@ class EditableTable extends React.Component {
           ...item,
           ...row,
         });
-        this.setState({ "data0": newData, editingKey: '' });
+        this.setState({ data: newData, editingKey: '' });
+
+        Cookies.set('allData',newData)
 
         
         // store.dispatch({dataList:newData,type:'dataList'})
@@ -199,8 +290,6 @@ class EditableTable extends React.Component {
     const arr=[{title:"1井泵模拟量报警设置"}
     // ,{title:"2井泵模拟量报警设置"},{title:"3井泵模拟量报警设置"},{title:"4井泵模拟量报警设置"},{title:"5井泵模拟量报警设置"}
   ]
-  const {data0}=this.state;
-  console.log(data0)
     return (
 
       <EditableContext.Provider value={this.props.form}>
@@ -215,7 +304,7 @@ class EditableTable extends React.Component {
                 <Table
                 components={components}
                 bordered
-                dataSource={data0}
+                dataSource={this.state.data}
                 columns={columns}
                 rowClassName="editable-row"
                 size="small"
@@ -225,7 +314,7 @@ class EditableTable extends React.Component {
 
           ))
         }
-  </div>
+            </div>
        
 
       </EditableContext.Provider>
