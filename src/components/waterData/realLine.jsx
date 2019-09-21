@@ -105,24 +105,21 @@ class RealLine extends React.Component {
     ],
 
     }
-<<<<<<< HEAD
    this.init(Authorization);
    setInterval(()=>{this.init()},10000)
-=======
->>>>>>> 4d09ff9c8aef2641304ac1bcc2482abc55b61251
 
   }
-<<<<<<< HEAD
-  async init(Authorization){
-=======
   componentDidMount() {
-    console.log(1);
-    this.initAllData(1)
-  }
 
+  }
+  async init(Authorization){
+    this.initData();
+    this.initAllData(1)
+  
+  }
   async initAllData(id = 1){
     const data= await POST('/wTimeData/oneCurrent',
-    {"id":id,
+    {"id":this.state.curtabid,
       "currentColumn":{
         "chart1":["EXPORT_PRESSURE","IMPORT_PRESSURE"],
         "chart2":["LUBRICATING_OIL_TEMPERATURE","LUBRICATING_OIL_LEVEL","MOTOR_TEMPERATURE"],
@@ -131,12 +128,42 @@ class RealLine extends React.Component {
       }
     }
     ,Authorization);
-    this.setState({pumpList:data.data.timeDataList})
+    const {mapData,pumpList}=this.state;
+    const chart1=data.data.chartData.chart1;
+    const chart2=data.data.chartData.chart2;
+    const chart3=data.data.chartData.chart3;
+    let arr=[];
+    let obj={};
+   let data1= this.handleData(chart1,chart2,chart3);
+   let lx=data1.slice(0,1000);
+    arr=[...pumpList,...lx];
+    this.setState({pumpList:arr})
+  }
+  handleData(chart,chart1,chart2){
+    let data=[chart,chart1,chart2]
+    let obj={};
+    let arr=[];
+    for(let v of data){
+      for(let key of v.rows){
+        for(let item of key){
+          for(let i in v.columns){
+            if(v.columns[i]==="date"){
+              obj.INSERT_DATE=item;
+            }else{
+              obj[v.columns[i]]=item;
+            }
+          arr.push(obj)
+        }
+      }
+      }
+    }
+
+      return arr;
   }
   async initData(){
->>>>>>> 4d09ff9c8aef2641304ac1bcc2482abc55b61251
     const data= await POST('/wTimeData/listForEach',{
     },Authorization);
+    console.log(data.data.timeDataList)
     this.setState({pumpList:data.data.timeDataList})
   }
   tab(item){

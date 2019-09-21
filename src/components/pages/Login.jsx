@@ -6,6 +6,10 @@ import {saveAuthInfo} from '../../redux/common';
 import {POST} from '../../axios/tools'
 import {setCookie} from './../../utils/index'
 import {connect} from 'react-redux'
+import localData from './../../utils/localStorage'
+
+import {dataList} from './serve'
+
 const FormItem = Form.Item;
 @connect(state => {
   console.log(state)
@@ -28,7 +32,6 @@ class Login extends Component {
         const { auth: nextAuth = {}, history } = this.props;
 
         if (nextAuth && nextAuth.uid) { // 判断是否登陆
-
             localStorage.setItem('user', JSON.stringify(nextAuth.userName));
             localStorage.setItem('usertokentime', new Date().getTime());
             history.push('/');
@@ -47,6 +50,7 @@ class Login extends Component {
                      if(res.data.result){
                         this.props.saveAuthInfo(res);
                         setCookie('Authorization',res.data.Authorization)
+                        localData.set('allData',dataList);
                         this.props.history.push('/');
                      }
 

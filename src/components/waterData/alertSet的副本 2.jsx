@@ -145,13 +145,13 @@ class EditableTable extends React.Component {
   handleChange(value) {
     console.log(`selected ${value}`);
   }
-  save(form, key,data) {
+  save(form, key) {
   let  that=this;
     form.validateFields((error, row) => {
       if (error) {
         return;
       }
-      const newData = [...this.state[data]];
+      const newData = [...this.state.data0];
       const index = newData.findIndex(item => key === item.key);
       if (index > -1) {
         const item = newData[index];
@@ -159,7 +159,7 @@ class EditableTable extends React.Component {
           ...item,
           ...row,
         });
-        this.setState({ "data0": newData, editingKey: '' });
+        this.setState({ data0: newData, editingKey: '' });
 
         
         // store.dispatch({dataList:newData,type:'dataList'})
@@ -225,7 +225,7 @@ class EditableTable extends React.Component {
 
           ))
         }
-  </div>
+            </div>
        
 
       </EditableContext.Provider>
