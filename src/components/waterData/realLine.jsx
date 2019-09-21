@@ -12,6 +12,8 @@ class RealLine extends React.Component {
   constructor(props){
     super(props);
     this.change = this.change.bind(this);
+    const Authorization=getCookie("Authorization");
+    
     this.state={
       currentLineName:'1#注水泵',
       curtabid:1,
@@ -103,8 +105,16 @@ class RealLine extends React.Component {
     ],
 
     }
+<<<<<<< HEAD
+   this.init(Authorization);
+   setInterval(()=>{this.init()},10000)
+=======
+>>>>>>> 4d09ff9c8aef2641304ac1bcc2482abc55b61251
 
   }
+<<<<<<< HEAD
+  async init(Authorization){
+=======
   componentDidMount() {
     console.log(1);
     this.initAllData(1)
@@ -124,6 +134,7 @@ class RealLine extends React.Component {
     this.setState({pumpList:data.data.timeDataList})
   }
   async initData(){
+>>>>>>> 4d09ff9c8aef2641304ac1bcc2482abc55b61251
     const data= await POST('/wTimeData/listForEach',{
     },Authorization);
     this.setState({pumpList:data.data.timeDataList})
