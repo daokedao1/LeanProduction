@@ -23,7 +23,7 @@ class RechartsSimpleLineChart extends React.Component {
                             margin={{top: 5, right: 30, left: 20, bottom: 5}}
                         >
                 
-                            <XAxis allowDataOverflow={true} dataKey="INSERT_DATE" />
+                            <XAxis domain={[0, 'dataMax']}  dataKey="date" />
                             <YAxis />
                             <CartesianGrid strokeDasharray="3 3" />
                             <Tooltip />
