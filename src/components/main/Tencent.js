@@ -11,11 +11,11 @@ const getContianer = dom => {
 let height = document.body.clientHeight-150;
 export default () => (
     <ReactQMap
-        center={{ latitude: 30.53786, longitude: 104.07265 }}
+        center={{ latitude: 34.344570, longitude: 108.932190 }}
         initialOptions={{ zoomControl: true, mapTypeControl: true,maxZoom:9,minZoom:0,zoom:4 }}
         apiKey="UN6BZ-MP2W6-XWCSX-M2ATU-QORGZ-OWFOE"
         style={{ height: height }}
-        mySpot={{ latitude: 30.53786, longitude: 104.07265 }}
+        mySpot={{ latitude: 38.235167, longitude: 115.732240 }}
         getContainer={getContianer}
     />
 );
