@@ -71,7 +71,6 @@ handleChange(value) {
   this.setState({
     id:value
   })
-
 }
   render() {
   const columns=[

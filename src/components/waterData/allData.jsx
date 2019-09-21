@@ -47,7 +47,7 @@ class Demo extends React.Component {
             obj.arr.forEach((item,i)=>{
               if(v[item.value] > obj.arr[i].age){
                 obj.arr[i].block = true;
-                let warnitem  = {title:obj.title,time:moment().format('YYYY-MM-DD hh:mm:ss'),targetname:obj.arr[i].name}
+                let warnitem  = {title:obj.title,time:moment().format('YYYY-MM-DD hh:mm:ss'),targetname:obj.arr[i].name,num:v[item.value]}
 
                 warncount.push(warnitem);
               }else{
@@ -58,8 +58,8 @@ class Demo extends React.Component {
             if(warncount.length>0){
               obj.block = true;
               let warnlist = JSON.parse(localStorage.getItem('warnlist') || '[]');
-              warnlist.push(warncount)
-              localStorage.setItem("warnlist",JSON.stringify(warnlist))
+            
+              localStorage.setItem("warnlist",JSON.stringify(warnlist.concat(warncount)))
             }
             dataList.push(obj);
 
