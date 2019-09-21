@@ -3,7 +3,8 @@ import BreadcrumbCustom from '../BreadcrumbCustom';
 import '../../style/waterData/historyLine.less'
 import { Select, List,Typography,Table} from 'antd';
 import SearchList from './searchList'
-
+import Storage from './../../utils/localStorage'
+const dataList=Storage.get('allData')
 class Demo extends React.Component {
   render() {
   const columns=[ 
@@ -13,7 +14,7 @@ class Demo extends React.Component {
     {title: '变量'},
     {title: '位置'},
   ];
-  const data=[];
+  const data=dataList;
     return (
       <div className="historyLine">
           <BreadcrumbCustom first="数据总览" second="报警记录" />

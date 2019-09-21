@@ -22,9 +22,9 @@ export default {
           ]},
         { key: '/app/other', title: '平台管理',icon: 'scan',
           subs:[
-              { key: '/app/operate/main', title: '用户管理', component: 'Main' },
-              { key: '/app/operate/overview1', title: '角色管理', component: 'DataOverView' },
-              { key: '/app/operate/overview2', title: '单位管理', component: 'OverView' },
+              { key: '/app/operate/main', title: '用户管理', component: 'open' },
+              { key: '/app/operate/overview1', title: '角色管理', component: 'open' },
+              { key: '/app/operate/overview2', title: '单位管理', component: 'open' },
           ]
         },
         // { key: '/app/ui3', title: '增长分析', icon: 'rocket',component: 'Dashboard' },
