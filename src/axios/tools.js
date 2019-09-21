@@ -1,6 +1,8 @@
 
+import React from 'react'
+
 import axios from 'axios';
-import { message } from 'antd';
+import { message,Spin} from 'antd';
 import {cookieGet} from './../utils'
 let query = {}
 const qs = require("qs");
@@ -70,11 +72,15 @@ const env = process.env.NODE_ENV || 'development'
          "Authorization":header
      };
      const newUrl='http://119.90.248.34:51029'+url;
+
      return new Promise((resolve, reject) => {
+     <Spin />
+
         ruquest=axios.post(newUrl, data, {
             headers
           });
           ruquest.then(function(res) {
+
             if (res.data.code === 200 || res.data.status == "0") {
               resolve(res.data);
             } else {

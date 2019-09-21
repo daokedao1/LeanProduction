@@ -1,13 +1,12 @@
 
 import React from 'react';
 import BreadcrumbCustom from '../BreadcrumbCustom';
-const EditableContext = React.createContext();
 import '../../style/waterData/alertSet.less'
 import { Input, InputNumber, Popconfirm, Form,Select } from 'antd';
 import {setCookie,getCookie} from './../../utils/index'
 import Storage from './../../utils/localStorage'
 import AlertSetCard from './alertSetCard'
-
+const EditableContext = React.createContext();
 class AlertSet extends React.Component {
   constructor(props) {
     super(props);

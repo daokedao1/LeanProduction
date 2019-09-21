@@ -47,8 +47,7 @@ class Demo extends React.Component {
           return true
         }
       })
-      console.log();
-      console.log(dataList);
+
       this.setState({
         dataList:dataList
       })
@@ -108,7 +107,7 @@ class Demo extends React.Component {
     },
 
   ];
-  const data=[];
+
     return (
       <div className="historyLine">
           <BreadcrumbCustom first="数据总览" second="报警记录" />

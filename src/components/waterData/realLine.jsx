@@ -4,18 +4,19 @@ import { Button,Row, Col, Car, Card} from 'antd';
 import RechartsSimpleLineChart from '../charts/RechartsSimpleLineChart';
 import {POST} from '../../axios/tools'
 import {getCookie,setCookie} from '../../utils/index'
+import { Spin } from 'antd';
 
 import '../../style/waterData/realLine.less'
 const Authorization=getCookie("Authorization");
-
 class RealLine extends React.Component {
   constructor(props){
     super(props);
     this.change = this.change.bind(this);
     const Authorization=getCookie("Authorization");
-    
+    this.timer=null;
     this.state={
       currentLineName:'1#注水泵',
+      loading:true,
       curtabid:1,
       pumpList:[],
       mapData : [
@@ -106,16 +107,21 @@ class RealLine extends React.Component {
 
     }
    this.init(Authorization);
-   setInterval(()=>{this.initData()},1000)
-
   }
   componentDidMount() {
 
   }
   async init(Authorization){
     this.initAllData(1)
-  
   }
+componentWillMount () {
+ this.timer= setInterval(()=>{
+    this.initData();
+  },1000)
+}
+componentWillUnmount () {
+    clearInterval(this.timer)
+}
   async initAllData(id = 1){
     const data= await POST('/wTimeData/oneCurrent',
     {"id":id,
@@ -127,48 +133,53 @@ class RealLine extends React.Component {
       }
     }
     ,Authorization);
-    const {mapData,pumpList}=this.state;
     const chart1=data.data.chartData.chart1;
     const chart2=data.data.chartData.chart2;
     const chart3=data.data.chartData.chart3;
     let arr=[];
     let obj={};
-   let data1= this.handleData(chart1,chart2,chart3);
-   let lx=data1.slice(35000,data1.length);
-   console.log(data1)
-    arr=[...pumpList,...lx];
-    this.setState({pumpList:arr})
+    let sliceArr=[];
+    let dataList=[];
+   let data1= this.handleData(chart1);
+   let data2= this.handleData(chart2);
+   let data3= this.handleData(chart3);
+   arr=dataList.concat(data1,data2,data3)
+   
+   let i=0;
+   while (i < arr.length) {
+    sliceArr.push(arr[i])
+    i+=100;
   }
-  handleData(chart,chart1,chart2){
-    let data=[chart,chart1,chart2]
+  console.log(sliceArr)
+
+    this.setState({pumpList:sliceArr,loading:false})
+  }
+  handleData(chart){
     let obj={};
     let arr=[];
-    for(let v of data){
-      for(let key of v.rows){
+      for(let key of chart.rows){
         for(let item in key){
-          for(let i in v.columns){
+          for(let i in chart.columns){
             if(item===i){
               if(item==='0'){
-                obj[v.columns[i]]=key[item].substring(10);
+                obj[chart.columns[i]]=key[item].substring(6);
               }else{
-                obj[v.columns[i]]=key[item];
+                obj[chart.columns[i]]=key[item];
               }
               arr.push(obj)
-           
             }
-        }
       }
       }
     }
-
+    console.log(arr)
       return arr;
   }
+
   async initData(){
     const data= await POST('/wTimeData/listForEach',{
     },Authorization);
     const {pumpList}=this.state;
     pumpList.push(data.data.timeDataList)
-    console.log(pumpList);
     this.setState({pumpList:pumpList})
   }
   tab(item){
@@ -194,7 +205,10 @@ class RealLine extends React.Component {
       {"name":"8#注水泵","id":8}
     ];
     return (
+      <Spin size="large" className="spin" spinning={this.state.loading} tip="Loading..." size="large">
+
         <div className="realLine">
+
           <BreadcrumbCustom first="数据总览" second="实时曲线" />
           <div className="realLine_t">
             <div className="t_l">
@@ -223,6 +237,7 @@ class RealLine extends React.Component {
 
           </div>
         </div>
+        </Spin>
     )
   }
 }

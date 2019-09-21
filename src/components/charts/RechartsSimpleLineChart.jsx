@@ -9,7 +9,7 @@ class RechartsSimpleLineChart extends React.Component {
     constructor(props) {
         super(props);
         console.log(this.props.pumpList)
-
+        
     }
 
     render(){
@@ -23,7 +23,7 @@ class RechartsSimpleLineChart extends React.Component {
                             margin={{top: 5, right: 30, left: 20, bottom: 5}}
                         >
                 
-                            <XAxis domain={[0, 'dataMax']}  dataKey="date" />
+                            <XAxis   dataKey="date" />
                             <YAxis />
                             <CartesianGrid strokeDasharray="3 3" />
                             <Tooltip />
