@@ -6,8 +6,8 @@ const getContianer = dom => {
 
     const middleControl = document.createElement('div');
     middleControl.style.cssText =
-        'width: 22px;height: 30px;position: absolute;left: 50%;top: 50%;z-index: 999;margin-left: -23px;margin-top: -23px;';
-    middleControl.innerHTML = `<Link to="/login"><img id="lx"   src="${require('../../style/imgs/spot_location.png')}" style="width: 100%;height: 100%"/></Link>`;
+        'width: 123px;height: 30px;position: absolute;left: 50%;top: 50%;z-index: 999;margin-left: -23px;margin-top: -23px;';
+    middleControl.innerHTML = `<Link to="/login"><img  id="lx"   src="${require('../../style/imgs/spot_location.png')}" style="width: 22px;height: 100%"/><p style="color:red">华北油田采油三厂楚一联合注水站</p></Link>`;
     dom.appendChild(middleControl);
     let lx=document.getElementById('lx')
     lx.onclick=function(){
