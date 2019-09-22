@@ -7,6 +7,7 @@ import {getCookie,setCookie} from '../../utils/index'
 import {POST} from '../../axios/tools'
 import Cookies from 'js-cookie'
 import moment from 'moment';
+import {dataList} from './../pages/serve'
 
 const Authorization=getCookie("Authorization");
 
@@ -18,6 +19,7 @@ class Demo extends React.Component {
       visible: false,
       block:false,
       dataList:[],
+      errItem:''
     };
 
   }
@@ -34,7 +36,17 @@ class Demo extends React.Component {
   init(){
 
     const Authorization=getCookie("Authorization");
-    let allData= JSON.parse(localStorage.getItem('allData')||'[]') ;
+
+    let allData = localStorage.getItem('allData');
+
+    if(!allData){
+
+      localStorage.setItem('allData',dataList);
+      allData = dataList;
+    }else{
+      allData = JSON.parse(allData)
+    }
+    console.log(allData);
     let dataList = [];
     POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
 
@@ -42,13 +54,13 @@ class Demo extends React.Component {
           res.data.timeDataList.forEach((v,i)=>{
 
             let obj = allData[i];
-            console.log(allData);
-            obj.RUNNING_STATE = v['RUNNING_STATE'];
+            console.log(allData[i]);
+            obj['RUNNING_STATE'] = v['RUNNING_STATE'];
             let warncount = [];
             obj.arr.forEach((item,i)=>{
               if(v[item.value] > obj.arr[i].age){
                 obj.arr[i].block = true;
-                let warnitem  = {title:obj.title,time:moment().format('YYYY-MM-DD hh:mm:ss'),targetname:obj.arr[i].name}
+                let warnitem  = {title:obj.title,time:moment().format('YYYY-MM-DD hh:mm:ss'),targetname:obj.arr[i].name,col:obj.arr[i].value}
 
                 warncount.push(warnitem);
               }else{
@@ -60,12 +72,13 @@ class Demo extends React.Component {
               obj.block = true;
               let warnlist = JSON.parse(localStorage.getItem('warnlist') || '[]');
               warnlist.push(warncount)
+
+              obj.errItem = warncount[0].col
               localStorage.setItem("warnlist",JSON.stringify(warnlist))
             }
             dataList.push(obj);
 
           })
-          console.log(dataList);
           this.setState({
             dataList:dataList
           })
@@ -76,10 +89,11 @@ class Demo extends React.Component {
   }
 
   popBlock(item){
+    console.log(item);
     if(!item.block){
       return
     }
-    this.setState({visible:true})
+    this.setState({visible:true,errItem:item.errItem})
     setCookie('infor',[])
   }
   handleOk = e => {
@@ -88,7 +102,44 @@ class Demo extends React.Component {
       visible: false,
     });
   };
-
+  buildVideBox(opt){
+    if(this.state.errItem.indexOf('PRESSURE')>-1){
+      return (<div>
+        <p>{`报警:注水泵的排出压力传感器`}</p>
+        <p>{`检查1、注水泵的外输管线流程"`}</p>
+        <p>{`检查1、注水泵的外输管线闸门是否开启`}</p>
+          <video data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+            <object data-v-68781f9a="" width="100%">
+                <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
+            </object>
+          </video>
+      </div>)
+    }else if(this.state.errItem.indexOf('TEMPERATURE')>-1){
+      return (<div>
+        <p>{`报警:注水泵的电机温度传感器`}</p>
+        <p>{`检查1、检查电机润滑脂的注入量及品质"`}</p>
+        <p>{`检查2、检查电机状态`}</p>
+        <p>{`检查3、与专业人员联系`}</p>
+          <video data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+            <object data-v-68781f9a="" width="100%">
+                <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
+            </object>
+          </video>
+      </div>)
+    }else if(this.state.errItem.indexOf('LUBRICATING_OIL_TEMPERATURE')>-1){
+      return (<div>
+        <p>{`报警:注水泵的润滑油温度传感器`}</p>
+        <p>{`检查1、更换润滑油`}</p>
+        <p>{`检查2、检查润滑油油窗液位`}</p>
+        <p>{`检查3、与专业人员联系`}</p>
+          <video data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+            <object data-v-68781f9a="" width="100%">
+                <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
+            </object>
+          </video>
+      </div>)
+    }
+  }
   handleCancel = e => {
     console.log(e);
     this.setState({
@@ -146,20 +197,16 @@ class Demo extends React.Component {
       ];
       // pumpList=[{content:data},{content:data},{content:data},{content:data},{content:data},{content:data},{content:data}];
      const pop_b=<Modal
-     title="报警提示"
-     visible={this.state.visible}
-     onOk={this.handleOk}
-     onCancel={this.handleCancel}
-     okText="确认"
-     cancelText="取消"
-   >
-     <div>
-     <p>{`注水磊出现异常需要维修`}</p>
-     <p>{`1、注水泵的排出压力传感器"`}</p>
-     <p>{`2、注水泵的外输管线流程`}</p>
-     <p>{`3、注水泵的外输管线闸门是否开启`}</p>
-     </div>
-
+         title="报警提示"
+         visible={this.state.visible}
+         onOk={this.handleOk}
+         onCancel={this.handleCancel}
+         okText="确认"
+         cancelText="取消"
+       >
+       {
+        this.buildVideBox()
+       }
    </Modal>
     return (
 

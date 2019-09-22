@@ -48,8 +48,10 @@ class Login extends Component {
                         this.props.saveAuthInfo(res);
                         setCookie('Authorization',res.data.Authorization)
                         setCookie('usertokentime',new Date().getTime());
+                        debugger
                         let allData = localStorage.getItem('allData');
-                        console.log(allData);
+                        console.log(dataList);
+                        console.log(dataList);
                         if(!allData){
                           localData.set('allData',dataList);
                         }
