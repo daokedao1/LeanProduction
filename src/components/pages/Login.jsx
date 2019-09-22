@@ -25,7 +25,7 @@ class Login extends Component {
           auth: '',
           title: '',
       };
-
+      localStorage.setItem('allData','');
     }
     componentDidUpdate(prevProps) { // React 16.3+弃用componentWillReceiveProps
         const { auth: nextAuth = {}, history } = this.props;

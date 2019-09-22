@@ -11,10 +11,13 @@ import {reducer} from '../../redux/reducers'
 import Cookies from 'js-cookie'
 const { Option } = Select;
 // const data = [];
-const sel=(<Select defaultValue="开启" style={{ width: 90 }} >
-    <Option value="开启">开启</Option>
-    <Option value="关闭">关闭</Option>
-</Select>);
+const sel=(state = 0, record)=>{
+   return(<Select defaultValue={state+''} style={{ width: 90 }} >
+      <Option value="1">开启</Option>
+      <Option value="0">关闭</Option>
+  </Select>);
+}
+
 
 
 const EditableContext = React.createContext();
@@ -68,7 +71,6 @@ class AlertSetCard extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props.item)
     this.state = {
        editingKey: '',
        dataList:this.props.item.arr
@@ -88,11 +90,11 @@ class AlertSetCard extends React.Component {
         editable: true,
       },
       {
-        title: '状态',
+        title: '状态(0关闭 1开启)',
         dataIndex: 'state',
         width: '20%',
-        editable: false,
-        render: ()=>sel
+        editable: true,
+        render: sel
       },
       {
         title: '单位',
@@ -143,11 +145,13 @@ class AlertSetCard extends React.Component {
   save(form, key) {
   let  that=this;
     form.validateFields((error, row) => {
+      console.log(row)
       if (error) {
         return;
       }
       let newData= JSON.parse(localStorage.getItem('allData')||'[]');
       newData[this.props.id].arr[key-1].age = row.age;
+      newData[this.props.id].arr[key-1].state = row.state;
       localStorage.setItem('allData',JSON.stringify(newData))
       this.setState({
          editingKey: '' ,

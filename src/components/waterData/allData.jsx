@@ -39,34 +39,41 @@ class Demo extends React.Component {
 
     let allData = localStorage.getItem('allData');
 
-    if(!allData){
+    if(!allData || allData == 'undefined'){
 
       localStorage.setItem('allData',dataList);
       allData = dataList;
     }else{
       allData = JSON.parse(allData)
     }
-    console.log(allData);
+
     let dataList = [];
     POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
         if(res.code === 200){
           res.data.timeDataList.forEach((v,i)=>{
             
             let obj = allData[i];
-            console.log(allData[i]);
+
             obj['RUNNING_STATE'] = v['RUNNING_STATE'];
             let warncount = [];
+
             obj.arr.forEach((item,i)=>{
               if(v[item.value] > obj.arr[i].age){
-                obj.arr[i].block = true;
-                let warnitem  = {title:obj.title,time:moment().format('YYYY-MM-DD hh:mm:ss'),targetname:obj.arr[i].name,col:obj.arr[i].value}
+                if(obj['RUNNING_STATE'] == 1&&obj.arr[i].state == 1){
+                  obj.arr[i].block = true;
+                  let warnitem  = {title:obj.title,time:moment().format('YYYY-MM-DD hh:mm:ss'),targetname:obj.arr[i].name,col:obj.arr[i].value}
+                  warncount.push(warnitem);
+                }else{
+                  obj.arr[i].block = false;
+                }
 
-                warncount.push(warnitem);
               }else{
+
                 obj.arr[i].block = false;
               }
               obj.arr[i].num = v[item.value];
             })
+
             if(warncount.length>0){
               obj.block = true;
               let warnlist = JSON.parse(localStorage.getItem('warnlist') || '[]');
@@ -74,10 +81,12 @@ class Demo extends React.Component {
 
               obj.errItem = warncount[0].col
               localStorage.setItem("warnlist",JSON.stringify(warnlist))
+              console.log(warncount)
             }
             dataList.push(obj);
 
           })
+
           this.setState({
             dataList:dataList
           })
@@ -88,7 +97,7 @@ class Demo extends React.Component {
   }
 
   popBlock(item){
-    console.log(item);
+
     if(!item.block){
       return
     }
@@ -96,7 +105,7 @@ class Demo extends React.Component {
     setCookie('infor',[])
   }
   handleOk = e => {
-    console.log(e);
+
     this.setState({
       visible: false,
     });
@@ -128,22 +137,50 @@ class Demo extends React.Component {
             </object>
           </video>
       </div>)
-    }else if(this.state.errItem.indexOf('LUBRICATING_OIL_TEMPERATURE')>-1){
+    }else if(this.state.errItem.indexOf('LUBRICATING_OIL_LEVEL')>-1){
       return (<div>
-        <p>{`报警:注水泵的润滑油温度传感器`}</p>
-        <p>{`检查1、更换润滑油`}</p>
-        <p>{`检查2、检查润滑油油窗液位`}</p>
+        <p>{`报警:注水泵的泵体油液位传感器`}</p>
+        <p>{`检查1、更换挡油头油封`}</p>
+        <p>{`检查2、添加润滑油`}</p>
         <p>{`检查3、与专业人员联系`}</p>
           <video className="vio"  className="vio" autoplay="autoplay" data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
-                <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
+                <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/010%E6%9B%B2%E8%BD%B4%E6%B2%B9%E5%B0%81%E6%8B%86%E8%A7%A32043.mp4?t=Sun%20Sep%2022%202019%2017:12:57%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)"/>
             </object>
           </video>
       </div>)
     }
+
+  else if(this.state.errItem.indexOf('NOISE')>-1){
+    return (<div>
+      <p>{`报警:注水泵的1#泵头噪声传感器`}</p>
+      <p>{`检查1、阀弹簧可能损坏`}</p>
+      <p>{`检查2、阀片可能损坏`}</p>
+      <p>{`检查3、阀体可能损坏`}</p>
+        <video className="vio"  className="vio" autoplay="autoplay" data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+          <object data-v-68781f9a="" width="100%">
+              <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/009%E6%B3%B5%E5%A4%B4%E6%8B%86%E8%A7%A3%E6%95%99%E7%A8%8B2043.mp4?t=Sun%20Sep%2022%202019%2017:15:02%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)"/>
+          </object>
+        </video>
+    </div>)
   }
+
+  else if(this.state.errItem.indexOf('LUBRICATING_OIL_TEMPERATURE')>-1){
+    return (<div>
+      <p>{`报警:注水泵的润滑油温度传感器`}</p>
+      <p>{`检查1、更换润滑油`}</p>
+      <p>{`检查2、检查润滑油油窗液位`}</p>
+      <p>{`检查3、与专业人员联系`}</p>
+        <video className="vio"  className="vio" autoplay="autoplay" data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+          <object data-v-68781f9a="" width="100%">
+              <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
+          </object>
+        </video>
+    </div>)
+  }
+}
   handleCancel = e => {
-    console.log(e);
+
     this.setState({
       visible: false,
     });
@@ -214,28 +251,31 @@ class Demo extends React.Component {
    </Modal>
     return (
 
-        <div className="allData">
+        <div className="allData" style={{backgroundColor: "#fff"}}>
           <BreadcrumbCustom first="数据总览" second="总览数据" />
           <div className="allData_m">
             <h3>华北油田采油三厂楚一联合注水站监控中心</h3>
-            <div className="allData_t">
+            <div className="allData_t" >
               <ul>
               {
                 this.state.dataList.map((itemm,i)=>(
+
                   <li className="list" key={i}>
-                    {itemm.RUNNING_STATE==0?<Button type="primary">运行</Button>:<Button type="danger">停止</Button>}
+                    {itemm.RUNNING_STATE==1?<Button type="primary">运行</Button>:<Button type="danger">停止</Button>}
 
                   <img src={pump} alt="" />
                   <List
                     header={<div onClick={this.popBlock.bind(this,itemm)} className={itemm.block?'headerList':""}>{itemm.title}</div>}
                     bordered
                     dataSource={itemm.arr}
-                    renderItem={(item) => (
-                      <List.Item>
-                        <Typography.Text mark></Typography.Text>
-                        {item.name}:{item.num}{item.ut}
-                      </List.Item>
-                    )}
+                    renderItem={(item) => {
+
+                        return(<List.Item>
+                          <Typography.Text mark></Typography.Text>
+                          {item.name}:{item.num}{item.ut}
+                        </List.Item>)
+
+                    }}
                   />
                 </li>
                 ))
