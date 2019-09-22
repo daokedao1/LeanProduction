@@ -8,7 +8,7 @@ import {getCookie,setCookie} from '../../utils/index'
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import 'moment/locale/zh-cn';
 import Storage from './../../utils/localStorage'
-const dataList=Storage.get('allData')
+
 const { Option } = Select;
 const Authorization=getCookie("Authorization");
 

@@ -144,15 +144,13 @@ componentWillUnmount () {
   //  let data2= this.handleData(chart2);
   //  let data3= this.handleData(chart3);
   //  arr=dataList.concat(data1,data2,data3)
-   
+
    let i=0;
    while (i < arr.length) {
     sliceArr.push(arr[i])
     i+=100;
   }
   console.log(sliceArr)
-  // sliceArr=arr.slice(sliceArr.length-10000);
-  debugger
     this.setState({pumpList:sliceArr,loading:false})
   }
   handleData(chart,chart1,chart2){

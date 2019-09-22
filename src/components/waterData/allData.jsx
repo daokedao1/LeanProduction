@@ -25,7 +25,7 @@ class Demo extends React.Component {
           state: '',
           util: `db`,
           value:"EXPORT_PRESSURE",
-      
+
         },
         {
           name:"进口压力",
@@ -35,7 +35,7 @@ class Demo extends React.Component {
          state: '',
          util: `db`,
          value:"EXPORT_PRESSURE",
-      
+
        },
        {
         name:"电机温度",
@@ -45,7 +45,7 @@ class Demo extends React.Component {
          state: '',
          util: `db`,
          value:"MOTOR_TEMPERATURE",
-      
+
        },
        {
         name:"润滑油温度",
@@ -55,7 +55,7 @@ class Demo extends React.Component {
          state: '',
          util: `db`,
          value:"MOTOR_TEMPERATURE",
-      
+
        },
        {
         name:"润滑油液位",
@@ -65,7 +65,7 @@ class Demo extends React.Component {
          state: '',
          util: `db`,
          value:"MOTOR_TEMPERATURE",
-      
+
        },
        {
         name:"电机A相电流",
@@ -75,18 +75,18 @@ class Demo extends React.Component {
          state: '',
          util: `db`,
          value:"MOTOR_TEMPERATURE",
-      
+
        },
        {
         name:"电机B相电流",
         key:"7",
-         ut:'A', 
+         ut:'A',
          age: 13,
          state: '',
          util: `db`,
          value:"MOTOR_B_PHASE_CURRENT",
-         
-      
+
+
        },
        {
         name:"电机B相电流",
@@ -96,21 +96,21 @@ class Demo extends React.Component {
          state: '',
          util: `db`,
          value:"MOTOR_B_PHASE_CURRENT",
-      
+
        }
        ],
       block:false
     };
     this.init()
-   
+
   }
   onVideo(){
     this.setState({videShow:true});
   }
   async init(){
-    debugger
+
     const Authorization=getCookie("Authorization");
-    console.log(Authorization)
+  
     const data= await POST('/wTimeData/listForEach',{
     },Authorization)
     this.setState({pumpList:data.data.timeDataList})
@@ -143,7 +143,7 @@ class Demo extends React.Component {
       return
     }
     this.setState({visible:true})
-    
+
     setCookie('infor',[])
   }
   handleOk = e => {
@@ -226,7 +226,7 @@ class Demo extends React.Component {
      <p onClick={this.onVideo.bind(this)}>{`2、注水泵的外输管线流程`}</p>
      <p onClick={this.onVideo.bind(this)}>{`3、注水泵的外输管线闸门是否开启`}</p>
      </div>
- 
+
    </Modal>
         const pop_v=<Modal
         title="播放视频"
@@ -261,7 +261,7 @@ class Demo extends React.Component {
                 this.state.pumpList.map((itemm,i)=>(
                   <li className="list" key={i}>
                     {itemm.RUNNING_STATE==0?<Button type="primary">运行</Button>:<Button type="danger">停止</Button>}
-                  
+
                   <img src={pump} alt="" />
                   <List
                     header={<div onClick={()=>this.popBlock(itemm)} className={itemm.block?'':"headerList"}>{itemm.name}</div>}
@@ -269,7 +269,7 @@ class Demo extends React.Component {
                     dataSource={data}
                     renderItem={(item) => (
                       <List.Item>
-                        <Typography.Text mark></Typography.Text> 
+                        <Typography.Text mark></Typography.Text>
                         {item.title}:{itemm[item.value]}{item.ut}
                       </List.Item>
                     )}
@@ -282,9 +282,9 @@ class Demo extends React.Component {
             </div>
           </div>
           {
-            
+
             this.state.videShow?pop_v:pop_b
-            
+
             }
         </div>
     )

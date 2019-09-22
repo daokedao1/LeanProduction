@@ -6,11 +6,19 @@ import { Input, InputNumber, Popconfirm, Form,Select } from 'antd';
 import {setCookie,getCookie} from './../../utils/index'
 import Storage from './../../utils/localStorage'
 import AlertSetCard from './alertSetCard'
+import {dataList} from './../pages/serve'
+
 const EditableContext = React.createContext();
 class AlertSet extends React.Component {
   constructor(props) {
     super(props);
-    let obj= JSON.parse(localStorage.getItem('allData'))
+    let obj= []
+    if(localStorage.getItem('allData')){
+        obj = JSON.parse(localStorage.getItem('allData'));
+    }else{
+        localStorage.setItem('allData',JSON.stringify(dataList))
+        obj = dataList;
+    }
     this.state = {
       dataList:obj
     }

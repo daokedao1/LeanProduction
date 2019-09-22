@@ -28,11 +28,9 @@ class Login extends Component {
 
     }
     componentDidUpdate(prevProps) { // React 16.3+弃用componentWillReceiveProps
-      //console.log('zzy')
         const { auth: nextAuth = {}, history } = this.props;
 
         if (nextAuth && nextAuth.uid) { // 判断是否登陆
-            console.log(new Date().getTime());
             localStorage.setItem('user', JSON.stringify(nextAuth.userName));
             localStorage.setItem('usertokentime', new Date().getTime());
             history.push('/');
@@ -42,22 +40,22 @@ class Login extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                // if(values.userName!='admin' &&values.password!='admin' ){
-                //     message.info('用户名或密码不正确，请重新输入！');
-                // }else{
+
                  POST('/login',{
                      ...values
                  }).then(res=>{
                      if(res.data.result){
                         this.props.saveAuthInfo(res);
                         setCookie('Authorization',res.data.Authorization)
-                        setCookie('usertokentime',new Date().getTime())
-                        localData.set('allData',dataList);
+                        setCookie('usertokentime',new Date().getTime());
+                        // let allData = localStorage.getItem('allData');
+                        // if(allData){
+                        //   localData.set('allData',dataList);
+                        // }
+
                         this.props.history.push('/');
                      }
-
                  })
-
             }
         });
     };
@@ -86,12 +84,7 @@ class Login extends Component {
                             )}
                         </FormItem>
                         <FormItem>
-                            {/* {getFieldDecorator('remember', {
-                                valuePropName: 'checked',
-                                initialValue: true,
-                            })(
-                                <Checkbox>记住我</Checkbox>
-                            )} */}
+
                             <span className="login-form-forgot" href="" style={{float: 'right'}}>忘记密码</span>
                             <Button type="primary" htmlType="submit" className="login-form-button" style={{width: '100%'}}>
                                 登录
