@@ -1,11 +1,8 @@
 
-import React from 'react'
 
 import axios from 'axios';
-import { message,Spin} from 'antd';
-import {cookieGet} from './../utils'
-let query = {}
-const qs = require("qs");
+let query  = {}
+
 
 const env = process.env.NODE_ENV || 'development'
 /**
@@ -71,11 +68,9 @@ const env = process.env.NODE_ENV || 'development'
         "Content-Type": "application/json",
          "Authorization":header
      };
-     const newUrl='http://119.90.248.34:51029'+url;
+     const newUrl= 'http://119.90.248.34:51029'+url;
 
      return new Promise((resolve, reject) => {
-     <Spin />
-
         ruquest=axios.post(newUrl, data, {
             headers
           });

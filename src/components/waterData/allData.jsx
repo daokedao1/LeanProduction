@@ -101,6 +101,8 @@ class Demo extends React.Component {
     this.setState({
       visible: false,
     });
+    let pause=document.querySelector('.vio');
+    pause.pause();
   };
   buildVideBox(opt){
     if(this.state.errItem.indexOf('PRESSURE')>-1){
@@ -108,7 +110,7 @@ class Demo extends React.Component {
         <p>{`报警:注水泵的排出压力传感器`}</p>
         <p>{`检查1、注水泵的外输管线流程"`}</p>
         <p>{`检查1、注水泵的外输管线闸门是否开启`}</p>
-          <video data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+          <video className="vio" autoplay="autoplay" data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
             </object>
@@ -120,7 +122,7 @@ class Demo extends React.Component {
         <p>{`检查1、检查电机润滑脂的注入量及品质"`}</p>
         <p>{`检查2、检查电机状态`}</p>
         <p>{`检查3、与专业人员联系`}</p>
-          <video data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+          <video className="vio" autoplay="autoplay" data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
             </object>
@@ -132,7 +134,7 @@ class Demo extends React.Component {
         <p>{`检查1、更换润滑油`}</p>
         <p>{`检查2、检查润滑油油窗液位`}</p>
         <p>{`检查3、与专业人员联系`}</p>
-          <video data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+          <video className="vio" autoplay="autoplay" data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
             </object>
@@ -145,6 +147,8 @@ class Demo extends React.Component {
     this.setState({
       visible: false,
     });
+    let pause=document.querySelector('.vio');
+    pause.pause();
   };
   render() {
      const data = [
