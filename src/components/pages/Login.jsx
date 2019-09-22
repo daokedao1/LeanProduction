@@ -48,10 +48,11 @@ class Login extends Component {
                         this.props.saveAuthInfo(res);
                         setCookie('Authorization',res.data.Authorization)
                         setCookie('usertokentime',new Date().getTime());
-                        // let allData = localStorage.getItem('allData');
-                        // if(allData){
-                        //   localData.set('allData',dataList);
-                        // }
+                        let allData = localStorage.getItem('allData');
+                        console.log(allData);
+                        if(!allData){
+                          localData.set('allData',dataList);
+                        }
 
                         this.props.history.push('/');
                      }

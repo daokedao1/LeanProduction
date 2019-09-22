@@ -150,7 +150,7 @@ componentWillUnmount () {
     sliceArr.push(arr[i])
     i+=100;
   }
-  console.log(sliceArr)
+
     this.setState({pumpList:sliceArr,loading:false})
   }
   handleData(chart,chart1,chart2){
@@ -172,7 +172,7 @@ componentWillUnmount () {
       }
       }
     }
-    console.log(arr)
+
       return arr;
   }
 

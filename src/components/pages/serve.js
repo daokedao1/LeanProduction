@@ -15,7 +15,7 @@ export let dataList =[
       state: '',
       util: `db`,
       value:"EXPORT_PRESSURE",
-  
+
     },
    {
      name:"进口压力",
@@ -24,8 +24,8 @@ export let dataList =[
     age: 0,
     state: '',
     util: `db`,
-    value:"EXPORT_PRESSURE",
-  
+    value:"IMPORT_PRESSURE",
+
   },
   {
    name:"电机温度",
@@ -35,7 +35,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油温度",
@@ -44,8 +44,8 @@ export let dataList =[
     age: 0,
     state: '',
     util: `db`,
-    value:"MOTOR_TEMPERATURE",
-  
+    value:"LUBRICATING_OIL_TEMPERATURE",
+
   },
   {
    name:"润滑油液位",
@@ -54,8 +54,8 @@ export let dataList =[
     age: 0,
     state: '',
     util: `db`,
-    value:"MOTOR_TEMPERATURE",
-  
+    value:"LUBRICATING_OIL_LEVEL",
+
   },
   {
    name:"电机A相电流",
@@ -64,31 +64,31 @@ export let dataList =[
     age: 0,
     state: '',
     util: `db`,
-    value:"MOTOR_TEMPERATURE",
-  
+    value:"MOTOR_A_PHASE_CURRENT",
+
   },
   {
    name:"电机B相电流",
    key:"7",
-    ut:'A', 
-    age: 0,
-    state: '',
-    util: `db`,
-    value:"MOTOR_B_PHASE_CURRENT",
-    
-  
-  },
-  {
-   name:"电机B相电流",
-   key:"8",
     ut:'A',
     age: 0,
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-  
+
+
   },
-  
+  {
+   name:"电机C相电流",
+   key:"8",
+    ut:'A',
+    age: 0,
+    state: '',
+    util: `db`,
+    value:"MOTOR_C_PHASE_CURRENT",
+
+  },
+
   ],
   columns:[
     {
@@ -158,7 +158,7 @@ export let dataList =[
       state: '',
       util: `db`,
       value:"EXPORT_PRESSURE",
-  
+
     },
    {
      name:"进口压力",
@@ -168,7 +168,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"EXPORT_PRESSURE",
-  
+
   },
   {
    name:"电机温度",
@@ -178,7 +178,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油温度",
@@ -188,7 +188,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油液位",
@@ -198,7 +198,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"电机A相电流",
@@ -208,18 +208,18 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"电机B相电流",
    key:"7",
-    ut:'A', 
+    ut:'A',
     age: 0,
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-    
-  
+
+
   },
   {
    name:"电机B相电流",
@@ -229,9 +229,9 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-  
+
   },
-  
+
     ],
     columns:[
       {
@@ -301,7 +301,7 @@ export let dataList =[
       state: '',
       util: `db`,
       value:"EXPORT_PRESSURE",
-  
+
     },
    {
      name:"进口压力",
@@ -311,7 +311,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"EXPORT_PRESSURE",
-  
+
   },
   {
    name:"电机温度",
@@ -321,7 +321,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油温度",
@@ -331,7 +331,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油液位",
@@ -341,7 +341,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"电机A相电流",
@@ -351,18 +351,18 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"电机B相电流",
    key:"7",
-    ut:'A', 
+    ut:'A',
     age: 0,
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-    
-  
+
+
   },
   {
    name:"电机B相电流",
@@ -372,9 +372,9 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-  
+
   },
-  
+
   ],
   columns:[
     {
@@ -444,7 +444,7 @@ export let dataList =[
       state: '',
       util: `db`,
       value:"EXPORT_PRESSURE",
-  
+
     },
    {
      name:"进口压力",
@@ -454,7 +454,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"EXPORT_PRESSURE",
-  
+
   },
   {
    name:"电机温度",
@@ -464,7 +464,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油温度",
@@ -474,7 +474,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油液位",
@@ -484,7 +484,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"电机A相电流",
@@ -494,18 +494,18 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"电机B相电流",
    key:"7",
-    ut:'A', 
+    ut:'A',
     age: 0,
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-    
-  
+
+
   },
   {
    name:"电机B相电流",
@@ -515,9 +515,9 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-  
+
   },
-  
+
   ],
   columns:[
     {
@@ -587,7 +587,7 @@ export let dataList =[
       state: '',
       util: `db`,
       value:"EXPORT_PRESSURE",
-  
+
     },
    {
      name:"进口压力",
@@ -597,7 +597,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"EXPORT_PRESSURE",
-  
+
   },
   {
    name:"电机温度",
@@ -607,7 +607,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油温度",
@@ -617,7 +617,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油液位",
@@ -627,7 +627,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"电机A相电流",
@@ -637,18 +637,18 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"电机B相电流",
    key:"7",
-    ut:'A', 
+    ut:'A',
     age: 0,
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-    
-  
+
+
   },
   {
    name:"电机B相电流",
@@ -658,9 +658,9 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-  
+
   },
-  
+
   ],
   columns:[
     {
@@ -730,7 +730,7 @@ export let dataList =[
       state: '',
       util: `db`,
       value:"EXPORT_PRESSURE",
-  
+
     },
    {
      name:"进口压力",
@@ -740,7 +740,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"EXPORT_PRESSURE",
-  
+
   },
   {
    name:"电机温度",
@@ -750,7 +750,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油温度",
@@ -760,7 +760,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油液位",
@@ -770,7 +770,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"电机A相电流",
@@ -780,18 +780,18 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"电机B相电流",
    key:"7",
-    ut:'A', 
+    ut:'A',
     age: 0,
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-    
-  
+
+
   },
   {
    name:"电机B相电流",
@@ -801,9 +801,9 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-  
+
   },
-  
+
   ],
   columns:[
     {
@@ -873,7 +873,7 @@ export let dataList =[
       state: '',
       util: `db`,
       value:"EXPORT_PRESSURE",
-  
+
     },
    {
      name:"进口压力",
@@ -883,7 +883,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"EXPORT_PRESSURE",
-  
+
   },
   {
    name:"电机温度",
@@ -893,7 +893,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油温度",
@@ -903,7 +903,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油液位",
@@ -913,7 +913,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"电机A相电流",
@@ -923,18 +923,18 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"电机B相电流",
    key:"7",
-    ut:'A', 
+    ut:'A',
     age: 0,
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-    
-  
+
+
   },
   {
    name:"电机B相电流",
@@ -944,9 +944,9 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-  
+
   },
-  
+
   ],
   columns:[
     {
@@ -1016,7 +1016,7 @@ export let dataList =[
       state: '',
       util: `db`,
       value:"EXPORT_PRESSURE",
-  
+
     },
    {
      name:"进口压力",
@@ -1026,7 +1026,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"EXPORT_PRESSURE",
-  
+
   },
   {
    name:"电机温度",
@@ -1036,7 +1036,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油温度",
@@ -1046,7 +1046,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"润滑油液位",
@@ -1056,7 +1056,7 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"电机A相电流",
@@ -1066,18 +1066,18 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_TEMPERATURE",
-  
+
   },
   {
    name:"电机B相电流",
    key:"7",
-    ut:'A', 
+    ut:'A',
     age: 0,
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-    
-  
+
+
   },
   {
    name:"电机B相电流",
@@ -1087,9 +1087,9 @@ export let dataList =[
     state: '',
     util: `db`,
     value:"MOTOR_B_PHASE_CURRENT",
-  
+
   },
-  
+
   ],
   columns:[
     {
