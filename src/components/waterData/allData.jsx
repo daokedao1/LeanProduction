@@ -71,7 +71,7 @@ class Demo extends React.Component {
             if(warncount.length>0){
               obj.block = true;
               let warnlist = JSON.parse(localStorage.getItem('warnlist') || '[]');
-              warnlist.push(warncount)
+              warnlist = warnlist.concat(warncount)
 
               obj.errItem = warncount[0].col
               localStorage.setItem("warnlist",JSON.stringify(warnlist))
