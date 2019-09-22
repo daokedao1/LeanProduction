@@ -49,10 +49,9 @@ class Demo extends React.Component {
 
     let dataList = [];
     POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
-
         if(res.code === 200){
           res.data.timeDataList.forEach((v,i)=>{
-
+            
             let obj = allData[i];
 
             obj['RUNNING_STATE'] = v['RUNNING_STATE'];
