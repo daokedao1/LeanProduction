@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tabs,Table,Tag,Divider} from 'antd';
-import {Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
+
 import Tencent from './Tencent';
 
 const { TabPane } = Tabs;
@@ -128,7 +129,7 @@ class Main extends React.Component {
               <TabPane tab="地图" key="1">
               <Tencent  />
                </TabPane>
-         
+
                <TabPane tab="列表" key="2" style={{background:'#fff'}}>
                   <Table  columns={columns} dataSource={data} />
                </TabPane>
