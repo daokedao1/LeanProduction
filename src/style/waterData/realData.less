@@ -1,50 +1,54 @@
-ul{
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  font-size: 12px;
-
-  .list{
-    width: 300px;
+.allData_t{
+  ul{
     display: flex;
-    margin-right: 19px;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
+    flex-flow: row wrap;
+    justify-content: space-around;
     align-items: center;
-  margin-bottom: 30px;
-    .ant-list-bordered .ant-list-item{
-      width: 100%;
-    }
-    .content{
+    width: 100%;
+    font-size: 12px;
+  
+    .list{
+      width: 300px;
       display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-around;
-      width: 100%;
-      .content_l{
-        border-left: 1px solid #ccc;
+      margin-right: 19px;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      align-items: center;
+    margin-bottom: 30px;
+      .ant-list-bordered .ant-list-item{
+        width: 100%;
+      }
+      .content{
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        width: 100%;
+        .content_l{
+          border-left: 1px solid #ccc;
+        }
+      }
+      .headerList{
+        text-align: center;
+        height: 26px;
+      }
+      img{
+        margin-bottom: 20px;
+      }
+      .ant-list-bordered .ant-list-item:nth-child(odd){
+        background-color:#f2f7fc;
+      }
+      button{
+        width:100%;
       }
     }
-    .headerList{
-      text-align: center;
-      height: 26px;
-    }
-    img{
-      margin-bottom: 20px;
-    }
-    .ant-list-bordered .ant-list-item:nth-child(odd){
-      background-color:#f2f7fc;
-    }
-    button{
-      width:100%;
-    }
+  }
+  .ant-list-header{
+    text-align: center;
+  
   }
 }
-.ant-list-header{
-  text-align: center;
 
-}
+
 .headers{
   margin-left: 30px
 }
