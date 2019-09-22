@@ -111,7 +111,7 @@ class Demo extends React.Component {
         <p>{`检查1、注水泵的外输管线流程"`}</p>
         <p>{`检查1、注水泵的外输管线闸门是否开启`}</p>
 
-          <video data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001%E5%90%AF%E5%8A%A8%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%872043.mp4?t=Sun%20Sep%2022%202019%2013:23:27%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)">
+          <video className="vio"  data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001%E5%90%AF%E5%8A%A8%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%872043.mp4?t=Sun%20Sep%2022%202019%2013:23:27%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
             </object>
@@ -123,7 +123,7 @@ class Demo extends React.Component {
         <p>{`检查1、检查电机润滑脂的注入量及品质"`}</p>
         <p>{`检查2、检查电机状态`}</p>
         <p>{`检查3、与专业人员联系`}</p>
-          <video className="vio" autoplay="autoplay" data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+          <video className="vio"  className="vio" autoplay="autoplay" data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
             </object>
@@ -135,7 +135,7 @@ class Demo extends React.Component {
         <p>{`检查1、更换润滑油`}</p>
         <p>{`检查2、检查润滑油油窗液位`}</p>
         <p>{`检查3、与专业人员联系`}</p>
-          <video className="vio" autoplay="autoplay" data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+          <video className="vio"  className="vio" autoplay="autoplay" data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
             </object>
