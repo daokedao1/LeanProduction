@@ -276,13 +276,8 @@ export let dataList =[
    key:"8",
     ut:'A',
     age: 1000,
-<<<<<<< HEAD
     state: 0,
     util: `A`,
-=======
-    state: 1,
-    util: `db`,
->>>>>>> 1a20faa3667bdcede29014dedd2dcb3e8a128f88
     value:"MOTOR_C_PHASE_CURRENT",
     show:true,
   },
@@ -474,13 +469,8 @@ export let dataList =[
    key:"8",
     ut:'A',
     age: 1000,
-<<<<<<< HEAD
     state: 0,
     util: `A`,
-=======
-    state: 1,
-    util: `db`,
->>>>>>> 1a20faa3667bdcede29014dedd2dcb3e8a128f88
     value:"MOTOR_C_PHASE_CURRENT",
     show:true,
   },
@@ -672,13 +662,8 @@ export let dataList =[
    key:"8",
     ut:'A',
     age: 1000,
-<<<<<<< HEAD
     state: 0,
     util: `A`,
-=======
-    state: 1,
-    util: `db`,
->>>>>>> 1a20faa3667bdcede29014dedd2dcb3e8a128f88
     value:"MOTOR_C_PHASE_CURRENT",
     show:true,
   },
@@ -870,13 +855,8 @@ export let dataList =[
    key:"8",
     ut:'A',
     age: 1000,
-<<<<<<< HEAD
     state: 0,
     util: `A`,
-=======
-    state: 1,
-    util: `db`,
->>>>>>> 1a20faa3667bdcede29014dedd2dcb3e8a128f88
     value:"MOTOR_C_PHASE_CURRENT",
     show:true,
   },
@@ -1068,13 +1048,8 @@ export let dataList =[
    key:"8",
     ut:'A',
     age: 1000,
-<<<<<<< HEAD
     state: 0,
     util: `A`,
-=======
-    state: 1,
-    util: `db`,
->>>>>>> 1a20faa3667bdcede29014dedd2dcb3e8a128f88
     value:"MOTOR_C_PHASE_CURRENT",
     show:true,
   },
@@ -1266,13 +1241,8 @@ export let dataList =[
    key:"8",
     ut:'A',
     age: 1000,
-<<<<<<< HEAD
     state: 0,
     util: `A`,
-=======
-    state: 1,
-    util: `db`,
->>>>>>> 1a20faa3667bdcede29014dedd2dcb3e8a128f88
     value:"MOTOR_C_PHASE_CURRENT",
     show:true,
   },
@@ -1464,13 +1434,8 @@ export let dataList =[
    key:"8",
     ut:'A',
     age: 1000,
-<<<<<<< HEAD
     state: 0,
     util: `A`,
-=======
-    state: 1,
-    util: `db`,
->>>>>>> 1a20faa3667bdcede29014dedd2dcb3e8a128f88
     value:"MOTOR_C_PHASE_CURRENT",
     show:true,
   },
