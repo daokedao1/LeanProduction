@@ -25,7 +25,7 @@ class Tencent extends React.Component {
             initialOptions={{ zoomControl: true, mapTypeControl: true,maxZoom:9,minZoom:0,zoom:4 }}
             apiKey="UN6BZ-MP2W6-XWCSX-M2ATU-QORGZ-OWFOE"
             style={{ height: height,cursor: "pointer" }}
-            mySpot={{ latitude: 38.235167, longitude: 115.732240 }}
+          
             getContainer={getContianer}
         />
       )

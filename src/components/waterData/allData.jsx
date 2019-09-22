@@ -252,11 +252,11 @@ class Demo extends React.Component {
    </Modal>
     return (
 
-        <div className="allData">
+        <div className="allData" style={{backgroundColor: "#fff"}}>
           <BreadcrumbCustom first="数据总览" second="总览数据" />
           <div className="allData_m">
             <h3>华北油田采油三厂楚一联合注水站监控中心</h3>
-            <div className="allData_t">
+            <div className="allData_t" >
               <ul>
               {
                 this.state.dataList.map((itemm,i)=>(
