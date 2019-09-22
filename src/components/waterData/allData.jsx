@@ -39,14 +39,14 @@ class Demo extends React.Component {
 
     let allData = localStorage.getItem('allData');
 
-    if(!allData){
+    if(!allData || allData == 'undefined'){
 
       localStorage.setItem('allData',dataList);
       allData = dataList;
     }else{
       allData = JSON.parse(allData)
     }
-    console.log(allData);
+
     let dataList = [];
     POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
 
@@ -54,20 +54,27 @@ class Demo extends React.Component {
           res.data.timeDataList.forEach((v,i)=>{
 
             let obj = allData[i];
-            console.log(allData[i]);
+
             obj['RUNNING_STATE'] = v['RUNNING_STATE'];
             let warncount = [];
+
             obj.arr.forEach((item,i)=>{
               if(v[item.value] > obj.arr[i].age){
-                obj.arr[i].block = true;
-                let warnitem  = {title:obj.title,time:moment().format('YYYY-MM-DD hh:mm:ss'),targetname:obj.arr[i].name,col:obj.arr[i].value}
+                if(obj['RUNNING_STATE'] == 1){
+                  obj.arr[i].block = true;
+                  let warnitem  = {title:obj.title,time:moment().format('YYYY-MM-DD hh:mm:ss'),targetname:obj.arr[i].name,col:obj.arr[i].value}
+                  warncount.push(warnitem);
+                }else{
+                  obj.arr[i].block = false;
+                }
 
-                warncount.push(warnitem);
               }else{
+
                 obj.arr[i].block = false;
               }
               obj.arr[i].num = v[item.value];
             })
+
             if(warncount.length>0){
               obj.block = true;
               let warnlist = JSON.parse(localStorage.getItem('warnlist') || '[]');
@@ -79,6 +86,7 @@ class Demo extends React.Component {
             dataList.push(obj);
 
           })
+
           this.setState({
             dataList:dataList
           })
@@ -89,7 +97,7 @@ class Demo extends React.Component {
   }
 
   popBlock(item){
-    console.log(item);
+
     if(!item.block){
       return
     }
@@ -97,7 +105,7 @@ class Demo extends React.Component {
     setCookie('infor',[])
   }
   handleOk = e => {
-    console.log(e);
+
     this.setState({
       visible: false,
     });
@@ -144,7 +152,7 @@ class Demo extends React.Component {
     }
   }
   handleCancel = e => {
-    console.log(e);
+
     this.setState({
       visible: false,
     });
@@ -223,20 +231,23 @@ class Demo extends React.Component {
               <ul>
               {
                 this.state.dataList.map((itemm,i)=>(
+
                   <li className="list" key={i}>
-                    {itemm.RUNNING_STATE==0?<Button type="primary">运行</Button>:<Button type="danger">停止</Button>}
+                    {itemm.RUNNING_STATE==1?<Button type="primary">运行</Button>:<Button type="danger">停止</Button>}
 
                   <img src={pump} alt="" />
                   <List
                     header={<div onClick={this.popBlock.bind(this,itemm)} className={itemm.block?'headerList':""}>{itemm.title}</div>}
                     bordered
-                    dataSource={itemm.arr}
-                    renderItem={(item) => (
-                      <List.Item>
-                        <Typography.Text mark></Typography.Text>
-                        {item.name}:{item.num}{item.ut}
-                      </List.Item>
-                    )}
+                    dataSource={itemm.arr.filter((v)=>{ return v.show})}
+                    renderItem={(item) => {
+
+                        return(<List.Item>
+                          <Typography.Text mark></Typography.Text>
+                          {item.name}:{item.num}{item.ut}
+                        </List.Item>)
+
+                    }}
                   />
                 </li>
                 ))

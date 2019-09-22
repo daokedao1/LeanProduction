@@ -3,12 +3,13 @@ export default {
         // 菜单相关路由
         { key: '/app/dashboard/index', title: '首页', icon: 'mobile', component: 'Main'
         },
-        { key: '/app/operate', title: '数据总揽',icon: 'area-chart',
+        { key: '/app/operate', title: '数据总览',icon: 'area-chart',
           subs: [
             { key: '/app/waterData/allData', title: '总览数据', component: 'allData' },
             { key: '/app/waterData/main', title: '地图', component: 'Main' },
               // { key: '/app/operate/overview1', title: '总揽数据', component: 'DataOverView' },
-            { key: '/app/operate/overview', title: '实时数据', component: 'realLine' },
+              { key: '/app/operate/realdata', title: '实时数据', component: 'realData' },
+            { key: '/app/operate/overview', title: '实时曲线', component: 'realLine' },
             // { key: '/app/operate/conversionanalysis', title: '历史数据', component: 'ConversionAnalysis' },
             // { key: '/app/operate/flowanalysis', title: '拆解培训教程', component: 'FlowAnalysis' },
             { key: '/app/operate/alertSet', title: '报警值设置', component: 'alertSet' },

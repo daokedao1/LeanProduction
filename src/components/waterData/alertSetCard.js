@@ -11,10 +11,14 @@ import {reducer} from '../../redux/reducers'
 import Cookies from 'js-cookie'
 const { Option } = Select;
 // const data = [];
-const sel=(<Select defaultValue="开启" style={{ width: 90 }} >
-    <Option value="开启">开启</Option>
-    <Option value="关闭">关闭</Option>
-</Select>);
+const sel=(state = 0, record)=>{
+    console.log(state);
+   return(<Select defaultValue={state+''} style={{ width: 90 }} >
+      <Option value="1">开启</Option>
+      <Option value="0">关闭</Option>
+  </Select>);
+}
+
 
 
 const EditableContext = React.createContext();
@@ -91,8 +95,8 @@ class AlertSetCard extends React.Component {
         title: '状态',
         dataIndex: 'state',
         width: '20%',
-        editable: false,
-        render: ()=>sel
+        editable: true,
+        render: sel
       },
       {
         title: '单位',
@@ -143,6 +147,7 @@ class AlertSetCard extends React.Component {
   save(form, key) {
   let  that=this;
     form.validateFields((error, row) => {
+      console.log(row)
       if (error) {
         return;
       }
