@@ -12,7 +12,6 @@ import Cookies from 'js-cookie'
 const { Option } = Select;
 // const data = [];
 const sel=(state = 0, record)=>{
-    console.log(state);
    return(<Select defaultValue={state+''} style={{ width: 90 }} >
       <Option value="1">开启</Option>
       <Option value="0">关闭</Option>
@@ -72,7 +71,6 @@ class AlertSetCard extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props.item)
     this.state = {
        editingKey: '',
        dataList:this.props.item.arr
@@ -92,7 +90,7 @@ class AlertSetCard extends React.Component {
         editable: true,
       },
       {
-        title: '状态',
+        title: '状态(0关闭 1开启)',
         dataIndex: 'state',
         width: '20%',
         editable: true,
@@ -153,6 +151,7 @@ class AlertSetCard extends React.Component {
       }
       let newData= JSON.parse(localStorage.getItem('allData')||'[]');
       newData[this.props.id].arr[key-1].age = row.age;
+      newData[this.props.id].arr[key-1].state = row.state;
       localStorage.setItem('allData',JSON.stringify(newData))
       this.setState({
          editingKey: '' ,
