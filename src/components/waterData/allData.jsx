@@ -115,7 +115,7 @@ class Demo extends React.Component {
   buildVideBox(opt){
     if(this.state.errItem.indexOf('PRESSURE')>-1){
       return (<div>
-        <p>{`报警:注水泵的排出压力传感器`}</p>
+        <p>{`报警:1#注水泵的排出压力传感器`}</p>
         <p>{`检查1、注水泵的外输管线流程"`}</p>
         <p>{`检查1、注水泵的外输管线闸门是否开启`}</p>
 
@@ -127,7 +127,7 @@ class Demo extends React.Component {
       </div>)
     }else if(this.state.errItem.indexOf('TEMPERATURE')>-1){
       return (<div>
-        <p>{`报警:注水泵的电机温度传感器`}</p>
+        <p>{`报警:1#注水泵的电机温度传感器`}</p>
         <p>{`检查1、检查电机润滑脂的注入量及品质"`}</p>
         <p>{`检查2、检查电机状态`}</p>
         <p>{`检查3、与专业人员联系`}</p>
@@ -139,9 +139,9 @@ class Demo extends React.Component {
       </div>)
     }else if(this.state.errItem.indexOf('LUBRICATING_OIL_LEVEL')>-1){
       return (<div>
-        <p>{`报警:注水泵的泵体油液位传感器`}</p>
-        <p>{`检查1、更换挡油头油封`}</p>
-        <p>{`检查2、添加润滑油`}</p>
+        <p>{`报警:1#注水泵的泵体油液位传感器`}</p>
+        <p>{`检查1、更换1#注水泵的挡油头油封`}</p>
+        <p>{`检查2、1#注水泵添加润滑油`}</p>
         <p>{`检查3、与专业人员联系`}</p>
           <video className="vio"  className="vio" autoplay="autoplay" data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
@@ -153,10 +153,10 @@ class Demo extends React.Component {
 
   else if(this.state.errItem.indexOf('NOISE')>-1){
     return (<div>
-      <p>{`报警:注水泵的1#泵头噪声传感器`}</p>
-      <p>{`检查1、阀弹簧可能损坏`}</p>
-      <p>{`检查2、阀片可能损坏`}</p>
-      <p>{`检查3、阀体可能损坏`}</p>
+      <p>{`报警:1#注水泵 1#缸泵头噪声传感器`}</p>
+      <p>{`检查1、1#注水泵 1#缸阀弹簧可能损坏`}</p>
+      <p>{`检查2、1#注水泵 1#缸的阀片可能损坏`}</p>
+      <p>{`检查3、1#注水泵 1#缸的阀体可能损坏`}</p>
         <video className="vio"  className="vio" autoplay="autoplay" data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
           <object data-v-68781f9a="" width="100%">
               <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/009%E6%B3%B5%E5%A4%B4%E6%8B%86%E8%A7%A3%E6%95%99%E7%A8%8B2043.mp4?t=Sun%20Sep%2022%202019%2017:15:02%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)"/>
