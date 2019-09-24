@@ -4,6 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
+    "@antv/g2": "^3.5.8-beta.4",
     "@babel/core": "7.1.0",
     "@svgr/webpack": "2.4.1",
     "antd": "^3.10.0",
