@@ -66,7 +66,7 @@ class HeaderCustom extends Component {
         return (
             <Header  className="custom-theme header" >
               <img style={{marginLeft:"9px",width:"40px"}} src={img} alt=""/>
-              <span style={{color:'#ff1e26',fontSize: '25px'}}>渤海装备钻井装备公司</span>
+              <span style={{color:'#ff1e26',fontSize: '25px',verticalAlign:"sub"}}>渤海装备钻井装备公司  注水泵远程智能诊断监控系统</span>
 
 
 
