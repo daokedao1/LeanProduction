@@ -9,7 +9,7 @@ class RechartsSimpleLineChart extends React.Component {
     constructor(props) {
         super(props);
         console.log(this.props.pumpList)
-        
+
     }
 
     render(){
@@ -22,7 +22,7 @@ class RechartsSimpleLineChart extends React.Component {
                             data={this.props.pumpList}
                             margin={{top: 5, right: 30, left: 20, bottom: 5}}
                         >
-                
+
                             <XAxis   dataKey="date" />
                             <YAxis />
                             <CartesianGrid strokeDasharray="3 3" />
@@ -30,7 +30,7 @@ class RechartsSimpleLineChart extends React.Component {
                             <Legend />
                             {
                                 this.props.data.map((item,index)=>(
-                                    
+
                                     item.show?<Line  key={index} type="monotone" name={item.name} key={item.name} dataKey={item.dataKey} stroke={item.stroke} activeDot={{r: 8}} />:''
                                 ))
                             }
@@ -50,9 +50,9 @@ class RechartsSimpleLineChart extends React.Component {
             ))
             }
             </div>
-        </Col>          
+        </Col>
      </div>
-      
+
         )
     }
 }
