@@ -160,14 +160,10 @@ class RealLine extends React.Component {
           <div className="realLine_b" >
             <Row gutter={16}>
                 <Col className="gutter-row" md={24}>
-                  
-
-                            <BizLineChart  position={"date*value"} data={this.state.chart1} />
-                            <BizLineChart  position={"date*value"} data={this.state.chart4} />
-                            <BizLineChart  position={"date*value"} data={this.state.chart3} />
-                            <BizLineChart  position={"date*value"} data={this.state.chart2} />
-
-
+                    <BizLineChart  position={"date*value"} data={this.state.chart1} />
+                    <BizLineChart  position={"date*value"} data={this.state.chart4} />
+                    <BizLineChart  position={"date*value"} data={this.state.chart2} />
+                    <BizLineChart  position={"date*value"} data={this.state.chart3} />
 
                 </Col>
             </Row>
