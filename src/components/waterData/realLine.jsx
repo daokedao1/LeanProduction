@@ -15,15 +15,18 @@ const currentColumn = {
 const nameMapping = {
   "EXPORT_PRESSURE":"出口压力",
   "IMPORT_PRESSURE":"进口压力",
+
   "LUBRICATING_OIL_TEMPERATURE":'润滑油温度',
   "LUBRICATING_OIL_LEVEL":'润滑油液位',
   "MOTOR_TEMPERATURE":'电机温度',
+
   "MOTOR_A_PHASE_CURRENT":'电机A相电流',
   "MOTOR_B_PHASE_CURRENT":'电机B相电流',
   "MOTOR_C_PHASE_CURRENT":'电机C相电流',
   "MOTOR_A_PHASE_VOLTAGE":'电机A相电压',
   "MOTOR_B_PHASE_VOLTAGE":'电机B相电压',
   "MOTOR_C_PHASE_VOLTAGE":'电机C相电压',
+
   "CYLINDER1_NOISE":'泵头1#缸噪声',
   "CYLINDER2_NOISE":'泵头2#缸噪声',
   "CYLINDER3_NOISE":'泵头3#缸噪声',
