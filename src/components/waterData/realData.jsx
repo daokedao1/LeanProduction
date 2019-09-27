@@ -1,140 +1,87 @@
 import React from 'react'
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import {POST} from '../../axios/tools'
-import {getCookie,setCookie} from '../../utils/index'
+import {getCookie,setCookie,clone} from '../../utils/index'
 import pumpinfor from '@/style/imgs/泵信息.png'
 import { Button,Tabs,List,Typography} from 'antd';
 import '../../style/waterData/realData.less'
+import moment from 'moment';
+
 const Authorization  = getCookie("Authorization");
 const { TabPane } = Tabs;
-const header123=[
-  {
-    title:'1#注水泵'
-  },
-  {
-    title:'2#注水泵'
-  },
-  {
-    title:'3#注水泵'
-  },
-]
-const header456=[
-  {
-    title:'3#注水泵'
 
-  },
-  {
-    title:'4#注水泵'
-  },
-  {
-    title:'5#注水泵'
-  },
-]
-const header78=[
-  {
-    title:'7#注水泵'
-  },
-  {
-    title:'8#注水泵'
-  },
-]
+
+
 const bar=[
   {
-    val: "出口压力:22.75MPa",
-    r:"泵头1缸噪声:87.50"
+    val: "出口压力:",
+    r:"泵头1缸噪声:",
+    uv1:"MPa",
+    uv2:"",
+    value1:"EXPORT_PRESSURE",
+    value2:"PUMP_CYLINDER1_ALARM",
   },
   {
-    val: "进口压力:0.35MPa",
-    r:"泵头2缸噪声:87.69"
-
+    val: "进口压力:",
+    r:"泵头2缸噪声:",
+    uv1:"MPa",
+    uv2:"",
+    value1:"IMPORT_PRESSURE",
+    value2:"PUMP_CYLINDER2_ALARM"
   },
   {
-    val: "电机温度:103℃",
-    r:"泵头3缸噪声:91.68"
-
+    val: "电机温度:",
+    r:"泵头3缸噪声:",
+    uv1:"℃",
+    uv2:"",
+    value1:"MOTOR_TEMPERATURE",
+    value2:"PUMP_CYLINDER3_ALARM"
   },
   {
-    val: "润滑油温度:65℃",
-    r:"泵头4缸噪声:84.32"
+    val: "润滑油温度:",
+    r:"泵头4缸噪声:",
+    uv1:"℃",
+    uv2:"",
+    value1:"LUBRICATING_OIL_TEMPERATURE",
+    value2:"PUMP_CYLINDER4_ALARM"
   },
   {
-    val: "润滑油液位:4.8CM",
-    r:"泵头5缸噪声:84.91"
+    val: "润滑油液位:",
+    r:"泵头5缸噪声:",
+    value1:"LUBRICATING_OIL_LEVEL",
+    value2:"PUMP_CYLINDER5_ALARM",
+    uv1:"CM",
+    uv2:"",
   },
   {
-    val: "电机A相电流:234.81A",
-    r:"电机A相电压:424.60V"
+    val: "电机A相电流:",
+    r:"电机A相电压:",
+    uv1:"A",
+    uv2:"V",
+    value1:"MOTOR_A_PHASE_CURRENT",
+    value2:"MOTOR_A_PHASE_VOLTAGE"
   },
   {
-    val: "电机B相电流:238.60A",
-    r:"电机B相电压:424.00V"
+    val: "电机B相电流:",
+    r:"电机B相电压:",
+    value1:"MOTOR_B_PHASE_CURRENT",
+    value2:"MOTOR_B_PHASE_VOLTAGE",
+    uv1:"A",
+    uv2:"V",
   },
   {
-    val: "电机C相电流:237.10A",
-    r:"电机C相电压:424.00V"
+    val: "电机C相电流:",
+    r:"电机C相电压:",
+    value1:"MOTOR_C_PHASE_CURRENT",
+    value2:"MOTOR_C_PHASE_VOLTAGE",  
+    uv1:"A",
+    uv2:"V",
   },
 ]
 
 
 
-const data = [
-  {
-    title:"出口压力",
-    value:"EXPORT_PRESSURE",
-    ut:'MPa',
-    arr:[
-      " 出口压力:22.75MPa",
-     "进口压力:0.35MPa",
-     "电机温度:103℃",
-     "润滑油温度:65℃",
-     "润滑油液位:4.8CM",
-     "电机A相电流:234.81A",
-     "电机B相电流:238.60A",
-     "电机C相电流:237.10A"
-     ]
-  },
-  {
-   title:"进口压力",
-   value:"EXPORT_PRESSURE",
-   ut:'MPa'
- },
- {
-   title:"电机温度",
-   value:"MOTOR_TEMPERATURE",
-   ut:'℃'
 
- },
- {
-   title:"润滑油温度",
-   value:"MOTOR_TEMPERATURE",
-   ut:'℃'
-
- },
- {
-   title:"润滑油液位",
-   value:"MOTOR_TEMPERATURE",
-   ut:'CM'
-
- },
- {
-   title:"电机A相电流",
-   value:"MOTOR_TEMPERATURE",
-   ut:'A'
-
- },
- {
-   title:"电机B相电流",
-   value:"MOTOR_B_PHASE_CURRENT",
-   ut:'A'
-
- },
- {
-   title:"电机B相电流",
-   value:"MOTOR_B_PHASE_CURRENT",
-   ut:'A'
-
- }
- ];
 class Demo extends React.Component {
   constructor(props){
     super(props);
@@ -144,9 +91,19 @@ class Demo extends React.Component {
       loading:true,
       datalist1:[],
       dataList2:[],
-      dataList3:[]
-
+      dataList:[],
+      dataList3:[],
+      ListaData:[],
+      bar1:[],
+      bar2:[],
+      bar3:[],
+      bar4:[],
+      bar5:[],
+      bar6:[],
+      bar7:[],
+      bar8:[]
     }
+    this.init();
   }
   componentDidMount () {
 
@@ -158,6 +115,47 @@ class Demo extends React.Component {
   componentWillUnmount () {
       clearInterval(this.timer)
   }
+  cancleData(data1,data2){
+    let bar=clone(data2);
+    for(let key in data1){
+      for(let item of bar){
+        if(key===item.value1){
+          item.val1=data1[key]
+        }
+         if(key===item.value2){
+          item.val2=data1[key]
+        }
+      }
+    }
+    bar.type=data1.RUNNING_STATE;
+    return bar;
+  }
+   init(){
+    const Authorization=getCookie("Authorization");
+    let allData = localStorage.getItem('allData');
+    if(!allData || allData == 'undefined'){
+      localStorage.setItem('allData',dataList);
+      allData = dataList;
+    }else{
+      allData = JSON.parse(allData)
+    }
+
+    let dataList = [];
+    POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
+      let data=res.data.timeDataList;
+      let data1=data;
+      this.setState({bar1:this.cancleData(data1[0],bar)})
+      this.setState({bar2:this.cancleData(data1[1],bar)})
+      this.setState({bar3:this.cancleData(data1[2],bar)})
+      this.setState({bar4:this.cancleData(data1[3],bar)})
+      this.setState({bar5:this.cancleData(data1[4],bar)})
+      this.setState({bar6:this.cancleData(data1[5],bar)})
+      this.setState({bar7:this.cancleData(data1[6],bar)})
+      this.setState({bar8:this.cancleData(data1[7],bar)})
+
+    })
+  }
+
   getLastData(){
     console.log(Authorization);
     POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
@@ -176,6 +174,60 @@ class Demo extends React.Component {
 
   }
   render() {
+    const header123=[
+      {
+        title:'1#注水泵',
+        arr:this.state.bar1,
+        type:this.state.bar1.type
+
+      },
+      {
+        title:'2#注水泵',
+        arr:this.state.bar2,
+        type:this.state.bar2.type
+    
+      },
+      {
+        title:'3#注水泵',
+        arr:this.state.bar3,
+        type:this.state.bar3.type
+    
+      },
+    ];
+    const header456=[
+      {
+        title:'3#注水泵',
+        arr:this.state.bar4,
+        type:this.state.bar4.type
+      },
+      {
+        title:'4#注水泵',
+        arr:this.state.bar5,
+        type:this.state.bar5.type
+
+      },
+      {
+        title:'5#注水泵',
+        arr:this.state.bar6,
+        type:this.state.bar6.type
+
+      },
+    ]
+    const header78=[
+      {
+        title:'7#注水泵',
+        arr:this.state.bar7,
+        type:this.state.bar7.type
+
+      },
+      {
+        title:'8#注水泵',
+        arr:this.state.bar8,
+        type:this.state.bar8.type
+
+      },
+    ]
+    let {dataList}=this.state;
     return (
         <div className="realData">
           <BreadcrumbCustom first="数据总览" second="实时数据" />
@@ -188,27 +240,31 @@ class Demo extends React.Component {
                 <TabPane tab="注水泵123" key="1">
                   <div className="allData_t">
                     <ul>
+                    {
+                      header123.map((v,index)=>(
                         <li
-
                         className="list">
+                    {v.type==1?<Button type="primary">运行</Button>:<Button type="danger">停止</Button>}
 
-                          <Button type="primary">运行</Button>
-
+                      
                           <List
-                              header={<strong className="headers" >222</strong>}
+                              header={<strong className="headers" >{v.title}</strong>}
                               bordered
-                              dataSource={bar}
+                              dataSource={v.arr}
                               renderItem={(item) => {
                               return(<List.Item>
                                     <Typography.Text mark></Typography.Text>
                                     <div className="content">
-                                          <div className="content_l">{item.val}</div>
-                                          <div className="content_r">{item.r}</div>
+                                          <div className="content_l">{item.val}{item.val1}{item.uv1}</div>
+                                          <div className="content_r">{item.r}{item.val2}{item.uv2}</div>
                                     </div>
                                   </List.Item>)
                               }}
                           />
                         </li>
+                          ))
+                        }
+
 
                     </ul>
                   </div>
@@ -221,20 +277,18 @@ class Demo extends React.Component {
                         <li
                         key={index}
                         className="list">
-                        {
-                          index===0?<Button type="primary">运行</Button>:<Button type="danger">停止</Button>
-                        }
+                    {v.type==1?<Button type="primary">运行</Button>:<Button type="danger">停止</Button>}
+       
                       <List
                         header={<strong className="headers" >{v.title}</strong>}
                         bordered
-                          dataSource={bar}
+                          dataSource={v.arr}
                           renderItem={(item) => {
                           return(<List.Item>
                             <Typography.Text mark></Typography.Text>
                             <div className="content">
-                                  <div className="content_l">{item.val}</div>
-
-                                  <div className="content_r">{item.r}</div>
+                            <div className="content_l">{item.val}{item.val1}{item.uv1}</div>
+                                          <div className="content_r">{item.r}{item.val2}{item.uv2}</div>
 
                             </div>
 
@@ -258,17 +312,18 @@ class Demo extends React.Component {
                         <li
                         key={index}
                         className="list">
-                         <Button type="danger">停止</Button>
+                    {v.type==1?<Button type="primary">运行</Button>:<Button type="danger">停止</Button>}
+                        
                               <List
                                 header={<strong className="headers" >{v.title}</strong>}
                                 bordered
-                                  dataSource={bar}
+                                  dataSource={v.arr}
                                   renderItem={(item) => {
                                   return(<List.Item>
                                     <Typography.Text mark></Typography.Text>
                                     <div className="content">
-                                          <div className="content_l">{item.val}</div>
-                                          <div className="content_r">{item.r}</div>
+                                    <div className="content_l">{item.val}{item.val1}{item.uv1}</div>
+                                          <div className="content_r">{item.r}{item.val2}{item.uv2}</div>
                                     </div>
                                   </List.Item>)
                                 }}
