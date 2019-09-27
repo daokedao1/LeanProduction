@@ -81,10 +81,15 @@ class Demo extends React.Component {
           <div className="course">
             <div className="course_l">
             <Button type="primary">操作规范</Button>
-            <div className="box">
-            <div data-v-68781f9a="" class="subtitle">1、注水泵启动前准备</div> 
-            <div data-v-68781f9a="" class="video-block">播放视频</div>
-            </div>
+            {
+              course_r.opretion.map((v,i)=>(
+                <div key={i} className="box">
+                <div data-v-68781f9a="" className="subtitle">{v.title}</div> 
+                <div data-v-68781f9a="" className="video-block">播放视频</div>
+                </div>
+              ))
+            }
+
 
             </div>
             <div className="course_r">
