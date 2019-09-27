@@ -73,7 +73,7 @@ const bar=[
     val: "电机C相电流:",
     r:"电机C相电压:",
     value1:"MOTOR_C_PHASE_CURRENT",
-    value2:"MOTOR_C_PHASE_VOLTAGE",  
+    value2:"MOTOR_C_PHASE_VOLTAGE",
     uv1:"A",
     uv2:"V",
   },
@@ -185,13 +185,13 @@ class Demo extends React.Component {
         title:'2#注水泵',
         arr:this.state.bar2,
         type:this.state.bar2.type
-    
+
       },
       {
         title:'3#注水泵',
         arr:this.state.bar3,
         type:this.state.bar3.type
-    
+
       },
     ];
     const header456=[
@@ -233,7 +233,7 @@ class Demo extends React.Component {
           <BreadcrumbCustom first="数据总览" second="实时数据" />
           <div className="realData_t">
             <div className="t_l" style={{textAlign:'center'}}>
-              <img src={pumpinfor} alt="" />
+              <img src={pumpinfor} style={{height:"200px"}} alt="" />
             </div>
             <div className="t_r">
               <Tabs defaultActiveKey="1" onChange={this.ontabChange.bind(this)}>
@@ -246,7 +246,7 @@ class Demo extends React.Component {
                         className="list">
                     {v.type==1?<Button type="primary">运行</Button>:<Button type="danger">停止</Button>}
 
-                      
+
                           <List
                               header={<strong className="headers" >{v.title}</strong>}
                               bordered
@@ -278,7 +278,7 @@ class Demo extends React.Component {
                         key={index}
                         className="list">
                     {v.type==1?<Button type="primary">运行</Button>:<Button type="danger">停止</Button>}
-       
+
                       <List
                         header={<strong className="headers" >{v.title}</strong>}
                         bordered
@@ -313,7 +313,7 @@ class Demo extends React.Component {
                         key={index}
                         className="list">
                     {v.type==1?<Button type="primary">运行</Button>:<Button type="danger">停止</Button>}
-                        
+
                               <List
                                 header={<strong className="headers" >{v.title}</strong>}
                                 bordered
