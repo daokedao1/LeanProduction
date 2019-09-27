@@ -1,9 +1,11 @@
 import React from 'react'
 import BreadcrumbCustom from '../BreadcrumbCustom';
+import {POST} from '../../axios/tools'
+import {getCookie,setCookie} from '../../utils/index'
 import pumpinfor from '@/style/imgs/泵信息.png'
 import { Button,Tabs,List,Typography} from 'antd';
 import '../../style/waterData/realData.less'
-
+const Authorization  = getCookie("Authorization");
 const { TabPane } = Tabs;
 const header123=[
   {
@@ -19,7 +21,7 @@ const header123=[
 const header456=[
   {
     title:'3#注水泵'
-    
+
   },
   {
     title:'4#注水泵'
@@ -134,6 +136,42 @@ const data = [
  }
  ];
 class Demo extends React.Component {
+  constructor(props){
+    super(props);
+
+    this.timer=null;
+    this.state={
+      loading:true,
+      datalist1:[],
+      dataList2:[],
+      dataList3:[]
+
+    }
+  }
+  componentDidMount () {
+
+    this.getLastData();
+   this.timer= setInterval(()=>{
+      this.getLastData();
+    },10000)
+  }
+  componentWillUnmount () {
+      clearInterval(this.timer)
+  }
+  getLastData(){
+    console.log(Authorization);
+    POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
+        if(res.code == 200 && res.data.timeDataList){
+          let dataList = res.data.timeDataList;
+            this.setState({
+              datalist1:dataList.slice(0,3),
+              dataList2:dataList.slice(3,6),
+              dataList3:[]
+              dataList:
+            })
+        }
+    })
+  }
   ontabChange(){
 
   }
@@ -150,48 +188,30 @@ class Demo extends React.Component {
                 <TabPane tab="注水泵123" key="1">
                   <div className="allData_t">
                     <ul>
-
-                      
-                    {
-                      header123.map((v,index)=>(
                         <li
-                        key={index}
-                        
+
                         className="list">
-                          {
-                          index===0||index===2?<Button type="primary">运行</Button>:<Button type="danger">停止</Button>
-                          }
-                        
-                      <List
-                        header={<strong className="headers" >{v.title}</strong>}
-                        bordered
-                          dataSource={bar}
-                          renderItem={(item) => {
-                          return(<List.Item>
-                            <Typography.Text mark></Typography.Text>
-                            <div className="content">
-                                  <div className="content_l">{item.val}</div>
-                                  <div className="content_r">{item.r}</div>
 
-                            </div>
-                           
-                          </List.Item>)
-  
-                      }}
+                          <Button type="primary">运行</Button>
 
-                      />
+                          <List
+                              header={<strong className="headers" >222</strong>}
+                              bordered
+                              dataSource={bar}
+                              renderItem={(item) => {
+                              return(<List.Item>
+                                    <Typography.Text mark></Typography.Text>
+                                    <div className="content">
+                                          <div className="content_l">{item.val}</div>
+                                          <div className="content_r">{item.r}</div>
+                                    </div>
+                                  </List.Item>)
+                              }}
+                          />
                         </li>
-                 
-                      ))
-                    }
-     
-
 
                     </ul>
-
                   </div>
-
-
                 </TabPane>
                 <TabPane tab="注水泵456" key="2">
                 <div className="allData_t">
@@ -200,11 +220,10 @@ class Demo extends React.Component {
                       header456.map((v,index)=>(
                         <li
                         key={index}
-                        
                         className="list">
-                                  {
+                        {
                           index===0?<Button type="primary">运行</Button>:<Button type="danger">停止</Button>
-                          }
+                        }
                       <List
                         header={<strong className="headers" >{v.title}</strong>}
                         bordered
@@ -218,59 +237,47 @@ class Demo extends React.Component {
                                   <div className="content_r">{item.r}</div>
 
                             </div>
-                           
+
                           </List.Item>)
-  
+
                       }}
 
                       />
                         </li>
-                 
+
                       ))
                     }
-     
-
-
                     </ul>
-
                   </div>
                 </TabPane>
                 <TabPane tab="注水泵78" key="3">
                 <div className="allData_t">
                     <ul>
-
-                      
                     {
                       header78.map((v,index)=>(
                         <li
                         key={index}
-                        
                         className="list">
                          <Button type="danger">停止</Button>
-                      <List
-                        header={<strong className="headers" >{v.title}</strong>}
-                        bordered
-                          dataSource={bar}
-                          renderItem={(item) => {
-                          return(<List.Item>
-                            <Typography.Text mark></Typography.Text>
-                            <div className="content">
-                                  <div className="content_l">{item.val}</div>
-
-                                  <div className="content_r">{item.r}</div>
-
-                            </div>
-                           
-                          </List.Item>)
-  
-                      }}
-
-                      />
+                              <List
+                                header={<strong className="headers" >{v.title}</strong>}
+                                bordered
+                                  dataSource={bar}
+                                  renderItem={(item) => {
+                                  return(<List.Item>
+                                    <Typography.Text mark></Typography.Text>
+                                    <div className="content">
+                                          <div className="content_l">{item.val}</div>
+                                          <div className="content_r">{item.r}</div>
+                                    </div>
+                                  </List.Item>)
+                                }}
+                            />
                         </li>
-                 
+
                       ))
                     }
-     
+
 
 
                     </ul>

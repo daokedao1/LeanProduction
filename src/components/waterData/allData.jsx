@@ -36,11 +36,8 @@ class Demo extends React.Component {
   init(){
 
     const Authorization=getCookie("Authorization");
-
     let allData = localStorage.getItem('allData');
-
     if(!allData || allData == 'undefined'){
-
       localStorage.setItem('allData',dataList);
       allData = dataList;
     }else{
@@ -51,7 +48,7 @@ class Demo extends React.Component {
     POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
         if(res.code === 200){
           res.data.timeDataList.forEach((v,i)=>{
-            
+
             let obj = allData[i];
 
             obj['RUNNING_STATE'] = v['RUNNING_STATE'];
@@ -91,13 +88,10 @@ class Demo extends React.Component {
             dataList:dataList
           })
         }
-
     })
-
   }
 
   popBlock(item){
-
     if(!item.block){
       return
     }
@@ -139,7 +133,7 @@ class Demo extends React.Component {
           </video>
       </div>)
     }else if(this.state.errItem.indexOf('LUBRICATING_OIL_LEVEL')>-1){
-      
+
       return (<div>
         <p>{`报警:1#注水泵的泵体油液位传感器`}<span className="tips">报警</span></p>
         <p>{`检查1、更换1#注水泵的挡油头油封`}</p>

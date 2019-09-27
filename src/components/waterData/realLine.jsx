@@ -66,11 +66,11 @@ class RealLine extends React.Component {
       })
   }
 
-  // componentDidMount () {
-  //  // this.timer= setInterval(()=>{
-  //  //    this.getLastData();
-  //  //  },10000)
-  // }
+  componentDidMount () {
+   this.timer= setInterval(()=>{
+      this.buildData();
+    },10000)
+  }
   componentWillUnmount () {
       clearInterval(this.timer)
   }
