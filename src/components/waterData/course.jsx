@@ -81,6 +81,7 @@ class Demo extends React.Component {
           <div className="course">
             <div className="course_l">
             <Button type="primary">操作规范</Button>
+            <div className="content">
             {
               course_r.opretion.map((v,i)=>(
                 <div key={i} className="box">
@@ -89,6 +90,9 @@ class Demo extends React.Component {
                 </div>
               ))
             }
+
+            </div>
+
 
 
             </div>

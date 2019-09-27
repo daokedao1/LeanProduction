@@ -110,25 +110,12 @@ class Demo extends React.Component {
   buildVideBox(opt){
     let {activeItem}=this.state;
     let typeBat=['CYLINDER1_NOISE','CYLINDER2_NOISE','CYLINDER3_NOISE','CYLINDER4_NOISE','CYLINDER5_NOISE'];
-    if(this.state.errItem===""){
-
-      return (
-      <div>
-        <p>{`报警:${activeItem.title}的排出压力传感器`}<span className="tips">报警</span></p>
-        <p>{`检查1、注水泵的外输管线流程"`}</p>
-        <p>{`检查1、注水泵的外输管线闸门是否开启`}</p>
-        <video className="vio"  data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001%E5%90%AF%E5%8A%A8%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%872043.mp4?t=Sun%20Sep%2022%202019%2013:23:27%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)">
-            <object data-v-68781f9a="" width="100%">
-                <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
-            </object>
-        </video>
-      </div>)
-    }else if(this.state.errItem==='TEMPERATURE'){
+     if(this.state.errItem==='TEMPERATURE'){
       return (<div>
         <p>{`报警:1#注水泵的电机温度传感器`}<span className="tips">报警</span></p>
-        <p>{`检查1、检查电机润滑脂的注入量及品质"`}</p>
-        <p>{`检查2、检查电机状态`}</p>
-        <p>{`检查3、与专业人员联系`}</p>
+        <p>处理措施：检查1、&nbsp;&nbsp;&nbsp;&nbsp;{`检查电机润滑脂的注入量及品质"`}</p>
+        <p><span className="cuoshi"></span>检查1、&nbsp;&nbsp;&nbsp;&nbsp;{`检查电机状态`}</p>
+        <p><span className="cuoshi"></span>检查1、&nbsp;&nbsp;&nbsp;&nbsp;{`与专业人员联系`}</p>
           <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
@@ -138,8 +125,8 @@ class Demo extends React.Component {
     }else if(this.state.errItem==='EXPORT_PRESSURE'){
       return (<div>
         <p>{`报警:${activeItem.title}的排出压力传感器报警`}<span className="tips">报警</span></p>
-        <p>{`检查1、${activeItem.title}的外输管线流程"`}</p>
-        <p>{`检查2、${activeItem.title}的外输管线闸门是否开启`}</p>
+        <p>处理措施：检查1、&nbsp;&nbsp;{`${activeItem.title}的外输管线流程`}</p>
+        <p><span className="cuoshi"></span>检查2、&nbsp;&nbsp;{`${activeItem.title}的外输管线闸门是否开启`}</p>
           <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Fri Sep 27 2019 21:21:56 GMT+0800 (中国标准时间)"/>
@@ -150,7 +137,7 @@ class Demo extends React.Component {
     else if(this.state.errItem==='IMPORT_PRESSURE'){
       return (<div>
         <p>{`报警:${activeItem.title}的吸入压力传感器报警`}<span className="tips">报警</span></p>
-        <p>{`检查1、${activeItem.title}的来水管线压力、流量"`}</p>
+        <p>处理措施：检查1、&nbsp;&nbsp;&nbsp;&nbsp;{`${activeItem.title}的来水管线压力、流量`}</p>
           <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Fri Sep 27 2019 21:21:56 GMT+0800 (中国标准时间)"/>
@@ -162,23 +149,23 @@ class Demo extends React.Component {
     else if(this.state.errItem==='MOTOR_TEMPERATURE'){
       return (<div>
         <p>{`报警:${activeItem.title}的电机温度传感器报警`}<span className="tips">报警</span></p>
-        <p>{`检查1、检查电机润滑脂的注入量及品质"`}</p>
-        <p>{`检查2、检查电机状态"`}</p>
-        <p>{`检查3、与专业人员联系"`}</p>
+        <p>处理措施：检查1、&nbsp;&nbsp;&nbsp;&nbsp;{`检查电机润滑脂的注入量及品质"`}</p>
+        <p><span className="cuoshi"></span>检查2、&nbsp;&nbsp;&nbsp;&nbsp;{`检查电机状态`}</p>
+        <p><span className="cuoshi"></span>检查3、&nbsp;&nbsp;&nbsp;&nbsp;{`与专业人员联系"`}</p>
       </div>)
     }
     else if(this.state.errItem==='LUBRICATING_OIL_TEMPERATURE'){
       return (<div>
         <p>{`报警:${activeItem.title}的润滑油温度传感器报警`}<span className="tips">报警</span></p>
-        <p>{`检查1、更换润滑油"`}</p>
-        <p>{`检查2、检查润滑油油窗液位"`}</p>
-        <p>{`检查3、与专业人员联系"`}</p>
+        <p>处理措施：检查1、{`更换润滑油"`}</p>
+        <p><span className="cuoshi"></span>检查2、{`检查润滑油油窗液位`}</p>
+        <p><span className="cuoshi"></span>检查3、{`与专业人员联系"`}</p>
       </div>)
     }
     else if(this.state.errItem==='IMPORT_PRESSURE'){
       return (<div>
         <p>{`报警:${activeItem.title}的吸入压力传感器报警`}<span className="tips">报警</span></p>
-        <p>{`检查1、${activeItem.title}的来水管线压力、流量"`}</p>
+        <p>处理措施：检查1、{`${activeItem.title}的来水管线压力、流量`}</p>
           <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Fri Sep 27 2019 21:21:56 GMT+0800 (中国标准时间)"/>
@@ -191,10 +178,10 @@ class Demo extends React.Component {
 
       return (<div>
         <p>{`报警:${activeItem.title}的泵体油液位传感器报警`}<span className="tips">报警</span></p>
-        <p>{`检查1、${activeItem.title}的挡油头油封"`}</p>
-        <p>{`检查2、${activeItem.title}的曲轴油封"`}</p>
-        <p>{`检查3、${activeItem.title}的添加润滑油"`}</p>
-        <p>{`检查4、与专业人员联系`}</p>
+        <p>处理措施：检查1、{`${activeItem.title}的挡油头油封`}</p>
+        <p><span className="cuoshi"></span>检查2、{`${activeItem.title}的曲轴油封`}</p>
+        <p><span className="cuoshi"></span>检查3、{`${activeItem.title}的添加润滑油`}</p>
+        <p><span className="cuoshi"></span>检查4、{`与专业人员联系`}</p>
           <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/015挡油头拆解2043.mp4?t=Fri Sep 27 2019 21:39:50 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/015挡油头拆解2043.mp4?t=Fri Sep 27 2019 21:39:50 GMT+0800 (中国标准时间)"/>
@@ -211,32 +198,32 @@ class Demo extends React.Component {
     else if(this.state.errItem==='MOTOR_A_PHASE_CURRENT'){
       return (<div>
         <p>{`报警:${activeItem.title}的电机A相电流报警`}<span className="tips">报警</span></p>
-        <p>{`检查1、${activeItem.title}的出口管线"`}</p>
-        <p>{`检查2、${activeItem.title}注水泵电机"`}</p>
-        <p>{`检查3、与专业人员联系`}</p>
+        <p>处理措施：检查1、{`${activeItem.title}的出口管线"`}</p>
+        <p><span className="cuoshi"></span>检查2、{`${activeItem.title}注水泵电机`}</p>
+        <p><span className="cuoshi"></span>检查3、{` 与专业人员联系`}</p>
       </div>)
     }else if(this.state.errItem==='MOTOR_B_PHASE_CURRENT'){
       return (<div>
         <p>{`报警:${activeItem.title}的电机B相电流报警`}<span className="tips">报警</span></p>
-        <p>{`检查1、${activeItem.title}的出口管线"`}</p>
-        <p>{`检查2、${activeItem.title}注水泵电机"`}</p>
-        <p>{`检查3、与专业人员联系`}</p>
+        <p>处理措施：检查1、{`${activeItem.title}的出口管线"`}</p>
+        <p><span className="cuoshi"></span>检查2、{`${activeItem.title}注水泵电机`}</p>
+        <p><span className="cuoshi"></span>检查3、{`与专业人员联系`}</p>
       </div>)
     }
     else if(this.state.errItem==='MOTOR_C_PHASE_CURRENT'){
       return (<div>
         <p>{`报警:${activeItem.title}的电机C相电流报警`}<span className="tips">报警</span></p>
-        <p>{`检查1、${activeItem.title}的出口管线"`}</p>
-        <p>{`检查2、${activeItem.title}注水泵电机"`}</p>
-        <p>{`检查3、与专业人员联系`}</p>
+        <p>处理措施：检查1、{`${activeItem.title}的出口管线"`}</p>
+        <p><span className="cuoshi"></span>检查2、{`${activeItem.title}注水泵电机"`}</p>
+        <p><span className="cuoshi"></span>检查3、{`与专业人员联系`}</p>
       </div>)
     } else if(typeBat.includes(this.state.errItem)){
       let barInx=typeBat.indexOf(this.state.errItem)
       return (<div>
         <p>{`报警:${activeItem.title}缸泵头噪声传感器报警`}<span className="tips">报警</span></p>
-        <p>{`检查1、${activeItem.title}的${barInx}#缸弹簧"`}</p>
-        <p>{`检查2、${activeItem.title}的${barInx}#缸阀片"`}</p>
-        <p>{`检查3、${activeItem.title}的${barInx}#缸阀体"`}</p>
+        <p>处理措施：{`检查1、${activeItem.title}的${barInx}#缸弹簧"`}</p>
+        <p><span className="cuoshi"></span>{`检查2、${activeItem.title}的${barInx}#缸阀片"`}</p>
+        <p><span className="cuoshi"></span>{`检查3、${activeItem.title}的${barInx}#缸阀体"`}</p>
           <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/009泵头拆解教程2043.mp4?t=Fri Sep 27 2019 21:54:33 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/009泵头拆解教程2043.mp4?t=Fri Sep 27 2019 21:54:33 GMT+0800 (中国标准时间)"/>
@@ -249,9 +236,9 @@ class Demo extends React.Component {
 
     return (<div>
       <p>{`报警:1#注水泵 1#缸泵头噪声传感器`}<span className="tips">报警</span></p>
-      <p>{`检查1、1#注水泵 1#缸阀弹簧可能损坏`}</p>
-      <p>{`检查2、1#注水泵 1#缸的阀片可能损坏`}</p>
-      <p>{`检查3、1#注水泵 1#缸的阀体可能损坏`}</p>
+      <p>处理措施：{`检查1、1#注水泵 1#缸阀弹簧可能损坏`}</p>
+      <p><span className="cuoshi"></span>{`检查2、1#注水泵 1#缸的阀片可能损坏`}</p>
+      <p><span className="cuoshi"></span>{`检查3、1#注水泵 1#缸的阀体可能损坏`}</p>
         <video className="vio"  className="vio"  data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
           <object data-v-68781f9a="" width="100%">
               <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/009%E6%B3%B5%E5%A4%B4%E6%8B%86%E8%A7%A3%E6%95%99%E7%A8%8B2043.mp4?t=Sun%20Sep%2022%202019%2017:15:02%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)"/>
@@ -261,9 +248,9 @@ class Demo extends React.Component {
   }else if(this.state.errItem.indexOf('LUBRICATING_OIL_TEMPERATURE')>-1){
     return (<div>
       <p>{`报警:1#注水泵的泵体油液位传感器`}<span className="tips">报警</span></p>
-      <p>{`检查1、更换1#注水泵的挡油头油封`}</p>
-      <p>{`检查2、1#注水泵添加润滑油`}</p>
-      <p>{`检查3、与专业人员联系`}</p>
+      <p>处理措施：{`检查1、更换1#注水泵的挡油头油封`}</p>
+      <p><span className="cuoshi"></span>{`检查2、1#注水泵添加润滑油`}</p>
+      <p><span className="cuoshi"></span>{`检查3、与专业人员联系`}</p>
         <video className="vio"  className="vio"  data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
           <object data-v-68781f9a="" width="100%">
               <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/010%E6%9B%B2%E8%BD%B4%E6%B2%B9%E5%B0%81%E6%8B%86%E8%A7%A32043.mp4?t=Sun%20Sep%2022%202019%2017:12:57%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)"/>
