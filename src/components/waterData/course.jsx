@@ -76,31 +76,32 @@ class Demo extends React.Component {
       ]
     }
     return (
-        <div className="courseContent">
-          <BreadcrumbCustom first="注水泵实时数据" second="拆解培训教程" />
-          <div className="course">
-            <div className="course_l">
-            <Button type="primary">操作规范</Button>
-            <div className="content">
-            {
-              course_r.opretion.map((v,i)=>(
-                <div key={i} className="box">
-                <div data-v-68781f9a="" className="subtitle">{v.title}</div> 
-                <div data-v-68781f9a="" className="video-block">播放视频</div>
-                </div>
-              ))
-            }
+      <img src="/images/cjsp.jpeg" width="100%" alt=""/>
+        // <div className="courseContent">
+        //   <BreadcrumbCustom first="注水泵实时数据" second="拆解培训教程" />
+        //   <div className="course">
+        //     <div className="course_l">
+        //     <Button type="primary">操作规范</Button>
+        //     <div className="content">
+        //     {
+        //       course_r.opretion.map((v,i)=>(
+        //         <div key={i} className="box">
+        //         <div data-v-68781f9a="" className="subtitle">{v.title}</div> 
+        //         <div data-v-68781f9a="" className="video-block">播放视频</div>
+        //         </div>
+        //       ))
+        //     }
 
-            </div>
+        //     </div>
 
 
 
-            </div>
-            <div className="course_r">
+        //     </div>
+        //     <div className="course_r">
          
-            </div>
-          </div>
-        </div>
+        //     </div>
+        //   </div>
+        // </div>
     )
   }
 }
