@@ -20,12 +20,12 @@ export let dataList =[
    {
      name:"进口压力",
      key:"2",
-    ut:'MPa',
-    age: 0.35,
-    state: 1,
-    util: `db`,
-    value:"IMPORT_PRESSURE",
-    show:true,
+      ut:'MPa',
+      age: 0.35,
+      state: 1,
+      util: `db`,
+      value:"IMPORT_PRESSURE",
+      show:true,
   },
   {
    name:"电机温度",

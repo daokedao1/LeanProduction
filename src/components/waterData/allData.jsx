@@ -50,11 +50,9 @@ class Demo extends React.Component {
         if(res.code === 200){
           
           res.data.timeDataList.forEach((v,i)=>{
-
             let obj = allData[i];
             obj['RUNNING_STATE'] = v['RUNNING_STATE'];
             let warncount = [];
-
             obj.arr.forEach((item,i)=>{
               if(v[item.value] > obj.arr[i].age){
                 if(obj['RUNNING_STATE'] == 1&&obj.arr[i].state == 1){
