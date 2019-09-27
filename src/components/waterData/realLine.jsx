@@ -43,7 +43,7 @@ class RealLine extends React.Component {
     this.timer=null;
     this.state={
       loading:true,
-      curtabid:1,
+      curtabid:2,
       dataList:[],
       chart1:[],
       chart2:[],
@@ -64,12 +64,6 @@ class RealLine extends React.Component {
               _this.buildData(res.data.pumpList[0].id);
           }
       })
-  }
-
-  componentDidMount () {
-   this.timer= setInterval(()=>{
-      this.buildData();
-    },10000)
   }
   componentWillUnmount () {
       clearInterval(this.timer)
@@ -148,7 +142,6 @@ class RealLine extends React.Component {
       <Spin size="large" className="spin" spinning={this.state.loading} tip="Loading..." size="large">
 
         <div className="realLine">
-
           <BreadcrumbCustom first="数据总览" second="实时曲线" />
           <div className="realLine_t">
             <div className="t_l">

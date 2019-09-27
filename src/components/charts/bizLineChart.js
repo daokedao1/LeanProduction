@@ -26,7 +26,7 @@ class BizLineChart extends React.Component {
   render(){
     return (
       <div>
-      <Chart padding={[20, 'auto', 30, 'auto']} height={200} data={this.props.data} scale={scale} forceFit>
+      <Chart padding={[20, 'auto', 20, 'auto']} height={170} data={this.props.data} scale={scale} forceFit>
       <Legend  position="right-center" layout="vertical" />
       <Axis name="date" />
         <Tooltip
