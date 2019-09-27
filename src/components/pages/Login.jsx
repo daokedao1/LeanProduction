@@ -25,7 +25,7 @@ class Login extends Component {
           auth: '',
           title: '',
       };
-      localStorage.setItem('allData','');
+    //   localStorage.setItem('allData','');
     }
     componentDidUpdate(prevProps) { // React 16.3+弃用componentWillReceiveProps
         const { auth: nextAuth = {}, history } = this.props;
@@ -48,13 +48,11 @@ class Login extends Component {
                         this.props.saveAuthInfo(res);
                         setCookie('Authorization',res.data.Authorization)
                         setCookie('usertokentime',new Date().getTime());
-                        debugger
-                        let allData = localStorage.getItem('allData');
-                        console.log(dataList);
-                        console.log(dataList);
                         if(!allData){
-                          localData.set('allData',dataList);
-                        }
+                            localData.set('allData',dataList);
+                          }
+                        let allData = localStorage.getItem('allData');
+  
 
                         this.props.history.push('/');
                      }

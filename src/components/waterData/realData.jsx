@@ -166,8 +166,8 @@ class Demo extends React.Component {
             this.setState({
               datalist1:dataList.slice(0,3),
               dataList2:dataList.slice(3,6),
-              dataList3:[]
-              dataList:
+              dataList3:[],
+              dataList:''
             })
         }
     })
