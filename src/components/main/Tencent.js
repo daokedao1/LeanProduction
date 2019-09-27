@@ -25,7 +25,7 @@ class Tencent extends React.Component {
       return (
         <ReactQMap
             getMap={(map, wMap) => this._getMap(map, wMap)}
-            center={{ latitude: 32.1756124785, longitude: 92.0214843750 }}
+            center={{ latitude: 38.234857, longitude: 115.722256 }}
             initialOptions={{ zoomControl: true, mapTypeControl: true,maxZoom:9,minZoom:0,zoom:4 }}
             apiKey="UN6BZ-MP2W6-XWCSX-M2ATU-QORGZ-OWFOE"
             style={{ height: height,cursor: "pointer" }}
@@ -38,7 +38,7 @@ class Tencent extends React.Component {
 
     }
     init(wMap){
-        var center = wMap.LatLng(32.1756124785,92.0214843750);
+        var center = wMap.LatLng(38.234857,115.722256);
         var anchor =new wMap.Point(6, 6),
         scaleSize=new wMap.Size(22,30),
         origin =new wMap.Point(0, 0),
@@ -50,7 +50,7 @@ class Tencent extends React.Component {
         var marker = new wMap.Marker({
             map: classMap,
             icon: icon,
-            position: new windowMap.LatLng(30.53786, 104.07265),
+            position: new windowMap.LatLng(38.234857,115.722256),
             animation: windowMap.MarkerAnimation.DROP,
             decoration: decoration
                 }

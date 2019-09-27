@@ -37,11 +37,60 @@ class Demo extends React.Component {
 
   }
   render() {
-
+    const course_r={
+      opretion:[
+        {
+          title:"1、注水泵启动前准备",
+          url:""
+        },
+        {
+          title:"2、注水泵启动与运转",
+          url:""
+        },
+        {
+          title:"3、注水泵停运",
+          url:""
+        },
+        {
+          title:"4、注水泵启动注意事项",
+          url:""
+        }
+      ],
+      days:[
+        {
+          title:"1、例行日常保养",
+          url:""
+        },
+        {
+          title:"2、一级保养",
+          url:""
+        },
+        {
+          title:"3、二级保养",
+          url:""
+        },
+        {
+          title:"4、三级保养",
+          url:""
+        }
+      ]
+    }
     return (
-        <div className="realData">
+        <div className="courseContent">
           <BreadcrumbCustom first="注水泵实时数据" second="拆解培训教程" />
+          <div className="course">
+            <div className="course_l">
+            <Button type="primary">操作规范</Button>
+            <div className="box">
+            <div data-v-68781f9a="" class="subtitle">1、注水泵启动前准备</div> 
+            <div data-v-68781f9a="" class="video-block">播放视频</div>
+            </div>
 
+            </div>
+            <div className="course_r">
+         
+            </div>
+          </div>
         </div>
     )
   }
