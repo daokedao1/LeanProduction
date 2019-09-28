@@ -52,7 +52,7 @@ class Login extends Component {
                             localData.set('allData',dataList);
                           }
                         let allData = localStorage.getItem('allData');
-  
+
 
                         this.props.history.push('/');
                      }

@@ -25,11 +25,11 @@ const env = process.env.NODE_ENV || 'development'
              method: 'get',
              timeout: 30000
          }).then(res => {
-             if (res.data.success !== true) {
-                 reject(res.data)
-             } else {
-                 resolve(res.data)
-             }
+           if (res.data.code === 200 || res.data.status == "0" ||res.data.success !== true) {
+             resolve(res.data);
+           } else {
+             reject(res.data);
+           }
              if (env === 'development') {
                  console.group('调用网络接口成功');
                  console.log('[请求的Url]:', url);
@@ -68,7 +68,7 @@ const env = process.env.NODE_ENV || 'development'
         "Content-Type": "application/json",
          "Authorization":header
      };
-     const newUrl= 'http://119.90.248.34:51029'+url;
+     const newUrl= url;
 
      return new Promise((resolve, reject) => {
         ruquest=axios.post(newUrl, data, {
@@ -76,7 +76,7 @@ const env = process.env.NODE_ENV || 'development'
           });
           ruquest.then(function(res) {
 
-            if (res.data.code === 200 || res.data.status == "0") {
+            if (res.data.code === 200 || res.data.status == "0" ||res.data.success !== true) {
               resolve(res.data);
             } else {
               reject(res.data);
