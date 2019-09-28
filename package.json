@@ -172,5 +172,6 @@
     "eslint-plugin-react-hooks": "^1.6.0",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.8"
-  }
+  },
+  "proxy":"http://119.90.248.34:51029/" 
 }
