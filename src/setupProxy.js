@@ -18,8 +18,8 @@ module.exports = function(app) {
   //    "^/apc": "/"
   //   },
   //  }));
-  app.use(proxy('/api', { target: 'http://39.98.215.185:8088/' }));
+
   app.use(proxy('/wTimeData', { target: 'http://119.90.248.34:51029/' }));
   app.use(proxy('/wInfo', { target: 'http://119.90.248.34:51029/' }));
-
+    app.use(proxy('/api', { target: 'http://39.98.215.185:8088/' }));
 };
