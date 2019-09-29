@@ -116,9 +116,9 @@ class Demo extends React.Component {
      if(this.state.errItem==='TEMPERATURE'){
       return (<div>
         <p>{`报警:1#注水泵的电机温度传感器`}<span className="tips">报警</span></p>
-        <p>处理措施：检查1、&nbsp;&nbsp;&nbsp;&nbsp;{`检查电机润滑脂的注入量及品质"`}</p>
-        <p><span className="cuoshi"></span>检查1、&nbsp;&nbsp;&nbsp;&nbsp;{`检查电机状态`}</p>
-        <p><span className="cuoshi"></span>检查1、&nbsp;&nbsp;&nbsp;&nbsp;{`与专业人员联系`}</p>
+        <p>处理措施：1、&nbsp;&nbsp;&nbsp;&nbsp;{`检查电机润滑脂的注入量及品质"`}</p>
+        <p><span className="cuoshi"></span>1、&nbsp;&nbsp;&nbsp;&nbsp;{`检查电机状态`}</p>
+        <p><span className="cuoshi"></span>1、&nbsp;&nbsp;&nbsp;&nbsp;{`与专业人员联系`}</p>
           <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
@@ -128,8 +128,8 @@ class Demo extends React.Component {
     }else if(this.state.errItem==='EXPORT_PRESSURE'){
       return (<div>
         <p>{`报警:${activeItem.title}的排出压力传感器报警`}<span className="tips">报警</span></p>
-        <p>处理措施：检查1、&nbsp;&nbsp;{`${activeItem.title}的外输管线流程`}</p>
-        <p><span className="cuoshi"></span>检查2、&nbsp;&nbsp;{`${activeItem.title}的外输管线闸门是否开启`}</p>
+        <p>处理措施：1、&nbsp;&nbsp;{`${activeItem.title}的外输管线流程`}</p>
+        <p><span className="cuoshi"></span>2、&nbsp;&nbsp;{`${activeItem.title}的外输管线闸门是否开启`}</p>
           <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Fri Sep 27 2019 21:21:56 GMT+0800 (中国标准时间)"/>
@@ -140,7 +140,7 @@ class Demo extends React.Component {
     else if(this.state.errItem==='IMPORT_PRESSURE'){
       return (<div>
         <p>{`报警:${activeItem.title}的吸入压力传感器报警`}<span className="tips">报警</span></p>
-        <p>处理措施：检查1、&nbsp;&nbsp;&nbsp;&nbsp;{`${activeItem.title}的来水管线压力、流量`}</p>
+        <p>处理措施：1、&nbsp;&nbsp;&nbsp;&nbsp;{`${activeItem.title}的来水管线压力、流量`}</p>
           <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Fri Sep 27 2019 21:21:56 GMT+0800 (中国标准时间)"/>
@@ -152,23 +152,23 @@ class Demo extends React.Component {
     else if(this.state.errItem==='MOTOR_TEMPERATURE'){
       return (<div>
         <p>{`报警:${activeItem.title}的电机温度传感器报警`}<span className="tips">报警</span></p>
-        <p>处理措施：检查1、&nbsp;&nbsp;&nbsp;&nbsp;{`检查电机润滑脂的注入量及品质"`}</p>
-        <p><span className="cuoshi"></span>检查2、&nbsp;&nbsp;&nbsp;&nbsp;{`检查电机状态`}</p>
-        <p><span className="cuoshi"></span>检查3、&nbsp;&nbsp;&nbsp;&nbsp;{`与专业人员联系"`}</p>
+        <p>处理措施：1、&nbsp;&nbsp;&nbsp;&nbsp;{`检查电机润滑脂的注入量及品质"`}</p>
+        <p><span className="cuoshi"></span>2、&nbsp;&nbsp;&nbsp;&nbsp;{`检查电机状态`}</p>
+        <p><span className="cuoshi"></span>3、&nbsp;&nbsp;&nbsp;&nbsp;{`与专业人员联系"`}</p>
       </div>)
     }
     else if(this.state.errItem==='LUBRICATING_OIL_TEMPERATURE'){
       return (<div>
         <p>{`报警:${activeItem.title}的润滑油温度传感器报警`}<span className="tips">报警</span></p>
-        <p>处理措施：检查1、{`更换润滑油"`}</p>
-        <p><span className="cuoshi"></span>检查2、{`检查润滑油油窗液位`}</p>
-        <p><span className="cuoshi"></span>检查3、{`与专业人员联系"`}</p>
+        <p>处理措施：1、{`更换润滑油"`}</p>
+        <p><span className="cuoshi"></span>2、{`检查润滑油油窗液位`}</p>
+        <p><span className="cuoshi"></span>3、{`与专业人员联系"`}</p>
       </div>)
     }
     else if(this.state.errItem==='IMPORT_PRESSURE'){
       return (<div>
         <p>{`报警:${activeItem.title}的吸入压力传感器报警`}<span className="tips">报警</span></p>
-        <p>处理措施：检查1、{`${activeItem.title}的来水管线压力、流量`}</p>
+        <p>处理措施：1、{`${activeItem.title}的来水管线压力、流量`}</p>
           <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Fri Sep 27 2019 21:21:56 GMT+0800 (中国标准时间)"/>
