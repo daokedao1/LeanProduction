@@ -73,7 +73,7 @@ class SiderCustom extends Component {
 
                 <div className="logo" style={{lineHeight:'32px',textAlign:'center',fontSize:"12px",backgrounColor:"#000"}}>
                     {/* <img src={img} alt=""/> */}
-                    注水泵远程智能诊断监控系统
+                     
                 </div>
                 <SiderMenu
                     menus={routes.menus}
