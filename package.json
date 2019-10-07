@@ -40,6 +40,7 @@
     "file-loader": "2.0.0",
     "fs-extra": "7.0.0",
     "html-webpack-plugin": "4.0.0-alpha.2",
+    "http-proxy-middleware": "^0.20.0",
     "identity-obj-proxy": "3.0.0",
     "install": "^0.13.0",
     "jest": "23.6.0",
@@ -173,5 +174,5 @@
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.8"
   },
-  "proxy": "http://119.90.248.34:51029/"
+  "proxy":"http://39.98.215.185:8088/"
 }

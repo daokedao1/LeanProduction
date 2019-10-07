@@ -31,7 +31,7 @@ import QueryParams from './extension/QueryParams';
 //*********************
 
 
-import allData from './waterData/allData';
+import allData from './waterData/allData.jsx';
 import course from './waterData/course';
 import historyData from './waterData/historyData';
 import historyLine from './waterData/historyLine';

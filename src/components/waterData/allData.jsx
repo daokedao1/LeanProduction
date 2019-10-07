@@ -35,9 +35,13 @@ class Demo extends React.Component {
     clearInterval(this.timer)
   }
   init(){
-
+ 
     const Authorization=getCookie("Authorization");
     let allData = localStorage.getItem('allData');
+    GET('/api/alarmlog/list',{},Authorization).then((res)=>{
+
+    })
+    
     if(!allData || allData == 'undefined'){
       localStorage.setItem('allData',dataList);
       allData = dataList;

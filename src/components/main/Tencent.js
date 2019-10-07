@@ -42,7 +42,7 @@ class Tencent extends React.Component {
         var anchor =new wMap.Point(6, 6),
         scaleSize=new wMap.Size(22,30),
         origin =new wMap.Point(0, 0),
-        size =new wMap.Size(300, 50);
+        size =new wMap.Size(350, 50);
         var icon =new wMap.MarkerImage(require('../../style/imgs/spot_location.png'),size, origin, anchor,scaleSize);
         //文字描述
         var content = "<div class='mapct'><span style='color:red;width:100px;'>华北油田采油三厂楚一联合注水站</span></div>";
