@@ -269,7 +269,7 @@ class Demo extends React.Component {
     ];
     
     const pop_b=<Modal
-    title="报警提示"
+    title="培训视频"
     visible={this.state.visible}
     onOk={this.handleOk}
     onCancel={this.handleCancel}
