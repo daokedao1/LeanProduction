@@ -6,7 +6,7 @@ const { app, pool, Result } =require('./connect')
 app.get('/api/alarmsetting/list', (req, res) => {
       console.log(req.query);
   pool.getConnection((err, conn) => {
-        conn.query("SELECT * FROM alarmsetting", (e, r) => {
+        conn.query("SELECT * FROM setting", (e, r) => {
             if(!e){
                 res.json(new Result({ data: r }))
             }else{
@@ -25,10 +25,28 @@ app.get('/api/alarmsetting/add', (req, res) => {
       res.json(new Result({ code:'-1',msg:e,data: r }))
     }
 })
-app.get('/api/alarmsetting/updatebynid', (req, res) => {
+app.get('/api/alarmsetting/update', (req, res) => {
     console.log(req.query);
 
-        let sql = buildUpdataSql('alarmsetting',req.query,{nodeid:req.query.nodeid})
+        let sql = buildUpdataSql('setting',req.query,{id:1})
+        console.log(sql)
+        pool.getConnection((err, conn) => {
+              conn.query(sql, (e, r) => {
+                  if(!e){
+                      res.json(new Result({ data: r }))
+                  }else{
+                    res.json(new Result({ code:'-1',msg:e,data: r }))
+                  }
+
+              })
+              pool.releaseConnection(conn) // 释放连接池，等待别的连接使用
+          })
+
+})
+app.post('/api/alarmsetting/update', (req, res) => {
+    console.log(req.query);
+
+        let sql = buildUpdataSql('setting',req.query,{id:1})
         console.log(sql)
         pool.getConnection((err, conn) => {
               conn.query(sql, (e, r) => {
