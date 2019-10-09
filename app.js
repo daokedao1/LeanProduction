@@ -1,11 +1,10 @@
 
 const { app, pool, Result } =require('./connect')
 
-app.get('/', (req, res) => {
-    res.redirect('/public');
-})
+
 //alarmsetting
 app.get('/api/alarmsetting/list', (req, res) => {
+      console.log(req.query);
   pool.getConnection((err, conn) => {
         conn.query("SELECT * FROM alarmsetting", (e, r) => {
             if(!e){
@@ -46,6 +45,7 @@ app.get('/api/alarmsetting/updatebynid', (req, res) => {
 })
 //alarmlog
 app.get('/api/alarmlog/list', (req, res) => {
+        console.log(req.query);
   pool.getConnection((err, conn) => {
         conn.query("SELECT * FROM alarmlog", (e, r) => {
             if(!e){
@@ -94,7 +94,9 @@ app.get('/api/alarmlog/updatebynid', (req, res) => {
       })
     res.json(new Result({ data: req.query }))
 })
-
+app.get('/', (req, res) => {
+    res.redirect('/public');
+})
 let buildUpdataSql = (table,param,fiter)=>{
     let str = 'UPDATE '+table+' SET ';
     let arr = []
