@@ -20,7 +20,7 @@ module.exports = {
   deploy : {
     production : {
       user : 'root',
-      host : '39.98.215.185',
+      host : '39.98.215.185:80',
       ref  : 'origin/master',
       repo : 'https://github.com/daokedao1/LeanProduction.git',
       path : '/var/www/production',

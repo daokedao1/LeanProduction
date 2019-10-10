@@ -27,18 +27,15 @@ class Demo extends React.Component {
   componentDidMount() {
       let _this = this
       this.init();
+      POST('/api/alarmsetting/update',{config:dataList}).then((res)=>{
+        console.log(123)
+    })
       this.timer = setInterval(() => {
         _this.init();
       }, 10000)
   }
   componentWillUnmount () {
     clearInterval(this.timer)
-  }
-  componentDidMount(){
-    // let list=JSON.stringify(dataList)
-    POST('/api/alarmsetting/update',{config:dataList}).then((res)=>{
-        console.log(123)
-    })
   }
   init(){
     const Authorization=getCookie("Authorization");
