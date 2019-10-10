@@ -118,7 +118,7 @@ class RealLine extends React.Component {
 
 
   tab(item){
-    this.initAllData(item.id);
+    this.buildData(item.id);
     this.setState({
       curtabid:item.id,
       currentLineName:item.name

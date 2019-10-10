@@ -13,6 +13,7 @@ class AlertSet extends React.Component {
   constructor(props) {
     super(props);
     let obj= []
+    console.log(localStorage.getItem('allData'))
     if(localStorage.getItem('allData')){
         obj = JSON.parse(localStorage.getItem('allData'));
     }else{

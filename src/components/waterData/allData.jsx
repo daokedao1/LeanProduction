@@ -34,13 +34,16 @@ class Demo extends React.Component {
   componentWillUnmount () {
     clearInterval(this.timer)
   }
+  componentDidMount(){
+    // let list=JSON.stringify(dataList)
+    POST('/api/alarmsetting/update',{config:dataList}).then((res)=>{
+        console.log(123)
+    })
+  }
   init(){
- 
     const Authorization=getCookie("Authorization");
     let allData = localStorage.getItem('allData');
-    GET('/api/alarmlog/list',{},Authorization).then((res)=>{
 
-    })
     
     if(!allData || allData == 'undefined'){
       localStorage.setItem('allData',dataList);
