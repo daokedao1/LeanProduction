@@ -27,9 +27,8 @@ class Demo extends React.Component {
   componentDidMount() {
       let _this = this
       this.init();
-      POST('/api/alarmsetting/update',{config:dataList},{},1).then((res)=>{
-        console.log(123)
-    })
+ 
+    
       this.timer = setInterval(() => {
         _this.init();
       }, 10000)
@@ -37,9 +36,10 @@ class Demo extends React.Component {
   componentWillUnmount () {
     clearInterval(this.timer)
   }
-  init(){
+ async init(){
     const Authorization=getCookie("Authorization");
-    let allData = localStorage.getItem('allData');
+   const res=await GET('/api/alarmsetting/list',{},{},1)
+    let allData = res.data[0].config;
 
 
     if(!allData || allData == 'undefined'){

@@ -9,6 +9,8 @@ import Storage from './../../utils/localStorage'
 import { createStore } from 'redux';
 import {reducer} from '../../redux/reducers'
 import Cookies from 'js-cookie'
+import {GET,POST} from '../../axios/tools'
+
 const { Option } = Select;
 // const data = [];
 const sel=(state = 0, record)=>{
@@ -149,10 +151,12 @@ class AlertSetCard extends React.Component {
       if (error) {
         return;
       }
-      let newData= JSON.parse(localStorage.getItem('allData')||'[]');
+      let newData= this.props.dataList;
       newData[this.props.id].arr[key-1].age = row.age;
       newData[this.props.id].arr[key-1].state = row.state;
-      localStorage.setItem('allData',JSON.stringify(newData))
+      POST('/api/alarmsetting/update',{config:newData},{},1).then((res)=>{
+      })
+      // localStorage.setItem('allData',JSON.stringify(newData))
       this.setState({
          editingKey: '' ,
          dataList:newData[this.props.id].arr

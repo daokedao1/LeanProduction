@@ -7,24 +7,26 @@ import {setCookie,getCookie} from './../../utils/index'
 import Storage from './../../utils/localStorage'
 import AlertSetCard from './alertSetCard'
 import {dataList} from './../pages/serve'
+import {GET} from '../../axios/tools'
 
 const EditableContext = React.createContext();
 class AlertSet extends React.Component {
   constructor(props) {
     super(props);
-    let obj= []
-    console.log(localStorage.getItem('allData'))
-    if(localStorage.getItem('allData')){
-        obj = JSON.parse(localStorage.getItem('allData'));
-    }else{
-        localStorage.setItem('allData',JSON.stringify(dataList))
-        obj = dataList;
-    }
+
     this.state = {
-      dataList:obj
+      dataList:[]
     }
   }
-
+async init(){
+  const res=await GET('/api/alarmsetting/list',{},{},1)
+  let obj = res.data[0].config;
+      obj = JSON.parse(obj);
+      this.setState({dataList:obj})
+}
+componentDidMount(){
+  this.init()
+}
   render() {
 
     return (
@@ -33,7 +35,7 @@ class AlertSet extends React.Component {
         <div className="table_b">
           {
             this.state.dataList.map((v,i)=>{
-              return  <AlertSetCard item={v} title={v.title} key={i} id={i} />
+              return  <AlertSetCard dataList={this.state.dataList} item={v} title={v.title} key={i} id={i} />
             })
           }
 

@@ -48,8 +48,11 @@ class Login extends Component {
                         this.props.saveAuthInfo(res);
                         setCookie('Authorization',res.data.Authorization)
                         setCookie('usertokentime',new Date().getTime());
+
+                        POST('/api/alarmsetting/update',{config:dataList},{},1).then((res)=>{
+                        })
                         if(!allData){
-                            localData.set('allData',dataList);
+                            localData.set('allData',);
                           }
                         let allData = localStorage.getItem('allData');
 
