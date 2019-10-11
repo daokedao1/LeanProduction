@@ -44,9 +44,10 @@ app.get('/api/alarmsetting/update', (req, res) => {
 
 })
 app.post('/api/alarmsetting/update', (req, res) => {
-    console.log(req.query);
-
-        let sql = buildUpdataSql('setting',req.query,{id:1})
+    console.log(req);
+        let config = req.body.config;
+        config = JSON.stringify(config)
+        let sql = "UPDATE setting SET config='"+config+"' where nodeid =1"
         console.log(sql)
         pool.getConnection((err, conn) => {
               conn.query(sql, (e, r) => {
