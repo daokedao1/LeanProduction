@@ -55,7 +55,7 @@ const env = process.env.NODE_ENV || 'development'
  * @param msg       接口异常提示
  * @param headers   接口所需header配置
  */
- export const POST = (url, data = {},header) => {
+ export const POST = (url, data = {},header,flag) => {
     //  query.tk = sessionStorage.getItem("accessToken") || decodeURIComponent(cookieGet('accessToken')) || ''
     //  query.code = sessionStorage.getItem("accessToken") || decodeURIComponent(cookieGet('accessToken')) || ''
     //  query.p = sessionStorage.getItem("source") || cookieGet('source') || ''
@@ -68,10 +68,16 @@ const env = process.env.NODE_ENV || 'development'
         "Content-Type": "application/json",
          "Authorization":header
      };
-    //  const newUrl= "http://119.90.248.34:51029"+url;
-     const newUrl= "http://39.98.215.185:80"+url;
+     // let newUrl= "http://127.0.0.1:8088"+url;
+    // let newUrl = '';
+    // if(flag){
+    //   newUrl= url;
+    // }else{
+    let  newUrl= "http://172.16.241.249:8088"+url;
+    // }
+
      return new Promise((resolve, reject) => {
-        ruquest=axios.post(newUrl, data, {
+        ruquest=axios.post(url, data, {
             headers
           });
           ruquest.then(function(res) {

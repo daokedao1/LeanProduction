@@ -38,7 +38,12 @@ function repool() {
     pool.on('error', err => {
         err.code === 'PROTOCOL_CONNECTION_LOST' && setTimeout(repool, 2000)
     })
-    app.all('*', (_,__, next) => {
+    app.all('*', (req,res, next) => {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+      res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+      res.header("X-Powered-By",' 3.2.1')
+      res.header("Content-Type", "application/json;charset=utf-8");
         pool.getConnection( err => {
             err && setTimeout(repool, 2000) || next()
         })

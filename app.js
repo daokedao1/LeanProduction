@@ -1,7 +1,79 @@
 
 const { app, pool, Result } =require('./connect')
+var http = require('http');
+var request = require('request');
+app.post('/login', (req, res) => {
+    let opt = {
+           url: "http://119.90.248.34:51029/login",
+           method: "POST",
+           json: true,
+           headers:req.headers,
+           body: req.body,
+           json:true,
+    }
+     request(opt, function(error, response, body) {
+              console.log(response.statusCode,body) // 请求成功的处理逻辑
+          if (!error && response.statusCode == 200) {
+              console.log('-----') // 请求成功的处理逻辑
+              res.json(body)
+          }
+      });
 
+})
+app.post('/wTimeData/**', (req, res) => {
+    let opt = {
+           url: "http://119.90.248.34:51029"+req.originalUrl,
+           method: "POST",
+           json: true,
+           headers:req.headers,
+           body: req.body,
+           json:true,
+    }
+     request(opt, function(error, response, body) {
+              console.log(response.statusCode,body) // 请求成功的处理逻辑
+          if (!error && response.statusCode == 200) {
+              console.log('-----') // 请求成功的处理逻辑
+              res.json(body)
+          }
+      });
 
+})
+app.post('/wHistoryData/**', (req, res) => {
+    let opt = {
+           url: "http://119.90.248.34:51029"+req.originalUrl,
+           method: "POST",
+           json: true,
+           headers:req.headers,
+           body: req.body,
+           json:true,
+    }
+     request(opt, function(error, response, body) {
+              console.log(response.statusCode,body) // 请求成功的处理逻辑
+          if (!error && response.statusCode == 200) {
+              console.log('-----') // 请求成功的处理逻辑
+              res.json(body)
+          }
+      });
+
+})
+app.post('/wInfo/**', (req, res) => {
+    let opt = {
+           url: "http://119.90.248.34:51029"+req.originalUrl,
+           method: "POST",
+           json: true,
+           headers:req.headers,
+           body: req.body,
+           json:true,
+    }
+     request(opt, function(error, response, body) {
+              console.log(response.statusCode,body) // 请求成功的处理逻辑
+          if (!error && response.statusCode == 200) {
+              console.log('-----') // 请求成功的处理逻辑
+              res.json(body)
+          }
+      });
+
+})
 //alarmsetting
 app.get('/api/alarmsetting/list', (req, res) => {
       console.log(req.query);
@@ -129,6 +201,6 @@ let buildUpdataSql = (table,param,fiter)=>{
     str += 'where nodeid ='+fiter[Object.keys(fiter)[0]];
     return str;
 }
-app.listen(80,()=>{
+app.listen(8088,()=>{
     console.log("servering");
 });

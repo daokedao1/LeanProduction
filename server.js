@@ -3,5 +3,5 @@ var express=require('express');
 var app=express();
 //监听http请求
 app.use(express.static(__dirname+'/dist'))
-app.listen(80);
+app.listen(8081);
 console.log("doing");

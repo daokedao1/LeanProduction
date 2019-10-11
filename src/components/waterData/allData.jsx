@@ -27,7 +27,7 @@ class Demo extends React.Component {
   componentDidMount() {
       let _this = this
       this.init();
-      POST('/api/alarmsetting/update',{config:dataList}).then((res)=>{
+      POST('/api/alarmsetting/update',{config:dataList},{},1).then((res)=>{
         console.log(123)
     })
       this.timer = setInterval(() => {
@@ -41,7 +41,7 @@ class Demo extends React.Component {
     const Authorization=getCookie("Authorization");
     let allData = localStorage.getItem('allData');
 
-    
+
     if(!allData || allData == 'undefined'){
       localStorage.setItem('allData',dataList);
       allData = dataList;
