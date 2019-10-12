@@ -69,7 +69,7 @@ class Login extends Component {
             <div className="login">
                 <div className="login-form" >
                     <div className="login-logo">
-                        <span>注水泵远程智能诊断监控系统2</span>
+                        <span>注水泵远程智能诊断监控系统</span>
                         <PwaInstaller />
                     </div>
                     <Form onSubmit={this.handleSubmit} style={{maxWidth: '300px'}}>
