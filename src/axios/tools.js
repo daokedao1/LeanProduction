@@ -77,7 +77,7 @@ const env = process.env.NODE_ENV || 'development'
     // }
 
      return new Promise((resolve, reject) => {
-        ruquest=axios.post("http://39.98.215.185:8088"+url, data, {
+        ruquest=axios.post(url, data, {
             headers
           });
           ruquest.then(function(res) {
@@ -102,34 +102,7 @@ const env = process.env.NODE_ENV || 'development'
           .then(function() {
             // always executed
           });
-        //  axios({
-        //      url,
-        //      data,
-        //      headers,
-        //     //  params: query,
-        //      method: 'post',
-        //     //  timeout: 30000
-        //  }).then(res => {
-        //      if (res.data.code !== 0) {
-        //          reject(res.data)
-        //      } else {
-        //          resolve(res.data)
-        //      }
-        //      if (env === 'development') {
-        //          console.group('调用网络接口成功');
-        //          console.log('[请求的Url]:', url);
-        //          console.log('[请求的Data]:', data);
-        //          console.log('[请求的Result]:', res.data);
-        //          console.groupEnd();
-        //      }
-        //  }).catch(error => {
-        //     //  let isTimeout = JSON.stringify(error).includes('timeout') || ''
-        //     //  if (isTimeout) {
-        //     //      resolve({msg: '请求超时'})
-        //     //  } else {
-        //     //      resolve(error)
-        //     //  }
-        //  })
+
      })
  }
 
