@@ -41,14 +41,7 @@ class Demo extends React.Component {
    const res=await GET('/api/alarmsetting/list',{},{},1)
     let allData = res.data[0].config;
 
-
-    if(!allData || allData == 'undefined'){
-      localStorage.setItem('allData',dataList);
-      allData = dataList;
-    }else{
       allData = JSON.parse(allData)
-    }
-
     let dataList = [];
     POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
         if(res.code === 200){
@@ -58,19 +51,36 @@ class Demo extends React.Component {
             obj['RUNNING_STATE'] = v['RUNNING_STATE'];
             let warncount = [];
             obj.arr.forEach((item,i)=>{
-              if(v[item.value] > obj.arr[i].age){
-                if(obj['RUNNING_STATE'] == 1&&obj.arr[i].state == 1){
-                  obj.arr[i].block = true;
-                  let warnitem  = {title:obj.title,time:moment().format('YYYY-MM-DD hh:mm:ss'),targetname:obj.arr[i].name,col:obj.arr[i].value}
-                  warncount.push(warnitem);
+              if(item.value==="IMPORT_PRESSURE"||item.value==="LUBRICATING_OIL_LEVEL"){
+                if(v[item.value] < obj.arr[i].age){
+                  if(obj['RUNNING_STATE'] == 1&&obj.arr[i].state == 1){
+                    obj.arr[i].block = true;
+                    let warnitem  = {title:obj.title,time:moment().format('YYYY-MM-DD hh:mm:ss'),targetname:obj.arr[i].name,col:obj.arr[i].value}
+                    warncount.push(warnitem);
+                  }else{
+                    obj.arr[i].block = false;
+                  }
+  
                 }else{
+  
                   obj.arr[i].block = false;
                 }
-
               }else{
-
-                obj.arr[i].block = false;
+                if(v[item.value] > obj.arr[i].age){
+                  if(obj['RUNNING_STATE'] == 1&&obj.arr[i].state == 1){
+                    obj.arr[i].block = true;
+                    let warnitem  = {title:obj.title,time:moment().format('YYYY-MM-DD hh:mm:ss'),targetname:obj.arr[i].name,col:obj.arr[i].value}
+                    warncount.push(warnitem);
+                  }else{
+                    obj.arr[i].block = false;
+                  }
+  
+                }else{
+  
+                  obj.arr[i].block = false;
+                }
               }
+
               obj.arr[i].num = v[item.value];
             })
 
@@ -78,10 +88,8 @@ class Demo extends React.Component {
               obj.block = true;
               let warnlist = JSON.parse(localStorage.getItem('warnlist') || '[]');
               warnlist = warnlist.concat(warncount)
-
               obj.errItem = warncount[0].col
               localStorage.setItem("warnlist",JSON.stringify(warnlist))
-              console.log(warncount)
             }
             // GET('/api/alarmlog/list',{}).then((res)=>{
             //     console.log(res);
@@ -89,7 +97,6 @@ class Demo extends React.Component {
             dataList.push(obj);
 
           })
-
           this.setState({
             dataList:dataList
           })

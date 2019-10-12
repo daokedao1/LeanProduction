@@ -1,6 +1,6 @@
 import React from 'react'
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import {POST} from '../../axios/tools'
+import {POST,GET} from '../../axios/tools'
 import {getCookie,setCookie,clone} from '../../utils/index'
 import pumpinfor from '@/style/imgs/泵信息.png'
 import { Button,Tabs,List,Typography} from 'antd';
@@ -130,9 +130,11 @@ class Demo extends React.Component {
     bar.type=data1.RUNNING_STATE;
     return bar;
   }
-   init(){
+   async init(){
     const Authorization=getCookie("Authorization");
-    let allData = localStorage.getItem('allData');
+   const res=await GET('/api/alarmsetting/list',{},{},1)
+   let allData = res.data[0].config;
+
     if(!allData || allData == 'undefined'){
       localStorage.setItem('allData',dataList);
       allData = dataList;

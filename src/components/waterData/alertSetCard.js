@@ -147,7 +147,6 @@ class AlertSetCard extends React.Component {
   save(form, key) {
   let  that=this;
     form.validateFields((error, row) => {
-      console.log(row)
       if (error) {
         return;
       }
