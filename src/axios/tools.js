@@ -15,7 +15,7 @@ const env = process.env.NODE_ENV || 'development'
          params = {}
      }
      let headers = {
-         "content-type": "application/json"
+         "content-type": "application/json;charset=utf-8"
      }
      return new Promise((resolve, reject) => {
          axios({
@@ -77,7 +77,7 @@ const env = process.env.NODE_ENV || 'development'
     // }
 
      return new Promise((resolve, reject) => {
-        ruquest=axios.post('http://119.90.248.34:51029'+url, data, {
+        ruquest=axios.post('http://39.98.215.185:8088'+url, data, {
             headers
           });
           ruquest.then(function(res) {
