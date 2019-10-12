@@ -77,7 +77,7 @@ const env = process.env.NODE_ENV || 'development'
     // }
 
      return new Promise((resolve, reject) => {
-        ruquest=axios.post(url, data, {
+        ruquest=axios.post('http://119.90.248.34:51029'+url, data, {
             headers
           });
           ruquest.then(function(res) {
