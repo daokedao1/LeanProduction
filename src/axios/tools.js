@@ -73,11 +73,11 @@ const env = process.env.NODE_ENV || 'development'
     // if(flag){
     //   newUrl= url;
     // }else{
-    let  newUrl= "http://172.16.241.249:8088"+url;
+    let  newUrl= "http://39.98.215.185:8088"+url;
     // }
 
      return new Promise((resolve, reject) => {
-        ruquest=axios.post("http://172.16.241.249:8088"+url, data, {
+        ruquest=axios.post(url, data, {
             headers
           });
           ruquest.then(function(res) {
