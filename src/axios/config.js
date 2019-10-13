@@ -17,19 +17,5 @@ export const GIT_USER = 'https://api.github.com/user';
 // bbc top news
 export const NEWS_BBC ='https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=429904aa01f54a39a278a406acf50070';
 
-const domain = 'http://bidev.mryitao.cn';//'http://venusapi.mryitao.cn'
-// 运营操盘
-export const OPERATE_OVERVIEW_LIST = domain+'/api/polestar/operate/overview/list';//-概览
 
-export const OPERATE_OVERVIEW_UV_TREND = domain+'/api/polestar/operate/overview/uv/trend';  // UV 趋势图
-
-//转化分析
-export const OPERATE_CONVER_LIST = domain+'/api/polestar/operate/change/list';//转化分析列表
-export const OPERATE_CONVER_DRILL_LIST = domain+'/api/polestar/operate/change/list/operation';//转化分析下钻列表
-
-export const OPERATE_RESOURCEDIAGRAM_LIST = domain+'/api/polestar/operate/change/list/resource/diagram';//资源类型分布
-export const OPERATE_INDEX_TREND = domain+'/api/polestar/operate/change/list/index/trend';//指标趋势图
-export const OPERATE_RESOURCETOP_LIST = domain+'/api/polestar/operate/change/list/resource/top';//资源位TOP
-//流量分析
-export const OPERATE_FLOW_GETUSEER_LIST = domain+'/api/polestar/userInfo/getUserUV';//用户列表
-export const OPERATE_FLOW_GETUSEERUV_TREND = domain+'/api/polestar/userInfo/getUserUVTrend';//柱状趋势图
+export const GEE_HISTORY_LIST = '/api/alarmlog/list';

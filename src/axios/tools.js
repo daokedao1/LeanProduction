@@ -3,7 +3,7 @@
 import axios from 'axios';
 let query  = {}
 
-
+const domain = 'http://39.98.215.185:8088';
 const env = process.env.NODE_ENV || 'development'
 /**
  * 公用get请求
@@ -17,9 +17,10 @@ const env = process.env.NODE_ENV || 'development'
      let headers = {
          "content-type": "application/json;charset=utf-8"
      }
+     let fullurl = domain+url
      return new Promise((resolve, reject) => {
          axios({
-             url,
+             fullurl,
              headers,
              params: {...params, ...query},
              method: 'get',
@@ -56,10 +57,7 @@ const env = process.env.NODE_ENV || 'development'
  * @param headers   接口所需header配置
  */
  export const POST = (url, data = {},header,flag) => {
-    //  query.tk = sessionStorage.getItem("accessToken") || decodeURIComponent(cookieGet('accessToken')) || ''
-    //  query.code = sessionStorage.getItem("accessToken") || decodeURIComponent(cookieGet('accessToken')) || ''
-    //  query.p = sessionStorage.getItem("source") || cookieGet('source') || ''
-    //  query.v = sessionStorage.getItem("version") || cookieGet('version') || ''
+
     let ruquest;
      if (!data) {
          data = {}
@@ -68,16 +66,10 @@ const env = process.env.NODE_ENV || 'development'
         "Content-Type": "application/json",
          "Authorization":header
      };
-     // let newUrl= "http://127.0.0.1:8088"+url;
-    // let newUrl = '';
-    // if(flag){
-    //   newUrl= url;
-    // }else{
-    let  newUrl= "http://39.98.215.185:8088"+url;
-    // }
+
 
      return new Promise((resolve, reject) => {
-        ruquest=axios.post('http://39.98.215.185:8088'+url, data, {
+        ruquest=axios.post( domain+url, data, {
             headers
           });
           ruquest.then(function(res) {

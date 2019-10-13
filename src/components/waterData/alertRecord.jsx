@@ -5,7 +5,9 @@ import { Select, List,DatePicker,Typography,Table,Button,message} from 'antd';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import {POST} from '../../axios/tools'
 import {getCookie,setCookie} from '../../utils/index'
+import moment from 'moment';
 import 'moment/locale/zh-cn';
+moment.locale('zh-cn');
 const Authorization=getCookie("Authorization");
 const { Option } = Select;
 class Demo extends React.Component {
