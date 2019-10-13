@@ -42,5 +42,6 @@ export const getBbcNews = () => GET(config.NEWS_BBC).then(res=>res);
 // easy-mock数据交互
 // 管理员权限获取
 export const getHistoryList = (param = {}) => GET(config.GEE_HISTORY_LIST,param ).then(res=>{
+  
   return res
 }).catch(err=>err)

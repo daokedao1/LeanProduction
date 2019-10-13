@@ -18,4 +18,4 @@ export const GIT_USER = 'https://api.github.com/user';
 export const NEWS_BBC ='https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=429904aa01f54a39a278a406acf50070';
 
 
-export const GEE_HISTORY_LIST = '/api/alarmlog/list';
+export const GEE_HISTORY_LIST = 'http://127.0.0.1:8088/api/alarmlog/list';
