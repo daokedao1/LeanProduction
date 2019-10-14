@@ -49,15 +49,9 @@ class Login extends Component {
                         setCookie('Authorization',res.data.Authorization)
                         setCookie('usertokentime',new Date().getTime());
 
-                        POST('/api/alarmsetting/update',{config:dataList},{},1).then((res)=>{
-                        })
-                        if(!allData){
-                            localData.set('allData',);
-                          }
-                        let allData = localStorage.getItem('allData');
-
-
-                        this.props.history.push('/');
+              
+                            this.props.history.push('/');
+                       
                      }
                  })
             }

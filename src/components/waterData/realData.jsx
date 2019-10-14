@@ -132,7 +132,7 @@ class Demo extends React.Component {
   }
    async init(){
     const Authorization=getCookie("Authorization");
-   const res=await GET('/api/alarmsetting/list',{},{},1)
+   const res=await GET('http://39.98.215.185:8088/api/alarmsetting/list',{},{},1)
    let allData = res.data[0].config;
 
     if(!allData || allData == 'undefined'){

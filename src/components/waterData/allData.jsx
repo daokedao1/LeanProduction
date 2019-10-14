@@ -37,9 +37,9 @@ class Demo extends React.Component {
     clearInterval(this.timer)
   }
  async init(){
-    const Authorization=getCookie("Authorization");
-   const res=await GET('/api/alarmsetting/list',{},{},1)
+   const res=await GET('http://39.98.215.185:8088/api/alarmsetting/list')
     let allData = res.data[0].config;
+    const Authorization=getCookie("Authorization");
 
       allData = JSON.parse(allData)
     let dataList = [];
@@ -69,7 +69,18 @@ class Demo extends React.Component {
                 if(v[item.value] > obj.arr[i].age){
                   if(obj['RUNNING_STATE'] == 1&&obj.arr[i].state == 1){
                     obj.arr[i].block = true;
-                    let warnitem  = {title:obj.title,time:moment().format('YYYY-MM-DD hh:mm:ss'),targetname:obj.arr[i].name,col:obj.arr[i].value}
+                    let objData=obj.arr[i];
+                    let warnitem  = {
+                      nodename:obj.title,
+                    // time:moment().format('YYYY-MM-DD hh:mm:ss'),
+                    targetname:obj.arr[i].name,
+                    nodeid:obj.arr[i].value,
+                    name:objData.key,
+                    key:objData.value,
+                    curvalue:objData.age,
+                    bzvalue:v[item.value],
+
+                  }
                     warncount.push(warnitem);
                   }else{
                     obj.arr[i].block = false;
@@ -90,10 +101,10 @@ class Demo extends React.Component {
               warnlist = warnlist.concat(warncount)
               obj.errItem = warncount[0].col
               localStorage.setItem("warnlist",JSON.stringify(warnlist))
+             GET('http://39.98.215.185:8088/api/alarmlog/add',{
+              ...warncount[0]
+             })
             }
-            // GET('/api/alarmlog/list',{}).then((res)=>{
-            //     console.log(res);
-            // })
             dataList.push(obj);
 
           })
