@@ -28,7 +28,7 @@ const env = process.env.NODE_ENV || 'development'
              timeout: 30000
          }).then(res => {
 
-            if(res.status === 200){
+            if(res.data.code === 200 || res.data.status == "0" ||res.data.success !== true){
               if (res.data.success !== true) {
                   reject(res.data)
               } else {
