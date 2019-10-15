@@ -37,7 +37,9 @@ class Demo extends React.Component {
     clearInterval(this.timer)
   }
  async init(){
-   const res=await GET('http://39.98.215.185:8088/api/alarmsetting/list')
+   const res=await GET('http://39.98.215.185:8088/api/alarmsetting/list');
+   debugger
+
     let allData = res.data[0].config;
     const Authorization=getCookie("Authorization");
 

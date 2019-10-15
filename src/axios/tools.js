@@ -27,12 +27,13 @@ const env = process.env.NODE_ENV || 'development'
              method: 'get',
              timeout: 30000
          }).then(res => {
-
             if(res.status === 200){
-              if (res.data.success !== true) {
-                  reject(res.data)
+              if (res.data.code === 200 || res.data.status == "0" ||res.data.success == true) {
+                resolve(res.data)
+
               } else {
-                  resolve(res.data)
+                reject(res.data)
+
               }
             }else if(res.status === 403){
 

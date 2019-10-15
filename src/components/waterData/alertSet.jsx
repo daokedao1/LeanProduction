@@ -19,7 +19,7 @@ class AlertSet extends React.Component {
     }
   }
 async init(){
-  const res=await GET('/api/alarmsetting/list',{},{},1)
+  const res=await GET('http://39.98.215.185:8088/api/alarmsetting/list',{},{},1)
   let obj = res.data[0].config;
       obj = JSON.parse(obj);
       this.setState({dataList:obj})
