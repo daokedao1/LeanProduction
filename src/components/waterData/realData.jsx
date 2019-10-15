@@ -19,7 +19,7 @@ const bar=[
     uv1:"MPa",
     uv2:"",
     value1:"EXPORT_PRESSURE",
-    value2:"PUMP_CYLINDER1_ALARM",
+    value2:"CYLINDER1_NOISE",
   },
   {
     val: "进口压力:",
@@ -27,7 +27,7 @@ const bar=[
     uv1:"MPa",
     uv2:"",
     value1:"IMPORT_PRESSURE",
-    value2:"PUMP_CYLINDER2_ALARM"
+    value2:"CYLINDER2_NOISE"
   },
   {
     val: "电机温度:",
@@ -35,7 +35,7 @@ const bar=[
     uv1:"℃",
     uv2:"",
     value1:"MOTOR_TEMPERATURE",
-    value2:"PUMP_CYLINDER3_ALARM"
+    value2:"CYLINDER3_NOISE"
   },
   {
     val: "润滑油温度:",
@@ -43,13 +43,13 @@ const bar=[
     uv1:"℃",
     uv2:"",
     value1:"LUBRICATING_OIL_TEMPERATURE",
-    value2:"PUMP_CYLINDER4_ALARM"
+    value2:"CYLINDER4_NOISE"
   },
   {
     val: "润滑油液位:",
     r:"泵头5缸噪声:",
     value1:"LUBRICATING_OIL_LEVEL",
-    value2:"PUMP_CYLINDER5_ALARM",
+    value2:"CYLINDER5_NOISE",
     uv1:"CM",
     uv2:"",
   },

@@ -38,7 +38,6 @@ class Demo extends React.Component {
   }
  async init(){
    const res=await GET('http://39.98.215.185:8088/api/alarmsetting/list');
-   debugger
 
     let allData = res.data[0].config;
     const Authorization=getCookie("Authorization");
@@ -66,7 +65,7 @@ class Demo extends React.Component {
                     key:objData.value,
                     curvalue:objData.age,
                     bzvalue:v[item.value],
-
+                    col:obj.arr[i].value
                   }
                     warncount.push(warnitem);
                   }else{
@@ -91,7 +90,7 @@ class Demo extends React.Component {
                     key:objData.value,
                     curvalue:objData.age,
                     bzvalue:v[item.value],
-
+                    col:obj.arr[i].value
                   }
                     warncount.push(warnitem);
                   }else{
@@ -268,9 +267,7 @@ class Demo extends React.Component {
           </video>
       </div>)
 
-    }
-    else if(this.state.errItem.indexOf('NOISE')>-1){
-
+    }else if(this.state.errItem.indexOf('NOISE')>-1){
     return (<div>
       <p>{`报警:1#注水泵 1#缸泵头噪声传感器`}<span className="tips">报警</span></p>
       <p>处理措施：{`1、1#注水泵 1#缸阀弹簧可能损坏`}</p>
