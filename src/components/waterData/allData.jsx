@@ -27,8 +27,8 @@ class Demo extends React.Component {
   componentDidMount() {
       let _this = this
       this.init();
- 
-    
+
+
       this.timer = setInterval(() => {
         _this.init();
       }, 10000)
@@ -61,7 +61,7 @@ class Demo extends React.Component {
                       nodename:obj.title,
                     // time:moment().format('YYYY-MM-DD hh:mm:ss'),
                     // targetname:obj.arr[i].name,
-                    nodeid:obj.arr[i].key,
+                    nodeid:v['index'],
                     name:objData.key,
                     key:objData.value,
                     curvalue:objData.age,
@@ -72,9 +72,9 @@ class Demo extends React.Component {
                   }else{
                     obj.arr[i].block = false;
                   }
-  
+
                 }else{
-  
+
                   obj.arr[i].block = false;
                 }
               }else{
@@ -86,7 +86,7 @@ class Demo extends React.Component {
                       nodename:obj.title,
                     // time:moment().format('YYYY-MM-DD hh:mm:ss'),
                     // targetname:obj.arr[i].name,
-                    nodeid:obj.arr[i].key,
+                    nodeid:v['index'],
                     name:obj.arr[i].name,
                     key:objData.value,
                     curvalue:objData.age,
@@ -97,9 +97,9 @@ class Demo extends React.Component {
                   }else{
                     obj.arr[i].block = false;
                   }
-  
+
                 }else{
-  
+
                   obj.arr[i].block = false;
                 }
               }
