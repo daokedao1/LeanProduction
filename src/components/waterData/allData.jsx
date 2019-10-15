@@ -57,7 +57,17 @@ class Demo extends React.Component {
                 if(v[item.value] < obj.arr[i].age){
                   if(obj['RUNNING_STATE'] == 1&&obj.arr[i].state == 1){
                     obj.arr[i].block = true;
-                    let warnitem  = {title:obj.title,time:moment().format('YYYY-MM-DD hh:mm:ss'),targetname:obj.arr[i].name,col:obj.arr[i].value}
+                    let warnitem  = {
+                      nodename:obj.title,
+                    // time:moment().format('YYYY-MM-DD hh:mm:ss'),
+                    targetname:obj.arr[i].name,
+                    nodeid:obj.arr[i].key,
+                    name:objData.key,
+                    key:objData.value,
+                    curvalue:objData.age,
+                    bzvalue:v[item.value],
+
+                  }
                     warncount.push(warnitem);
                   }else{
                     obj.arr[i].block = false;
@@ -76,7 +86,7 @@ class Demo extends React.Component {
                       nodename:obj.title,
                     // time:moment().format('YYYY-MM-DD hh:mm:ss'),
                     targetname:obj.arr[i].name,
-                    nodeid:obj.arr[i].value,
+                    nodeid:obj.arr[i].key,
                     name:objData.key,
                     key:objData.value,
                     curvalue:objData.age,
