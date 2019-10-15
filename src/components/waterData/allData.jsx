@@ -60,7 +60,7 @@ class Demo extends React.Component {
                     let warnitem  = {
                       nodename:obj.title,
                     // time:moment().format('YYYY-MM-DD hh:mm:ss'),
-                    targetname:obj.arr[i].name,
+                    // targetname:obj.arr[i].name,
                     nodeid:obj.arr[i].key,
                     name:objData.key,
                     key:objData.value,
@@ -85,9 +85,9 @@ class Demo extends React.Component {
                     let warnitem  = {
                       nodename:obj.title,
                     // time:moment().format('YYYY-MM-DD hh:mm:ss'),
-                    targetname:obj.arr[i].name,
+                    // targetname:obj.arr[i].name,
                     nodeid:obj.arr[i].key,
-                    name:objData.key,
+                    name:obj.arr[i].name,
                     key:objData.value,
                     curvalue:objData.age,
                     bzvalue:v[item.value],
