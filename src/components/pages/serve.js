@@ -282,10 +282,10 @@ export let dataList =[
     show:true,
   },
   {
-   name:"泵头1缸噪声",
-   key:"9",
+    name:"泵头1缸噪声",
+    key:"9",
     ut:'dB',
-      age: 87.5,
+    age: 87.5,
     state: 1,
     util: `dB`,
     value:"CYLINDER1_NOISE",
