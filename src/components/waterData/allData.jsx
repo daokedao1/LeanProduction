@@ -257,7 +257,7 @@ class Demo extends React.Component {
     } else if(typeBat.includes(this.state.errItem)){
       let barInx=typeBat.indexOf(this.state.errItem)
       return (<div>
-        <p>{`报警:${activeItem.title}缸泵头噪声传感器报警`}<span className="tips">报警</span></p>
+        <p>{`报警:${activeItem.title}${this.state.errItem.replace(/[^\d]/g,'')}#缸泵头噪声传感器报警`}<span className="tips">报警</span></p>
         <p>处理措施：{`1、${activeItem.title}的${this.state.errItem.replace(/[^\d]/g,'')}#缸弹簧`}</p>
         <p><span className="cuoshi"></span>{`2、${activeItem.title}的${this.state.errItem.replace(/[^\d]/g,'')}#缸阀片`}</p>
         <p><span className="cuoshi"></span>{`3、${activeItem.title}的${this.state.errItem.replace(/[^\d]/g,'')}#缸阀体`}</p>
