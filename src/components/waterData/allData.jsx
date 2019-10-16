@@ -234,14 +234,14 @@ class Demo extends React.Component {
     else if(this.state.errItem==='MOTOR_A_PHASE_CURRENT'){
       return (<div>
         <p>{`报警:${activeItem.title}的电机A相电流报警`}<span className="tips">报警</span></p>
-        <p>处理措施：1、{`${activeItem.title}的出口管线"`}</p>
+        <p>处理措施：1、{`${activeItem.title}的出口管线`}</p>
         <p><span className="cuoshi"></span>2、{`${activeItem.title}注水泵电机`}</p>
         <p><span className="cuoshi"></span>3、{` 与专业人员联系`}</p>
       </div>)
     }else if(this.state.errItem==='MOTOR_B_PHASE_CURRENT'){
       return (<div>
         <p>{`报警:${activeItem.title}的电机B相电流报警`}<span className="tips">报警</span></p>
-        <p>处理措施：1、{`${activeItem.title}的出口管线"`}</p>
+        <p>处理措施：1、{`${activeItem.title}的出口管线`}</p>
         <p><span className="cuoshi"></span>2、{`${activeItem.title}注水泵电机`}</p>
         <p><span className="cuoshi"></span>3、{`与专业人员联系`}</p>
       </div>)
@@ -249,17 +249,17 @@ class Demo extends React.Component {
     else if(this.state.errItem==='MOTOR_C_PHASE_CURRENT'){
       return (<div>
         <p>{`报警:${activeItem.title}的电机C相电流报警`}<span className="tips">报警</span></p>
-        <p>处理措施：1、{`${activeItem.title}的出口管线"`}</p>
-        <p><span className="cuoshi"></span>2、{`${activeItem.title}注水泵电机"`}</p>
+        <p>处理措施：1、{`${activeItem.title}的出口管线`}</p>
+        <p><span className="cuoshi"></span>2、{`${activeItem.title}注水泵电机`}</p>
         <p><span className="cuoshi"></span>3、{`与专业人员联系`}</p>
       </div>)
     } else if(typeBat.includes(this.state.errItem)){
       let barInx=typeBat.indexOf(this.state.errItem)
       return (<div>
         <p>{`报警:${activeItem.title}缸泵头噪声传感器报警`}<span className="tips">报警</span></p>
-        <p>处理措施：{`1、${activeItem.title}的${activeItem.title}#缸弹簧"`}</p>
-        <p><span className="cuoshi"></span>{`2、${activeItem.title}的${activeItem.title}#缸阀片"`}</p>
-        <p><span className="cuoshi"></span>{`3、${activeItem.title}的${activeItem.title}#缸阀体"`}</p>
+        <p>处理措施：{`1、${activeItem.title}的缸弹簧`}</p>
+        <p><span className="cuoshi"></span>{`2、${activeItem.title}的缸阀片`}</p>
+        <p><span className="cuoshi"></span>{`3、${activeItem.title}的缸阀体`}</p>
           <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/009泵头拆解教程2043.mp4?t=Fri Sep 27 2019 21:54:33 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/009泵头拆解教程2043.mp4?t=Fri Sep 27 2019 21:54:33 GMT+0800 (中国标准时间)"/>
