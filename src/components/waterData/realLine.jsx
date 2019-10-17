@@ -65,7 +65,7 @@ class RealLine extends React.Component {
           })
           _this.buildData(res.data.pumpList[0].id);
       }
-  })
+    })
   }
 
   componentDidMount() {
@@ -90,7 +90,8 @@ class RealLine extends React.Component {
   }
   buildData(id){
       let _this = this;
-      let param = {"id":id,
+      let param = {
+        "id":id,
         "currentColumn":currentColumn
       }
       POST('/wTimeData/oneCurrent',param,Authorization).then((res)=>{
