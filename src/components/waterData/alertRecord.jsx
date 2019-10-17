@@ -1,7 +1,7 @@
 import React from 'react'
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import '../../style/waterData/historyLine.less'
-import { Select, List,DatePicker,Typography,Table,Button,message} from 'antd';
+import { Select, List,RangePicker,Typography,Table,Button,message} from 'antd';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import {POST} from '../../axios/tools'
 import {getHistoryList} from '../../axios'
@@ -108,7 +108,12 @@ class Demo extends React.Component {
     return (
       <div className="historyLine">
           <BreadcrumbCustom first="数据总览" second="报警记录" />
-            <DatePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD" placeholder="请选择时间" onChange={this.onDateChange.bind(this)} />
+            <Select placeholder="请选择水泵" style={{ width: 140 ,marginLeft:'10px'}} onChange={this.handleChange.bind(this)}>
+                  {this.state.dropList.map((item,index)=>(
+                    <Option key={index} value={item.id}>{item.name}</Option>
+                  ))}
+            </Select>
+            <RangePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD" placeholder="请选择时间" onChange={this.onDateChange.bind(this)} />
             <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onSearchBtnClick.bind(this)}>查询</Button>
               <Table
                 bordered

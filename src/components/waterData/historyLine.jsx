@@ -1,7 +1,7 @@
 
 import React from 'react'
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import { Row, Col, Card,Select,DatePicker,Button} from 'antd';
+import { Row, Col, Card,Select,DatePicker,Button,Spin} from 'antd';
 import SearchList from './searchList'
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import 'moment/locale/zh-cn';
@@ -27,29 +27,13 @@ class HistoryLine extends React.Component {
       chart2:[],
       chart3:[],
       chart4:[],
-
-
+      loading:false,
     }
-
   }
   handleChange(value) {
     this.setState({
       id:value
     })
-    // if(value===1){
-    //   this.setState({
-    //     id:2
-    //   })
-    // }else if(value===2){
-    //   this.setState({
-    //     id:1
-    //   })
-    // }
-    // else{
-   
-    // }
-
-
   }
   componentDidMount() {
     POST('/wInfo/pumpList',{},Authorization).then((res)=>{
@@ -154,7 +138,7 @@ class HistoryLine extends React.Component {
 
 
     })
-    console.log(chart1);
+    // console.log(chart1);
       this.setState({
         chart1:chart1,
         chart2:chart2,
@@ -214,14 +198,16 @@ class HistoryLine extends React.Component {
           </Select>
           <DatePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD" placeholder="请选择时间" onChange={this.onDateChange.bind(this)} />
           <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onSearchBtnClick.bind(this)}>查询</Button>
-          <div className="realLine_b" >
-            <h2>历史曲线</h2>
-              <BizLineChart  position={"date*value"} data={this.state.chart1} />
-              <BizLineChart  position={"date*value"} data={this.state.chart4} />
-              <BizLineChart  position={"date*value"} data={this.state.chart2} />
-              <BizLineChart  position={"date*value"} data={this.state.chart3} />
+          <Spin size="large" className="spin" spinning={this.state.loading} tip="Loading..." size="large">
+              <div className="realLine_b" >
+                  <h2>历史曲线</h2>
+                    <BizLineChart  position={"date*value"} data={this.state.chart1} />
+                    <BizLineChart  position={"date*value"} data={this.state.chart4} />
+                    <BizLineChart  position={"date*value"} data={this.state.chart2} />
+                    <BizLineChart  position={"date*value"} data={this.state.chart3} />
 
-          </div>
+                </div>
+          </Spin>
         </div>
     )
   }
