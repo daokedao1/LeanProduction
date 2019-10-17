@@ -5,6 +5,7 @@ import {getCookie,setCookie,clone} from '../../utils/index'
 import pumpinfor from '@/style/imgs/泵信息.png'
 import { Button,Tabs,List,Typography} from 'antd';
 import '../../style/waterData/realData.less'
+import CountdNum from './countNum'
 import moment from 'moment';
 
 const Authorization  = getCookie("Authorization");
@@ -143,6 +144,7 @@ class Demo extends React.Component {
     }
 
     let dataList = [];
+
     POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
       let data=res.data.timeDataList;
       let data1=data;
@@ -156,8 +158,20 @@ class Demo extends React.Component {
       this.setState({bar8:this.cancleData(data1[7],bar)})
 
     })
+      POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
+        let data=res.data.timeDataList;
+        let data1=data;
+        this.setState({bar1:this.cancleData(data1[0],bar)})
+        this.setState({bar2:this.cancleData(data1[1],bar)})
+        this.setState({bar3:this.cancleData(data1[2],bar)})
+        this.setState({bar4:this.cancleData(data1[3],bar)})
+        this.setState({bar5:this.cancleData(data1[4],bar)})
+        this.setState({bar6:this.cancleData(data1[5],bar)})
+        this.setState({bar7:this.cancleData(data1[6],bar)})
+        this.setState({bar8:this.cancleData(data1[7],bar)})
+  
+      })
   }
-
   getLastData(){
     console.log(Authorization);
     POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
@@ -232,7 +246,11 @@ class Demo extends React.Component {
     let {dataList}=this.state;
     return (
         <div className="realData">
+                 <div className="topAllData">
           <BreadcrumbCustom first="数据总览" second="实时数据" />
+
+          <CountdNum/>
+          </div>
           <div className="realData_t">
             <div className="t_l" style={{textAlign:'center'}}>
               <img src={pumpinfor} style={{height:"200px"}} alt="" />

@@ -8,7 +8,7 @@ import {POST,GET} from '../../axios/tools'
 import Cookies from 'js-cookie'
 import moment from 'moment';
 import {dataList} from './../pages/serve'
-
+import CountdNum from './countNum'
 const Authorization=getCookie("Authorization");
 
 class Demo extends React.Component {
@@ -367,7 +367,11 @@ class Demo extends React.Component {
     return (
 
         <div className="allData" style={{backgroundColor: "#fff"}}>
+          <div className="topAllData">
           <BreadcrumbCustom first="数据总览" second="总览数据" />
+          <CountdNum/>
+          </div>
+        
           <div className="allData_m">
             <h3>华北油田采油三厂楚一联合注水站监控中心</h3>
             <div className="allData_t" >
