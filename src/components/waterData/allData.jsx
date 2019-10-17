@@ -56,6 +56,7 @@ class Demo extends React.Component {
                 if(v[item.value] < obj.arr[i].age){
                   if(obj['RUNNING_STATE'] == 1&&obj.arr[i].state == 1){
                     obj.arr[i].block = true;
+                    let objData=obj.arr[i];
                     let warnitem  = {
                       nodename:obj.title,
                     // time:moment().format('YYYY-MM-DD hh:mm:ss'),
@@ -146,7 +147,6 @@ class Demo extends React.Component {
   buildVideBox(opt){
     let {activeItem}=this.state;
     let typeBat=['CYLINDER1_NOISE','CYLINDER2_NOISE','CYLINDER3_NOISE','CYLINDER4_NOISE','CYLINDER5_NOISE'];
-    debugger
      if(this.state.errItem==='TEMPERATURE'){
       return (<div>
         <p>{`报警:1#注水泵的电机温度传感器`}<span className="tips">报警</span></p>
