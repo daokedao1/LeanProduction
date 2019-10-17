@@ -35,8 +35,8 @@ class HistoryTable extends React.Component {
   }
   onDateChange(date, dateString){
     this.setState({
-      startDate:dateString,
-      endDate:dateString,
+      startDate:dateString[0],
+      endDate:dateString[1],
     })
   }
   onSearchBtnClick(){
@@ -69,11 +69,31 @@ class HistoryTable extends React.Component {
         })
     })
   }
-handleChange(value) {
-  this.setState({
-    id:value
-  })
-}
+  handleChange(value) {
+    this.setState({
+      id:value
+    })
+  }
+  onExportBtnClick(){
+    let param = {
+      id:this.state.id,
+      startDate:this.state.startDate,
+      endDate:this.state.endDate,
+    }
+    this.setState({
+      loading:true
+    })
+    POST('/wHistoryData/oneHistory/excel',param,Authorization).then((res)=>{
+        let data = [];
+        if(res.code == 200 && res.data.tableData){
+            data = res.data.tableData
+        }
+        this.setState({
+          dataList:data,
+          loading:false,
+        })
+    })
+  }
   render() {
   const columns=[
     {
@@ -179,8 +199,9 @@ handleChange(value) {
                 <Option key={index} value={item.id}>{item.name}</Option>
               ))}
             </Select>
-            <DatePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD" placeholder="请选择时间" onChange={this.onDateChange.bind(this)} />
+            <RangePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD"  onChange={this.onDateChange.bind(this)} />
             <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onSearchBtnClick.bind(this)}>查询</Button>
+            <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onExportBtnClick.bind(this)}>导出</Button>
           <Table
             bordered
             style={{marginTop:'10px'}}

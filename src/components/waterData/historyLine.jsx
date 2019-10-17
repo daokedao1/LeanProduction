@@ -190,7 +190,7 @@ class HistoryLine extends React.Component {
 
     return (
         <div className="realLine">
-          <BreadcrumbCustom first="数据总览" second="历史数据" />
+          <BreadcrumbCustom first="数据总览" second="历史曲线" />
           <Select placeholder="请选择水泵" style={{ width: 140 ,marginLeft:'10px'}} onChange={this.handleChange.bind(this)}>
                 {this.state.dropList.map((item,index)=>(
                   <Option key={index} value={item.id}>{item.name}</Option>
