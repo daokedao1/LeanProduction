@@ -54,16 +54,23 @@ class RealLine extends React.Component {
     }
 
   }
+  init(){
+    let _this = this;
+
+    POST('/wInfo/pumpList',{},Authorization).then((res)=>{
+      if(res.code == 200 && res.data.pumpList){
+          _this.setState({
+            titleList:res.data.pumpList
+          })
+          _this.buildData(res.data.pumpList[0].id);
+      }
+  })
+  }
   componentDidMount() {
-      let _this = this;
-      POST('/wInfo/pumpList',{},Authorization).then((res)=>{
-          if(res.code == 200 && res.data.pumpList){
-              _this.setState({
-                titleList:res.data.pumpList
-              })
-              _this.buildData(res.data.pumpList[0].id);
-          }
-      })
+    this.init();
+    this.timer=setInterval(()=>{
+      this.init();
+    },10000)
   }
   componentWillUnmount () {
       clearInterval(this.timer)
