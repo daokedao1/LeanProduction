@@ -9,6 +9,7 @@ import locale from 'antd/es/date-picker/locale/zh_CN';
 import 'moment/locale/zh-cn';
 import Storage from './../../utils/localStorage'
 
+const {RangePicker } = DatePicker;
 const { Option } = Select;
 const Authorization=getCookie("Authorization");
 

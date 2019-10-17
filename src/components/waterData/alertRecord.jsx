@@ -1,7 +1,7 @@
 import React from 'react'
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import '../../style/waterData/historyLine.less'
-import { Select, List,RangePicker,Typography,Table,Button,message} from 'antd';
+import { Select, List,DatePicker,Typography,Table,Button,message} from 'antd';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import {POST} from '../../axios/tools'
 import {getHistoryList} from '../../axios'
@@ -10,6 +10,7 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
+const {RangePicker } = DatePicker;
 moment.locale('zh-cn');
 const Authorization=getCookie("Authorization");
 const { Option } = Select;
@@ -42,7 +43,7 @@ class Demo extends React.Component {
   }
   onSearchBtnClick(){
 
-    if(!this.state.startTime){
+    if(!this.state.startTime || !this.state.endTime){
       message.warning('请选择查询时间！');
       return false
     }
@@ -68,10 +69,10 @@ class Demo extends React.Component {
     })
   }
   onDateChange(date, dateString){
-    console.log(date,dateString,moment(dateString).startOf('day').format('YYYY-MM-DD HH:mm:ss'));
+
     this.setState({
-      startTime:moment(dateString).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
-      endTime:moment(dateString).endOf('day').format('YYYY-MM-DD HH:mm:ss'),
+      startTime:moment(dateString[0]).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
+      endTime:moment(dateString[1]).endOf('day').format('YYYY-MM-DD HH:mm:ss'),
     })
   }
   render() {
@@ -113,7 +114,7 @@ class Demo extends React.Component {
                     <Option key={index} value={item.id}>{item.name}</Option>
                   ))}
             </Select>
-            <RangePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD" placeholder="请选择时间" onChange={this.onDateChange.bind(this)} />
+            <RangePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD"  onChange={this.onDateChange.bind(this)} />
             <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onSearchBtnClick.bind(this)}>查询</Button>
               <Table
                 bordered
