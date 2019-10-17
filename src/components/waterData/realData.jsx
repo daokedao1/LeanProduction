@@ -104,14 +104,14 @@ class Demo extends React.Component {
       bar7:[],
       bar8:[]
     }
-    this.init();
+
   }
   componentDidMount () {
-
-    this.getLastData();
-   this.timer= setInterval(()=>{
+      this.init();
       this.getLastData();
-    },10000)
+     this.timer= setInterval(()=>{
+        this.getLastData();
+      },10000)
   }
   componentWillUnmount () {
       clearInterval(this.timer)
@@ -131,58 +131,47 @@ class Demo extends React.Component {
     bar.type=data1.RUNNING_STATE;
     return bar;
   }
-   async init(){
-    const Authorization=getCookie("Authorization");
-   const res=await GET('http://39.98.215.185:8088/api/alarmsetting/list',{},{},1)
-   let allData = res.data[0].config;
+  async init(){
+      const Authorization=getCookie("Authorization");
+       const res=await GET('http://39.98.215.185:8088/api/alarmsetting/list',{},{},1)
+       let allData = res.data[0].config;
 
-    if(!allData || allData == 'undefined'){
-      localStorage.setItem('allData',dataList);
-      allData = dataList;
-    }else{
-      allData = JSON.parse(allData)
-    }
+        if(!allData || allData == 'undefined'){
+          localStorage.setItem('allData',dataList);
+          allData = dataList;
+        }else{
+          allData = JSON.parse(allData)
+        }
 
-    let dataList = [];
+        let dataList = [];
 
-    POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
-      let data=res.data.timeDataList;
-      let data1=data;
-      this.setState({bar1:this.cancleData(data1[0],bar)})
-      this.setState({bar2:this.cancleData(data1[1],bar)})
-      this.setState({bar3:this.cancleData(data1[2],bar)})
-      this.setState({bar4:this.cancleData(data1[3],bar)})
-      this.setState({bar5:this.cancleData(data1[4],bar)})
-      this.setState({bar6:this.cancleData(data1[5],bar)})
-      this.setState({bar7:this.cancleData(data1[6],bar)})
-      this.setState({bar8:this.cancleData(data1[7],bar)})
-
-    })
-      POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
-        let data=res.data.timeDataList;
-        let data1=data;
-        this.setState({bar1:this.cancleData(data1[0],bar)})
-        this.setState({bar2:this.cancleData(data1[1],bar)})
-        this.setState({bar3:this.cancleData(data1[2],bar)})
-        this.setState({bar4:this.cancleData(data1[3],bar)})
-        this.setState({bar5:this.cancleData(data1[4],bar)})
-        this.setState({bar6:this.cancleData(data1[5],bar)})
-        this.setState({bar7:this.cancleData(data1[6],bar)})
-        this.setState({bar8:this.cancleData(data1[7],bar)})
-  
-      })
+        POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
+            let data=res.data.timeDataList;
+            let data1=data;
+            this.setState({bar1:this.cancleData(data1[0],bar)})
+            this.setState({bar2:this.cancleData(data1[1],bar)})
+            this.setState({bar3:this.cancleData(data1[2],bar)})
+            this.setState({bar4:this.cancleData(data1[3],bar)})
+            this.setState({bar5:this.cancleData(data1[4],bar)})
+            this.setState({bar6:this.cancleData(data1[5],bar)})
+            this.setState({bar7:this.cancleData(data1[6],bar)})
+            this.setState({bar8:this.cancleData(data1[7],bar)})
+        })
   }
   getLastData(){
     console.log(Authorization);
     POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
         if(res.code == 200 && res.data.timeDataList){
-          let dataList = res.data.timeDataList;
-            this.setState({
-              datalist1:dataList.slice(0,3),
-              dataList2:dataList.slice(3,6),
-              dataList3:[],
-              dataList:''
-            })
+          let data=res.data.timeDataList;
+          let data1=data;
+          this.setState({bar1:this.cancleData(data1[0],bar)})
+          this.setState({bar2:this.cancleData(data1[1],bar)})
+          this.setState({bar3:this.cancleData(data1[2],bar)})
+          this.setState({bar4:this.cancleData(data1[3],bar)})
+          this.setState({bar5:this.cancleData(data1[4],bar)})
+          this.setState({bar6:this.cancleData(data1[5],bar)})
+          this.setState({bar7:this.cancleData(data1[6],bar)})
+          this.setState({bar8:this.cancleData(data1[7],bar)})
         }
     })
   }
@@ -343,7 +332,7 @@ class Demo extends React.Component {
                                     <Typography.Text mark></Typography.Text>
                                     <div className="content">
                                     <div className="content_l">{item.val}{item.val1}{item.uv1}</div>
-                                          <div className="content_r">{item.r}{item.val2}{item.uv2}</div>
+                                    <div className="content_r">{item.r}{item.val2}{item.uv2}</div>
                                     </div>
                                   </List.Item>)
                                 }}
