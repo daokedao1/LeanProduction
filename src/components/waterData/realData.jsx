@@ -198,18 +198,18 @@ class Demo extends React.Component {
     ];
     const header456=[
       {
-        title:'3#注水泵',
+        title:'4#注水泵',
         arr:this.state.bar4,
         type:this.state.bar4.type
       },
       {
-        title:'4#注水泵',
+        title:'5#注水泵',
         arr:this.state.bar5,
         type:this.state.bar5.type
 
       },
       {
-        title:'5#注水泵',
+        title:'6#注水泵',
         arr:this.state.bar6,
         type:this.state.bar6.type
 

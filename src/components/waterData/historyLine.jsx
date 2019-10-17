@@ -33,20 +33,21 @@ class HistoryLine extends React.Component {
 
   }
   handleChange(value) {
-    if(value===1){
-      this.setState({
-        id:2
-      })
-    }else if(value===2){
-      this.setState({
-        id:1
-      })
-    }
-    else{
-      this.setState({
-        id:value
-      })
-    }
+    this.setState({
+      id:value
+    })
+    // if(value===1){
+    //   this.setState({
+    //     id:2
+    //   })
+    // }else if(value===2){
+    //   this.setState({
+    //     id:1
+    //   })
+    // }
+    // else{
+   
+    // }
 
 
   }
