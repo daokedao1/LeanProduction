@@ -41,6 +41,7 @@ class RealLine extends React.Component {
     this.change = this.change.bind(this);
     const Authorization=getCookie("Authorization");
     this.timer=null;
+    this.timerCount=null;
     this.state={
       loading:true,
       curtabid:2,
@@ -49,8 +50,8 @@ class RealLine extends React.Component {
       chart2:[],
       chart3:[],
       chart4:[],
-      titleList:[]
-
+      titleList:[],
+      count:0
     }
 
   }
@@ -66,8 +67,20 @@ class RealLine extends React.Component {
       }
   })
   }
+
   componentDidMount() {
     this.init();
+    this.timerCount = setInterval(() => {
+      this.setState((preState) =>({
+        count: preState.count+1,
+      }),() => {
+        
+        if(this.state.count === 10){
+          this.setState({count:0})
+          // clearInterval(this.timerCount);
+        }
+      });
+    }, 1000)
     this.timer=setInterval(()=>{
       this.init();
     },10000)
@@ -144,12 +157,16 @@ class RealLine extends React.Component {
         stroke:''
       }
     ]
-    console.log(this.state.dataList)
     return (
       <Spin size="large" className="spin" spinning={this.state.loading} tip="Loading..." size="large">
 
         <div className="realLine">
+          <div className="realLine_m">
           <BreadcrumbCustom first="数据总览" second="实时曲线" />
+          <Button type="primary">{`${this.state.count}秒后自动刷新`}</Button>
+          </div>
+    
+ 
           <div className="realLine_t">
             <div className="t_l">
            { this.state.titleList.map((item,index)=>(
