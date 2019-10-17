@@ -8,6 +8,8 @@ import {getHistoryList} from '../../axios'
 import {getCookie,setCookie} from '../../utils/index'
 import moment from 'moment';
 import 'moment/locale/zh-cn';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+
 moment.locale('zh-cn');
 const Authorization=getCookie("Authorization");
 const { Option } = Select;
@@ -25,6 +27,11 @@ class Demo extends React.Component {
 
   }
   componentDidMount() {
+    if (this.state.ref == 'table') {
+    		const tableCon = ReactDOM.findDOMNode(this.refs['table']); // 通过ref属性找到该table
+    		const table = tableCon.querySelector('table');  //获取table
+    		table.setAttribute('id','table-to-xls')     //给该table设置属性
+    	}
     POST('/wInfo/pumpList',{},Authorization).then((res)=>{
         if(res.code == 200 && res.data.pumpList){
             this.setState({
