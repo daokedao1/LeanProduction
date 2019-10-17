@@ -51,7 +51,7 @@ class RealLine extends React.Component {
       chart3:[],
       chart4:[],
       titleList:[],
-      count:10
+      count:0
     }
 
   }
@@ -61,8 +61,7 @@ class RealLine extends React.Component {
     POST('/wInfo/pumpList',{},Authorization).then((res)=>{
       if(res.code == 200 && res.data.pumpList){
           _this.setState({
-            titleList:res.data.pumpList,
-            curtabid:res.data.pumpList[0].id
+            titleList:res.data.pumpList
           })
           _this.buildData(res.data.pumpList[0].id);
       }
@@ -70,23 +69,21 @@ class RealLine extends React.Component {
   }
 
   componentDidMount() {
-    let _this = this;
     this.init();
     this.timerCount = setInterval(() => {
       this.setState((preState) =>({
-        count: preState.count-1,
+        count: preState.count+1,
       }),() => {
-
-        if(this.state.count === -1){
-          this.setState({count:10})
-          _this.buildData(_this.state.curtabid)
+        
+        if(this.state.count === 11){
+          this.setState({count:0})
           // clearInterval(this.timerCount);
         }
       });
     }, 1000)
-    // this.timer=setInterval(()=>{
-    //   this.init();
-    // },10000)
+    this.timer=setInterval(()=>{
+      this.init();
+    },10000)
   }
   componentWillUnmount () {
       clearInterval(this.timer)
@@ -127,7 +124,7 @@ class RealLine extends React.Component {
           })
 
       })
-
+      console.log(newdata.splice(0, 10))
       return newdata
   }
   getLastData(){
@@ -169,8 +166,8 @@ class RealLine extends React.Component {
           <BreadcrumbCustom first="数据总览" second="实时曲线" />
           <Button type="primary">{`${this.state.count}秒后自动刷新`}</Button>
           </div>
-
-
+    
+ 
           <div className="realLine_t">
             <div className="t_l">
            { this.state.titleList.map((item,index)=>(

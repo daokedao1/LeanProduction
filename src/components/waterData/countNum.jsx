@@ -12,7 +12,7 @@ class Demo extends React.Component {
         count: preState.count+1,
       }),() => {
         
-        if(this.state.count === 10){
+        if(this.state.count === 11){
           this.setState({count:0})
           // clearInterval(this.timerCount);
         }
