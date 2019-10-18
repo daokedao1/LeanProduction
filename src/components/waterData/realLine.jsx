@@ -51,7 +51,7 @@ class RealLine extends React.Component {
       chart3:[],
       chart4:[],
       titleList:[],
-      count:0
+      count:10
     }
 
   }
@@ -72,11 +72,11 @@ class RealLine extends React.Component {
     this.init();
     this.timerCount = setInterval(() => {
       this.setState((preState) =>({
-        count: preState.count+1,
+        count: preState.count-1,
       }),() => {
-        
-        if(this.state.count === 11){
-          this.setState({count:0})
+
+        if(this.state.count === -1){
+          this.setState({count:10})
           // clearInterval(this.timerCount);
         }
       });
@@ -166,8 +166,8 @@ class RealLine extends React.Component {
           <BreadcrumbCustom first="数据总览" second="实时曲线" />
           <Button type="primary">{`${this.state.count}秒后自动刷新`}</Button>
           </div>
-    
- 
+
+
           <div className="realLine_t">
             <div className="t_l">
            { this.state.titleList.map((item,index)=>(
