@@ -76,6 +76,14 @@ class HistoryTable extends React.Component {
     })
   }
   onExportBtnClick(){
+    if(!this.state.id){
+      message.warning('请选择水泵！');
+      return false
+    }
+    if(!this.state.startDate){
+      message.warning('请选择查询时间！');
+      return false
+    }
     var _headers = [
       {
           v: '时间',
