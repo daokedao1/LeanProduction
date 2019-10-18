@@ -68,8 +68,6 @@ class HeaderCustom extends Component {
               <img style={{marginLeft:"9px",width:"40px"}} src={img} alt=""/>
               <span style={{color:'#ff1e26',fontSize: '25px',verticalAlign:"sub"}}>渤海装备钻井装备公司  注水泵远程智能诊断监控系统</span>
 
-
-
                 <Menu
                     mode="horizontal"
                     style={{ lineHeight: '64px', float: 'right' }}
@@ -89,7 +87,7 @@ class HeaderCustom extends Component {
                     <SubMenu title={<span className="avatar"><img src={avater} alt="头像" /><i className="on bottom b-white" /></span>}>
                         <MenuItemGroup title="用户中心">
                             <Menu.Item key="setting:1">你好 - 系统管理员</Menu.Item>
-                          
+
                             <Menu.Item key="logout"><span onClick={this.logout}>退出登录</span></Menu.Item>
                         </MenuItemGroup>
 

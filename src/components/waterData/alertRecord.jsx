@@ -45,8 +45,13 @@ class Demo extends React.Component {
       message.warning('请选择查询时间！');
       return false
     }
+    if(!this.state.id ){
+      message.warning('请选择要查询的泵！');
+      return false
+    }
     this.setState({loading:true})
     getHistoryList({
+      nodeid:this.state.id,
       startTime:this.state.startTime,
       endTime:this.state.endTime,
     }).then((res)=>{
@@ -76,6 +81,7 @@ class Demo extends React.Component {
   }
   onExportExcelClick(){
     var _headers = [
+        { k: 'sortid', v: '序号' },
         { k: 'nodename', v: '报警泵' },
         { k: 'name', v: '报警位置' },
         { k: 'curvalue', v: '报警值' },
@@ -87,6 +93,11 @@ class Demo extends React.Component {
   }
   render() {
   const columns=[
+    {
+        title: '序号',
+        dataIndex: 'sortid',
+        key: 'sortid',
+    },
     {
         title: '报警泵',
         dataIndex: 'nodename',

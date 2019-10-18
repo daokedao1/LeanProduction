@@ -8,6 +8,7 @@ import {getCookie,setCookie} from '../../utils/index'
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import 'moment/locale/zh-cn';
 import Storage from './../../utils/localStorage'
+import { exportExcel } from 'xlsx-oc'
 
 const {RangePicker } = DatePicker;
 const { Option } = Select;
@@ -75,24 +76,103 @@ class HistoryTable extends React.Component {
     })
   }
   onExportBtnClick(){
-    let param = {
-      id:this.state.id,
-      startDate:this.state.startDate,
-      endDate:this.state.endDate,
-    }
-    this.setState({
-      loading:true
-    })
-    POST('/wHistoryData/oneHistory/excel',param,Authorization).then((res)=>{
-        let data = [];
-        if(res.code == 200 && res.data.tableData){
-            data = res.data.tableData
-        }
-        this.setState({
-          dataList:data,
-          loading:false,
-        })
-    })
+    var _headers = [
+      {
+          v: '时间',
+
+          k: 'INSERT_DATE',
+      },
+      {
+          v: '出口压力',
+
+          k: 'EXPORT_PRESSURE',
+      },
+      {
+          v: '进口压力',
+
+          k: 'IMPORT_PRESSURE',
+      },
+      {
+          v: '润滑油温度',
+
+          k: 'LUBRICATING_OIL_TEMPERATURE',
+      },
+      {
+          v: '润滑油液位',
+
+          k: 'LUBRICATING_OIL_LEkEL',
+      },
+      {
+          v: '电机温度',
+
+          k: 'MOTOR_TEMPERATURE',
+      },
+      {
+          v: '电机A相电流',
+
+          k: 'MOTOR_A_PHASE_CURRENT',
+      },
+      {
+          v: '电机B相电流',
+          k: 'MOTOR_B_PHASE_CURRENT',
+      },
+      {
+          v: '电机C相电流',
+          k: 'MOTOR_C_PHASE_CURRENT',
+      },
+      {
+          v: '电机A相电压',
+          k: 'MOTOR_A_PHASE_kOLTAGE',
+      },
+      {
+          v: '电机B相电压',
+          k: 'MOTOR_B_PHASE_kOLTAGE',
+      },
+      {
+          v: '电机C相电压',
+          k: 'MOTOR_C_PHASE_kOLTAGE',
+      },
+      {
+          v: '泵头1#缸噪声',
+          k: 'CYLINDER1_NOISE',
+      },
+      {
+          v: '泵头2#缸噪声',
+          k: 'CYLINDER2_NOISE',
+      },
+      {
+          v: '泵头3#缸噪声',
+          k: 'CYLINDER3_NOISE',
+      },
+      {
+          v: '泵头4#缸噪声',
+          k: 'CYLINDER4_NOISE',
+      },
+      {
+          v: '泵头5#缸噪声',
+          k: 'CYLINDER5_NOISE',
+      },
+    ];
+      let fileName = this.state.startDate+' 至 '+this.state.endDate+'历史数据记录汇总';
+      exportExcel(_headers, this.state.dataList,fileName);
+    // let param = {
+    //   id:this.state.id,
+    //   startDate:this.state.startDate,
+    //   endDate:this.state.endDate,
+    // }
+    // this.setState({
+    //   loading:true
+    // })
+    // POST('/wHistoryData/oneHistory/excel',param,Authorization).then((res)=>{
+    //     let data = [];
+    //     if(res.code == 200 && res.data.tableData){
+    //         data = res.data.tableData
+    //     }
+    //     this.setState({
+    //       dataList:data,
+    //       loading:false,
+    //     })
+    // })
   }
   render() {
   const columns=[
@@ -111,7 +191,7 @@ class HistoryTable extends React.Component {
     },
     {
         title: '出口压力',
-        dataIndex: 'INSERT_DATE',
+        dataIndex: 'EXPORT_PRESSURE',
         key: 'EXPORT_PRESSURE',
     },
     {
