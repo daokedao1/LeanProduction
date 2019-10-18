@@ -80,6 +80,14 @@ class Demo extends React.Component {
     })
   }
   onExportExcelClick(){
+    if(!this.state.startTime || !this.state.endTime){
+      message.warning('请选择查询时间！');
+      return false
+    }
+    if(!this.state.id ){
+      message.warning('请选择要查询的泵！');
+      return false
+    }
     var _headers = [
         { k: 'sortid', v: '序号' },
         { k: 'nodename', v: '报警泵' },

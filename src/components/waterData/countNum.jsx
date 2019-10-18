@@ -5,15 +5,15 @@ class Demo extends React.Component {
   constructor(props){
     super(props)
     this.state={
-      count:0
+      count:10
     }
    let timerCount = setInterval(() => {
       this.setState((preState) =>({
-        count: preState.count+1,
+        count: preState.count-1,
       }),() => {
-        
-        if(this.state.count === 11){
-          this.setState({count:0})
+
+        if(this.state.count === -1){
+          this.setState({count:10})
           // clearInterval(this.timerCount);
         }
       });
