@@ -153,7 +153,7 @@ class HistoryTable extends React.Component {
           k: 'CYLINDER5_NOISE',
       },
     ];
-      let fileName = this.state.startDate+' 至 '+this.state.endDate+'历史数据记录汇总';
+      let fileName = this.state.startDate+' 至 '+this.state.endDate+'历史数据记录汇总.xlsx';
       exportExcel(_headers, this.state.dataList,fileName);
     // let param = {
     //   id:this.state.id,

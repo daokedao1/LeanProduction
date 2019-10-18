@@ -130,7 +130,7 @@ class Demo extends React.Component {
 
     return (
       <div className="historyLine">
-          <BreadcrumbCustom first="数据总览" second="报警记录" />
+          <BreadcrumbCustom first="数据总览" second="现场报警记录" />
             <Select placeholder="请选择水泵" style={{ width: 140 ,marginLeft:'10px'}} onChange={this.handleChange.bind(this)}>
                   {this.state.dropList.map((item,ii)=>(
                     <Option key={ii} value={item.id}>{item.name}</Option>

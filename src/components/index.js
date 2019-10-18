@@ -40,6 +40,9 @@ import realLine from './waterData/realLine';
 import alertSet from './waterData/alertSet';
 import alertRecord from './waterData/alertRecord';
 import open from './waterData/open';
+import XcalertSet from './waterData/XcalertSet';
+import XcAlertRecord from './waterData/XcAlertRecord';
+
 
 //*************
 import Main from './main'
@@ -92,5 +95,7 @@ export default {
     realLine,
     alertSet,
     alertRecord,
-    open
+    open,
+    XcAlertRecord,
+    XcalertSet
 };
