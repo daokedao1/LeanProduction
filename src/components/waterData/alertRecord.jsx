@@ -9,6 +9,7 @@ import {getCookie,setCookie} from '../../utils/index'
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import { exportExcel } from 'xlsx-oc'
 
 const {RangePicker } = DatePicker;
 moment.locale('zh-cn');
@@ -23,7 +24,8 @@ class Demo extends React.Component {
       id:'',
       startTime:'',
       endTime:'',
-      loading:false
+      loading:false,
+      selectDate:[],
     };
 
   }
@@ -73,7 +75,19 @@ class Demo extends React.Component {
     this.setState({
       startTime:moment(dateString[0]).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
       endTime:moment(dateString[1]).endOf('day').format('YYYY-MM-DD HH:mm:ss'),
+      selectDate:dateString,
     })
+  }
+  onExportExcelClick(){
+        var _headers = [
+            { k: 'nodename', v: '报警泵' },
+            { k: 'name', v: '报警位置' },
+            { k: 'curvalue', v: '报警值' },
+            { k: 'bzvalue', v: '设定标准值' },
+            { k: 'date', v: '报警时间' },
+          ]
+          let fileName = this.state.selectDate[0]+' 至 '+this.state.selectDate[1]+'报警记录汇总';
+    exportExcel(_headers, this.state.dataList,fileName);
   }
   render() {
   const columns=[
@@ -104,7 +118,7 @@ class Demo extends React.Component {
     },
 
   ];
-  console.log(this.state.dataList);
+  console.log(this.state.dataList.length);
 
     return (
       <div className="historyLine">
@@ -116,6 +130,7 @@ class Demo extends React.Component {
             </Select>
             <RangePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD"  onChange={this.onDateChange.bind(this)} />
             <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onSearchBtnClick.bind(this)}>查询</Button>
+            <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onExportExcelClick.bind(this)}>导出</Button>
               <Table
                 bordered
                 style={{marginTop:'10px'}}
