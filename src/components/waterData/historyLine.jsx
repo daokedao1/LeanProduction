@@ -12,7 +12,7 @@ import {getCookie,setCookie} from '../../utils/index'
 import '../../style/waterData/realLine.less'
 const Authorization=getCookie("Authorization");
 const { Option } = Select;
-
+const {RangePicker } = DatePicker;
 class HistoryLine extends React.Component {
   constructor(props){
     super(props);
@@ -181,8 +181,8 @@ class HistoryLine extends React.Component {
   }
   onDateChange(date, dateString){
     this.setState({
-      startDate:dateString,
-      endDate:dateString,
+      startDate:dateString[0],
+      endDate:dateString[1],
     })
   }
   render() {
@@ -196,7 +196,7 @@ class HistoryLine extends React.Component {
                   <Option key={index} value={item.id}>{item.name}</Option>
                 ))}
           </Select>
-          <DatePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD" placeholder="请选择时间" onChange={this.onDateChange.bind(this)} />
+          <RangePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD" onChange={this.onDateChange.bind(this)} />
           <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onSearchBtnClick.bind(this)}>查询</Button>
           <Spin size="large" className="spin" spinning={this.state.loading} tip="Loading..." size="large">
               <div className="realLine_b" >

@@ -79,15 +79,15 @@ class Demo extends React.Component {
     })
   }
   onExportExcelClick(){
-        var _headers = [
-            { k: 'nodename', v: '报警泵' },
-            { k: 'name', v: '报警位置' },
-            { k: 'curvalue', v: '报警值' },
-            { k: 'bzvalue', v: '设定标准值' },
-            { k: 'date', v: '报警时间' },
-          ]
-          let fileName = this.state.selectDate[0]+' 至 '+this.state.selectDate[1]+'报警记录汇总';
-    exportExcel(_headers, this.state.dataList,fileName);
+    var _headers = [
+        { k: 'nodename', v: '报警泵' },
+        { k: 'name', v: '报警位置' },
+        { k: 'curvalue', v: '报警值' },
+        { k: 'bzvalue', v: '设定标准值' },
+        { k: 'date', v: '报警时间' },
+      ]
+      let fileName = this.state.selectDate[0]+' 至 '+this.state.selectDate[1]+'报警记录汇总';
+      exportExcel(_headers, this.state.dataList,fileName);
   }
   render() {
   const columns=[

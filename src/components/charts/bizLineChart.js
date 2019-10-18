@@ -15,11 +15,15 @@ import {
   Facet,
   Util
 } from "bizcharts";
+import moment from 'moment';
 
 const scale = {
   date: {
     range: [0, 1],
-
+    type:'time',
+    formatter:(v)=>{
+      return moment(v).format('YYYY-MM-DD HH时')
+    }
   }
 }
 class BizLineChart extends React.Component {
@@ -34,6 +38,7 @@ class BizLineChart extends React.Component {
               type: "y"
             }}
           />
+
         <Geom
           type="line"
           position={this.props.position}
