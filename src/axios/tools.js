@@ -3,7 +3,8 @@
 import axios from 'axios';
 let query  = {}
 
-const domain = 'http://39.98.215.185:8088';
+// const domain = 'http://39.98.215.185:8088';
+const domain = 'http://127.0.0.1:8088';
 const env = process.env.NODE_ENV || 'development'
 /**
  * 公用get请求

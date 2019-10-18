@@ -8,13 +8,13 @@ import {getHistoryList} from '../../axios'
 import {getCookie,setCookie} from '../../utils/index'
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import { exportExcel } from 'xlsx-oc'
 
 const {RangePicker } = DatePicker;
 moment.locale('zh-cn');
 const Authorization=getCookie("Authorization");
 const { Option } = Select;
+
 class Demo extends React.Component {
   constructor(props){
     super(props);
@@ -30,11 +30,7 @@ class Demo extends React.Component {
 
   }
   componentDidMount() {
-    if (this.state.ref == 'table') {
-    		const tableCon = ReactDOM.findDOMNode(this.refs['table']); // 通过ref属性找到该table
-    		const table = tableCon.querySelector('table');  //获取table
-    		table.setAttribute('id','table-to-xls')     //给该table设置属性
-    	}
+
     POST('/wInfo/pumpList',{},Authorization).then((res)=>{
         if(res.code == 200 && res.data.pumpList){
             this.setState({
@@ -118,26 +114,27 @@ class Demo extends React.Component {
     },
 
   ];
-  console.log(this.state.dataList.length);
+  console.log(this.state.dataList);
 
     return (
       <div className="historyLine">
           <BreadcrumbCustom first="数据总览" second="报警记录" />
             <Select placeholder="请选择水泵" style={{ width: 140 ,marginLeft:'10px'}} onChange={this.handleChange.bind(this)}>
-                  {this.state.dropList.map((item,index)=>(
-                    <Option key={index} value={item.id}>{item.name}</Option>
+                  {this.state.dropList.map((item,ii)=>(
+                    <Option key={ii} value={item.id}>{item.name}</Option>
                   ))}
             </Select>
             <RangePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD"  onChange={this.onDateChange.bind(this)} />
             <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onSearchBtnClick.bind(this)}>查询</Button>
             <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onExportExcelClick.bind(this)}>导出</Button>
-              <Table
-                bordered
-                style={{marginTop:'10px'}}
-                columns={columns}
-                loading={this.state.loading}
-                dataSource={this.state.dataList}
-                />
+            <Table
+              key={888}
+              bordered
+              style={{marginTop:'10px'}}
+              columns={columns}
+              loading={this.state.loading}
+              dataSource={this.state.dataList}
+              />
       </div>
     )
   }
