@@ -10,14 +10,14 @@ const getContianer = dom => {
     // csssprite.innerHTML = `<Link to="/login"><img  id="lx"   src="${require('../../style/imgs/spot_location.png')}" style="width: 22px;height: 100%"/><p style="color:red">华北油田采油三厂楚一联合注水站</p></Link>`;
     middleControl.style.cssText =
         'width: 130px;height: 30px;position: absolute;left: 50%;top: 50%;z-index: 999;margin-left: -23px;margin-top: -23px;';
-    middleControl.innerHTML = `<Link to="/login></Link>`;
+    middleControl.innerHTML = `<Link to="/login"></Link>`;
     dom.appendChild(middleControl);
     // let csssprite=dom.childNodes('.csssprite')
         // console.log(csssprite)
 
 
 };
-let height = document.body.clientHeight-90;
+let height = document.body.clientHeight-150;
 let classMap, windowMap;
 
 class Tencent extends React.Component {
