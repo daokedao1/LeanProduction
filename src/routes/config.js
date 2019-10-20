@@ -6,7 +6,7 @@ export default {
             { key: '/app/waterData/main', title: '地图', component: 'Main' }
           ]
         },
-        { key: '/app/operate', title: '数据总览',icon: 'area-chart',
+        { key: '/app/operate', title: '华北楚一联数据',icon: 'area-chart',
           subs: [
             { key: '/app/waterData/allData', title: '总览数据', component: 'allData' },
 
