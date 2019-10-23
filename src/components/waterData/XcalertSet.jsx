@@ -5,11 +5,12 @@ import '../../style/waterData/alertSet.less'
 import { Input, InputNumber, Popconfirm, Form,Select } from 'antd';
 import {setCookie,getCookie} from './../../utils/index'
 import Storage from './../../utils/localStorage'
-import AlertSetCard from './alertSetCard'
+import XcalertSetCard from './XcalertSetCard'
 import {dataList} from './../pages/serve'
-import {GET} from '../../axios/tools'
+import {POST} from '../../axios/tools'
+const Authorization=getCookie("Authorization");
 
-const EditableContext = React.createContext();
+
 class AlertSet extends React.Component {
   constructor(props) {
     super(props);
@@ -18,14 +19,15 @@ class AlertSet extends React.Component {
       dataList:[]
     }
   }
-async init(){
-  const res=await GET('http://39.98.215.185:8088/api/alarmsetting/list',{},{},1)
-  let obj = res.data[0].config;
-      obj = JSON.parse(obj);
-      this.setState({dataList:obj})
-}
 componentDidMount(){
-  this.init()
+  POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
+      if(res.code === 200){
+
+        this.setState({
+          dataList:res.data.timeDataList
+        })
+      }
+  })
 }
   render() {
 
@@ -35,7 +37,7 @@ componentDidMount(){
         <div className="table_b">
           {
             this.state.dataList.map((v,i)=>{
-              return  <AlertSetCard dataList={this.state.dataList} item={v} title={v.title} key={i} id={i} />
+              return  <XcalertSetCard dataList={v} item={v} title={v.ADDRESS+'#泵'} key={i} id={i} />
             })
           }
 
