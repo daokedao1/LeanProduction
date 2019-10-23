@@ -15,6 +15,17 @@ moment.locale('zh-cn');
 const Authorization=getCookie("Authorization");
 const { Option } = Select;
 
+const nameMapping =  {
+    'SUCTION_PRESSURE_ALARM':'吸压过低',
+    'OVER_PRESSURE_ALARM':'排压过高',
+    'OIL_TEMPERATURE_ALARM':'油温过高',
+    'MOTOR_TEMPERATURE_ALARM':'电机温度过高',
+    'PUMP_CYLINDER1_ALARM':'泵噪声报警缸1',
+    'PUMP_CYLINDER2_ALARM':'泵噪声报警缸2',
+    'PUMP_CYLINDER3_ALARM':'泵噪声报警缸3',
+    'PUMP_CYLINDER4_ALARM':'泵噪声报警缸4',
+    'PUMP_CYLINDER5_ALARM':'泵噪声报警缸5',
+}
 class Demo extends React.Component {
   constructor(props){
     super(props);
@@ -40,7 +51,7 @@ class Demo extends React.Component {
     })
   }
   onSearchBtnClick(){
-
+    let _this = this;
     if(!this.state.startTime || !this.state.endTime){
       message.warning('请选择查询时间！');
       return false
@@ -50,21 +61,111 @@ class Demo extends React.Component {
       return false
     }
     this.setState({loading:true})
-    getHistoryList({
-      nodeid:this.state.id,
-      startTime:this.state.startTime,
-      endTime:this.state.endTime,
-    }).then((res)=>{
-        let dataList = [];
-        if(res.code == 200){
-          dataList = res.data;
+    let param = {
+      id:this.state.id,
+      pageNumber:1,
+      pageSize:1000,
+      startDate:this.state.startTime,
+      endDate:this.state.endTime,
+    }
+    POST('/wHistoryData/oneHistory',param,Authorization).then((res)=>{
+        let data = [];
+        if(res.code == 200 && res.data.tableData){
+            data = _this.buildTableData(res.data.tableData)
         }
         this.setState({
-          dataList:dataList,
-          loading:false
+          dataList:data,
+          loading:false,
         })
     })
 
+  }
+  buildTableData(data){
+      var alarmList = [];
+
+      data.forEach((v,i)=>{
+          let address = v.ADDRESS;
+          let time = v.INSERT_DATE;
+
+          if(v['SUCTION_PRESSURE_ALARM'] === '1'){
+              alarmList.push({
+                  address:address+'#泵',
+                  name:nameMapping['SUCTION_PRESSURE_ALARM'],
+                  num:v['IMPORT_PRESSURE'],
+                  otime:time,
+              })
+          }
+          //排压过高
+          if(v['OVER_PRESSURE_ALARM'] === '1'){
+              alarmList.push({
+                  address:address+'#泵',
+                  name:nameMapping['OVER_PRESSURE_ALARM'],
+                  num:v['EXPORT_PRESSURE'],
+                  otime:time,
+              })
+          }
+          //油温
+          if(v['OIL_TEMPERATURE_ALARM'] === '1'){
+              alarmList.push({
+                  address:address+'#泵',
+                  name:nameMapping['OIL_TEMPERATURE_ALARM'],
+                  num:v['LUBRICATING_OIL_TEMPERATURE'],
+                  otime:time,
+              })
+          }
+          //
+          if(v['MOTOR_TEMPERATURE_ALARM'] === '1'){
+              alarmList.push({
+                  address:address+'#泵',
+                  name:nameMapping['MOTOR_TEMPERATURE_ALARM'],
+                  num:v['MOTOR_TEMPERATURE'],
+                  otime:time,
+              })
+          }
+          //
+          if(v['PUMP_CYLINDER1_ALARM'] === '1'){
+              alarmList.push({
+                  address:address+'#泵',
+                  name:nameMapping['PUMP_CYLINDER1_ALARM'],
+                  num:v['CYLINDER1_NOISE'],
+                  otime:time,
+              })
+          }
+          if(v['PUMP_CYLINDER2_ALARM'] === '1'){
+              alarmList.push({
+                  address:address+'#泵',
+                  name:nameMapping['PUMP_CYLINDER2_ALARM'],
+                  num:v['CYLINDER2_NOISE'],
+                  otime:time,
+              })
+          }
+          if(v['PUMP_CYLINDER3_ALARM'] === '1'){
+              alarmList.push({
+                  address:address+'#泵',
+                  name:nameMapping['PUMP_CYLINDER3_ALARM'],
+                  num:v['CYLINDER3_NOISE'],
+                  otime:time,
+              })
+          }
+          if(v['PUMP_CYLINDER4_ALARM'] === '1'){
+              alarmList.push({
+                  address:address+'#泵',
+                  name:nameMapping['PUMP_CYLINDER4_ALARM'],
+                  num:v['CYLINDER4_NOISE'],
+                  otime:time,
+              })
+          }
+          if(v['PUMP_CYLINDER5_ALARM'] === '1'){
+              alarmList.push({
+                  address:address+'#泵',
+                  name:nameMapping['PUMP_CYLINDER5_ALARM'],
+                  num:v['CYLINDER5_NOISE'],
+                  otime:time,
+              })
+          }
+
+      })
+      return alarmList;
   }
   handleChange(value) {
     this.setState({
@@ -74,21 +175,20 @@ class Demo extends React.Component {
   onDateChange(date, dateString){
 
     this.setState({
-      startTime:moment(dateString[0]).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
-      endTime:moment(dateString[1]).endOf('day').format('YYYY-MM-DD HH:mm:ss'),
+      startTime:dateString[0],
+      endTime:dateString[1],
       selectDate:dateString,
     })
   }
   onExportExcelClick(){
     var _headers = [
-        { k: 'sortid', v: '序号' },
-        { k: 'nodename', v: '报警泵' },
+        { k: 'id', v: '序号' },
+        { k: 'address', v: '报警泵' },
         { k: 'name', v: '报警位置' },
-        { k: 'curvalue', v: '报警值' },
-        { k: 'bzvalue', v: '设定标准值' },
-        { k: 'date', v: '报警时间' },
+        { k: 'num', v: '报警值' },
+        { k: 'otime', v: '报警时间' },
       ]
-      let fileName = this.state.selectDate[0]+' 至 '+this.state.selectDate[1]+'报警记录汇总.xlsx';
+      let fileName = this.state.selectDate[0]+' 至 '+this.state.selectDate[1]+'现场报警记录汇总.xlsx';
       let rr = exportExcel(_headers, this.state.dataList,fileName);
       console.log(rr)
   }
@@ -96,13 +196,16 @@ class Demo extends React.Component {
   const columns=[
     {
         title: '序号',
-        dataIndex: 'sortid',
-        key: 'sortid',
+        dataIndex: 'id',
+        key: 'id',
+        render:(text,record,index)=>{
+          return index+1
+        }
     },
     {
         title: '报警泵',
-        dataIndex: 'nodename',
-        key: 'nodename',
+        dataIndex: 'address',
+        key: 'address',
     },
     {
         title: '报警位置',
@@ -111,22 +214,18 @@ class Demo extends React.Component {
     },
     {
         title: '报警值',
-        dataIndex: 'curvalue',
-        key: 'curvalue',
+        dataIndex: 'num',
+        key: 'num',
     },
-    {
-        title: '设定标准值',
-        dataIndex: 'bzvalue',
-        key: 'bzvalue',
-    },
+
     {
         title: '报警时间',
-        dataIndex: 'date',
-        key: 'date',
+        dataIndex: 'otime',
+        key: 'otime',
     },
 
   ];
-  console.log(this.state.dataList);
+  // console.log(this.state.dataList);
 
     return (
       <div className="historyLine">
