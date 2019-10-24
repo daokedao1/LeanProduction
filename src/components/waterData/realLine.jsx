@@ -63,33 +63,34 @@ class RealLine extends React.Component {
           _this.setState({
             titleList:res.data.pumpList
           })
-
+          this.buildData(this.state.curtabid,true)
       }
     })
   }
+setTimeWay(){
+  let _this = this;
+  this.timerCount = setInterval(() => {
+    this.setState((preState) =>({
+      count: preState.count-1,
+    }),() => {
 
+      if(this.state.count === -1){
+        this.setState({count:10})
+        // clearInterval(this.timerCount);
+      }
+    });
+  }, 1000)
+  this.timer=setInterval(()=>{
+      _this.buildData(this.state.curtabid);
+  },11000)
+}
   componentDidMount() {
-    let _this = this;
     this.init();
-    this.timerCount = setInterval(() => {
-      this.setState((preState) =>({
-        count: preState.count-1,
-      }),() => {
-
-        if(this.state.count === -1){
-          this.setState({count:10})
-          // clearInterval(this.timerCount);
-        }
-      });
-    }, 1000)
-    this.timer=setInterval(()=>{
-        _this.buildData(this.state.curtabid);
-    },10000)
   }
   componentWillUnmount () {
       clearInterval(this.timer)
   }
-  buildData(id){
+  buildData(id,state){
       let _this = this;
       let param = {
         "id":id,
@@ -103,10 +104,15 @@ class RealLine extends React.Component {
                 chart3:_this.dataParse(res.data.chartData.chart3),
                 chart4:_this.dataParse(res.data.chartData.chart4),
                 loading:false
+              },()=>{
+                if(state){
+                  this.setTimeWay();
+                }
               })
           }
       })
   }
+  
   dataParse(data){
       let newdata = [];
 
