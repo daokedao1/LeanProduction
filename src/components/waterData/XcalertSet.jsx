@@ -22,7 +22,7 @@ class AlertSet extends React.Component {
 componentDidMount(){
   POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
       if(res.code === 200){
-
+      
         this.setState({
           dataList:res.data.timeDataList
         })
@@ -37,7 +37,7 @@ componentDidMount(){
         <div className="table_b">
           {
             this.state.dataList.map((v,i)=>{
-              return  <XcalertSetCard dataList={v} item={v} title={v.ADDRESS+'#泵'} key={i} id={i} />
+              return  <XcalertSetCard dataList={v} item={v} title={v.name} key={i} id={i} />
             })
           }
 
