@@ -22,7 +22,7 @@ const scale = {
     range: [0, 1],
     type:'time',
     formatter:(v)=>{
-      return moment(v).format('YYYY-MM-DD HH时')
+      return moment(v).format('YYYY-MM-DD HH:mm:ss')
     }
   }
 }
