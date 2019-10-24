@@ -232,7 +232,7 @@ class Demo extends React.Component {
           <BreadcrumbCustom first="数据总览" second="现场报警记录" />
             <Select placeholder="请选择水泵" style={{ width: 140 ,marginLeft:'10px'}} onChange={this.handleChange.bind(this)}>
                   {this.state.dropList.map((item,ii)=>(
-                    <Option key={ii} value={item.id}>{item.name}</Option>
+                    <Option key={ii} value={item.address}>{item.name}</Option>
                   ))}
             </Select>
             <RangePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD"  onChange={this.onDateChange.bind(this)} />
