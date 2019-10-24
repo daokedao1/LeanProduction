@@ -23,8 +23,9 @@ export default {
             // { key: '/app/waterData/realLine', title: '实时数据', component: 'realLine' },
             { key: '/app/waterData/historyLine', title: '历史曲线', component: 'historyLine' },
             { key: '/app/waterData/historyData', title: '历史数据', component: 'historyData' },
-            { key: '/app/waterData/XcAlertRecord', title: '现场报警记录', component: 'XcAlertRecord' },
             { key: '/app/waterData/XcalertSet', title: '现场报警值设置', component: 'XcalertSet' },
+            { key: '/app/waterData/XcAlertRecord', title: '现场报警记录', component: 'XcAlertRecord' },
+
             { key: '/app/waterData/course', title: '拆解培训教程', component: 'course' },
             // { key: '/app/operate/demo', title: 'demo.jsx', component: 'Demo' },
           ]},
