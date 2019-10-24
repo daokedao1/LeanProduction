@@ -51,8 +51,8 @@ class HistoryTable extends React.Component {
     }
     let param = {
       id:this.state.id,
-      pageNumber:1,
-      pageSize:500,
+      // pageNumber:1,
+      // pageSize:500,
       startDate:this.state.startDate,
       endDate:this.state.endDate,
     }
