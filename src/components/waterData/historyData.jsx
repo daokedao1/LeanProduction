@@ -3,7 +3,7 @@ import BreadcrumbCustom from '../BreadcrumbCustom';
 import '../../style/waterData/historyLine.less'
 import { Select,DatePicker,Table,Button,message} from 'antd';
 import SearchList from './searchList'
-import {POST} from '../../axios/tools'
+import {POST,GET} from '../../axios/tools'
 import {getCookie,setCookie} from '../../utils/index'
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import 'moment/locale/zh-cn';
@@ -23,6 +23,9 @@ class HistoryTable extends React.Component {
         id:'',
         startDate:'',
         endDate:'',
+        page:1,
+        pageSize:10,
+        total:10,
     }
   }
   componentDidMount() {
@@ -51,8 +54,8 @@ class HistoryTable extends React.Component {
     }
     let param = {
       id:this.state.id,
-      // pageNumber:1,
-      // pageSize:500,
+      pageNumber:this.state.page,
+      pageSize:this.state.pageSize,
       startDate:this.state.startDate,
       endDate:this.state.endDate,
     }
@@ -61,12 +64,15 @@ class HistoryTable extends React.Component {
     })
     POST('/wHistoryData/oneHistory',param,Authorization).then((res)=>{
         let data = [];
+        let total = this.state.total;
         if(res.code == 200 && res.data.tableData){
-            data = res.data.tableData
+            data = res.data.tableData;
+            total = res.data.totalRow
         }
         this.setState({
           dataList:data,
           loading:false,
+          total:total,
         })
     })
   }
@@ -76,114 +82,52 @@ class HistoryTable extends React.Component {
     })
   }
   onExportBtnClick(){
-    if(!this.state.id){
-      message.warning('请选择水泵！');
-      return false
-    }
-    if(!this.state.startDate){
-      message.warning('请选择查询时间！');
-      return false
-    }
-    var _headers = [
-      {
-          v: '时间',
+      if(!this.state.id){
+        message.warning('请选择水泵！');
+        return false
+      }
+      if(!this.state.startDate){
+        message.warning('请选择查询时间！');
+        return false
+      }
+      let param = {
+        id:this.state.id,
+        // pageNumber:this.state.page,
+        // pageSize:this.state.pageSize,
+        startDate:this.state.startDate,
+        endDate:this.state.endDate,
+      }
+      message.warning('正在生成Excel导出文件，请稍等！');
+      location.href = 'http://39.98.215.185:8088/ss/wHistoryData/oneHistory/excel?id='+param.id+'&startDate='+param.startDate+'&endDate='+param.endDate
 
-          k: 'INSERT_DATE',
-      },
-      {
-          v: '出口压力',
-
-          k: 'EXPORT_PRESSURE',
-      },
-      {
-          v: '进口压力',
-
-          k: 'IMPORT_PRESSURE',
-      },
-      {
-          v: '润滑油温度',
-
-          k: 'LUBRICATING_OIL_TEMPERATURE',
-      },
-      {
-          v: '润滑油液位',
-
-          k: 'LUBRICATING_OIL_LEkEL',
-      },
-      {
-          v: '电机温度',
-
-          k: 'MOTOR_TEMPERATURE',
-      },
-      {
-          v: '电机A相电流',
-
-          k: 'MOTOR_A_PHASE_CURRENT',
-      },
-      {
-          v: '电机B相电流',
-          k: 'MOTOR_B_PHASE_CURRENT',
-      },
-      {
-          v: '电机C相电流',
-          k: 'MOTOR_C_PHASE_CURRENT',
-      },
-      {
-          v: '电机A相电压',
-          k: 'MOTOR_A_PHASE_kOLTAGE',
-      },
-      {
-          v: '电机B相电压',
-          k: 'MOTOR_B_PHASE_kOLTAGE',
-      },
-      {
-          v: '电机C相电压',
-          k: 'MOTOR_C_PHASE_kOLTAGE',
-      },
-      {
-          v: '泵头1#缸噪声',
-          k: 'CYLINDER1_NOISE',
-      },
-      {
-          v: '泵头2#缸噪声',
-          k: 'CYLINDER2_NOISE',
-      },
-      {
-          v: '泵头3#缸噪声',
-          k: 'CYLINDER3_NOISE',
-      },
-      {
-          v: '泵头4#缸噪声',
-          k: 'CYLINDER4_NOISE',
-      },
-      {
-          v: '泵头5#缸噪声',
-          k: 'CYLINDER5_NOISE',
-      },
-    ];
-      let fileName = this.state.startDate+' 至 '+this.state.endDate+'历史数据记录汇总.xlsx';
-      exportExcel(_headers, this.state.dataList,fileName);
-    // let param = {
-    //   id:this.state.id,
-    //   startDate:this.state.startDate,
-    //   endDate:this.state.endDate,
-    // }
-    // this.setState({
-    //   loading:true
-    // })
-    // POST('/wHistoryData/oneHistory/excel',param,Authorization).then((res)=>{
-    //     let data = [];
-    //     if(res.code == 200 && res.data.tableData){
-    //         data = res.data.tableData
-    //     }
-    //     this.setState({
-    //       dataList:data,
-    //       loading:false,
-    //     })
-    // })
+  }
+  pageChange(page){
+      let _this = this;
+      this.setState({
+        page:page,
+        loading:true,
+      },()=>{
+        let param = {
+          id:this.state.id,
+          pageNumber:page,
+          pageSize:this.state.pageSize,
+          startDate:this.state.startDate,
+          endDate:this.state.endDate,
+        }
+          POST('/wHistoryData/oneHistory',param,Authorization).then((res)=>{
+              let data = [];
+              if(res.code == 200 && res.data.tableData){
+                  data = res.data.tableData
+              }
+              _this.setState({
+                dataList:data,
+                loading:false,
+              })
+          })
+      })
   }
   render() {
-  const columns=[
+      const columns=[
     {
         title: '序号',
         dataIndex: 'id',
@@ -279,29 +223,34 @@ class HistoryTable extends React.Component {
     },
   ];
 
-    return (
-      <div className="historyLine">
-          <BreadcrumbCustom first="数据总览" second="历史数据" />
-            <Select placeholder="请选择水泵" style={{ width: 140 ,marginLeft:'10px'}} onChange={this.handleChange.bind(this)}>
-              {this.state.dropList.map((item,index)=>(
-                <Option key={index} value={item.address}>{item.name}</Option>
-              ))}
-            </Select>
-            <RangePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD"  onChange={this.onDateChange.bind(this)} />
-            <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onSearchBtnClick.bind(this)}>查询</Button>
-            <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onExportBtnClick.bind(this)}>导出</Button>
-          <Table
-            bordered
-            style={{marginTop:'10px'}}
-            columns={columns}
-            loading={this.state.loading}
-            dataSource={this.state.dataList}
-            size="small"
-            scroll={{ x: '130%'}}
+      return (
+        <div className="historyLine">
+            <BreadcrumbCustom first="数据总览" second="历史数据" />
+              <Select placeholder="请选择水泵" style={{ width: 140 ,marginLeft:'10px'}} onChange={this.handleChange.bind(this)}>
+                {this.state.dropList.map((item,index)=>(
+                  <Option key={index} value={item.address}>{item.name}</Option>
+                ))}
+              </Select>
+              <RangePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD"  onChange={this.onDateChange.bind(this)} />
+              <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onSearchBtnClick.bind(this)}>查询</Button>
+              <Button type="primary" style={{marginLeft:'10px'}} onClick={this.onExportBtnClick.bind(this)}>导出</Button>
+            <Table
+              bordered
+              style={{marginTop:'10px'}}
+              columns={columns}
+              loading={this.state.loading}
+              dataSource={this.state.dataList}
+              size="small"
+              scroll={{ x: '130%'}}
+              pagination={{
+                  pageSize:this.state.pageSize,
+                  total:this.state.total,
+                  onChange:this.pageChange.bind(this)
+              }}
             />
-      </div>
-    )
-  }
+        </div>
+      )
+    }
 }
 
 export default HistoryTable
