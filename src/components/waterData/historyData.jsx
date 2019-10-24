@@ -284,7 +284,7 @@ class HistoryTable extends React.Component {
           <BreadcrumbCustom first="数据总览" second="历史数据" />
             <Select placeholder="请选择水泵" style={{ width: 140 ,marginLeft:'10px'}} onChange={this.handleChange.bind(this)}>
               {this.state.dropList.map((item,index)=>(
-                <Option key={index} value={item.id}>{item.name}</Option>
+                <Option key={index} value={item.address}>{item.name}</Option>
               ))}
             </Select>
             <RangePicker locale={locale} style={{ marginLeft:'10px'}} className="middel" format="YYYY-MM-DD"  onChange={this.onDateChange.bind(this)} />

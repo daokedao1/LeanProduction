@@ -44,7 +44,7 @@ class RealLine extends React.Component {
     this.timerCount=null;
     this.state={
       loading:true,
-      curtabid:2,
+      curtabid:'2',
       dataList:[],
       chart1:[],
       chart2:[],
@@ -63,12 +63,13 @@ class RealLine extends React.Component {
           _this.setState({
             titleList:res.data.pumpList
           })
-          _this.buildData(res.data.pumpList[0].id);
+
       }
     })
   }
 
   componentDidMount() {
+    let _this = this;
     this.init();
     this.timerCount = setInterval(() => {
       this.setState((preState) =>({
@@ -82,7 +83,7 @@ class RealLine extends React.Component {
       });
     }, 1000)
     this.timer=setInterval(()=>{
-      this.init();
+        _this.buildData(this.state.curtabid);
     },10000)
   }
   componentWillUnmount () {
@@ -139,9 +140,9 @@ class RealLine extends React.Component {
 
 
   tab(item){
-    this.buildData(item.id);
+    this.buildData(item.address);
     this.setState({
-      curtabid:item.id,
+      curtabid:item.address,
       currentLineName:item.name
     });
   }
@@ -171,7 +172,7 @@ class RealLine extends React.Component {
           <div className="realLine_t">
             <div className="t_l">
            { this.state.titleList.map((item,index)=>(
-             <Button onClick={()=>this.tab(item)} key={index} type={item.id === this.state.curtabid?'primary':'dashed'} >
+             <Button onClick={()=>this.tab(item)} key={index} type={item.address === this.state.curtabid?'primary':'dashed'} >
                {item.name}
              </Button>
            )
