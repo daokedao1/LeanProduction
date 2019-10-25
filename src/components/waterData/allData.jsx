@@ -62,7 +62,7 @@ class Demo extends React.Component {
                     // time:moment().format('YYYY-MM-DD hh:mm:ss'),
                     // targetname:obj.arr[i].name,
                     nodeid:v['index'],
-                    name:objData.key,
+                    name:obj.arr[i].name,
                     key:objData.value,
                     curvalue:objData.age,
                     bzvalue:v[item.value],
@@ -371,7 +371,7 @@ class Demo extends React.Component {
           <BreadcrumbCustom first="数据总览" second="总览数据" />
           <CountdNum/>
           </div>
-        
+
           <div className="allData_m">
             <h3>华北油田采油三厂楚一联合注水站监控中心</h3>
             <div className="allData_t" >
