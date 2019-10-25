@@ -38,100 +38,102 @@ class Demo extends React.Component {
   }
  async init(){
    const res=await GET('http://39.98.215.185:8088/api/alarmsetting/list');
+   if(res.code == '200'){
+     let allData = res.data[0].config;
+     const Authorization=getCookie("Authorization");
 
-    let allData = res.data[0].config;
-    const Authorization=getCookie("Authorization");
+     allData = JSON.parse(allData)
+     let dataList = [];
+     POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
+         if(res.code === 200){
 
-      allData = JSON.parse(allData)
-    let dataList = [];
-    POST('/wTimeData/listForEach',{},Authorization).then((res)=>{
-        if(res.code === 200){
+           res.data.timeDataList.forEach((v,i)=>{
+             let obj = allData[i];
+             obj['RUNNING_STATE'] = v['RUNNING_STATE'];
+             let warncount = [];
+             obj.arr.forEach((item,i)=>{
+               if(item.value==="IMPORT_PRESSURE"||item.value==="LUBRICATING_OIL_LEVEL"){
+                 if(v[item.value] < obj.arr[i].age){
+                   if(obj['RUNNING_STATE'] == 1&&obj.arr[i].state == 1){
 
-          res.data.timeDataList.forEach((v,i)=>{
-            let obj = allData[i];
-            obj['RUNNING_STATE'] = v['RUNNING_STATE'];
-            let warncount = [];
-            obj.arr.forEach((item,i)=>{
-              if(item.value==="IMPORT_PRESSURE"||item.value==="LUBRICATING_OIL_LEVEL"){
-                if(v[item.value] < obj.arr[i].age){
-                  if(obj['RUNNING_STATE'] == 1&&obj.arr[i].state == 1){
-                    
-                    obj.arr[i].block = true;
-                    let objData=obj.arr[i];
-                    let warnitem  = {
-                      nodename:obj.title,
-                    // time:moment().format('YYYY-MM-DD hh:mm:ss'),
-                    // targetname:obj.arr[i].name,
-                    nodeid:v['index'],
-                    name:obj.arr[i].name,
-                    key:objData.value,
-                    curvalue:objData.age,
-                    bzvalue:v[item.value],
-                    col:obj.arr[i].value
-                  }
-                    warncount.push(warnitem);
-                  }else{
-                    obj.arr[i].block = false;
-                  }
+                     obj.arr[i].block = true;
+                     let objData=obj.arr[i];
+                     let warnitem  = {
+                       nodename:obj.title,
+                     // time:moment().format('YYYY-MM-DD hh:mm:ss'),
+                     // targetname:obj.arr[i].name,
+                     nodeid:v['index'],
+                     name:obj.arr[i].name,
+                     key:objData.value,
+                     curvalue:objData.age,
+                     bzvalue:v[item.value],
+                     col:obj.arr[i].value
+                   }
+                     warncount.push(warnitem);
+                   }else{
+                     obj.arr[i].block = false;
+                   }
 
-                }else{
+                 }else{
 
-                  obj.arr[i].block = false;
-                }
-              }else{
-                if(v[item.value] > obj.arr[i].age){
-                  if(obj['RUNNING_STATE'] == 1&&obj.arr[i].state == 1){
-                    obj.arr[i].block = true;
-                    let objData=obj.arr[i];
-                    let warnitem  = {
-                      nodename:obj.title,
-                    // time:moment().format('YYYY-MM-DD hh:mm:ss'),
-                    // targetname:obj.arr[i].name,
-                    nodeid:v['index'],
-                    name:obj.arr[i].name,
-                    key:objData.value,
-                    curvalue:objData.age,
-                    bzvalue:v[item.value],
-                    col:obj.arr[i].value
-                  }
-                    warncount.push(warnitem);
-                  }else{
-                    obj.arr[i].block = false;
-                  }
+                   obj.arr[i].block = false;
+                 }
+               }else{
+                 if(v[item.value] > obj.arr[i].age){
+                   if(obj['RUNNING_STATE'] == 1&&obj.arr[i].state == 1){
+                     obj.arr[i].block = true;
+                     let objData=obj.arr[i];
+                     let warnitem  = {
+                       nodename:obj.title,
+                     // time:moment().format('YYYY-MM-DD hh:mm:ss'),
+                     // targetname:obj.arr[i].name,
+                     nodeid:v['index'],
+                     name:obj.arr[i].name,
+                     key:objData.value,
+                     curvalue:objData.age,
+                     bzvalue:v[item.value],
+                     col:obj.arr[i].value
+                   }
+                     warncount.push(warnitem);
+                   }else{
+                     obj.arr[i].block = false;
+                   }
 
-                }else{
+                 }else{
 
-                  obj.arr[i].block = false;
-                }
-              }
+                   obj.arr[i].block = false;
+                 }
+               }
 
-              obj.arr[i].num = v[item.value];
-            })
+               obj.arr[i].num = v[item.value];
+             })
 
-            if(warncount.length>0){
-              obj.block = true;
+             if(warncount.length>0){
+               obj.block = true;
 
-              let warnlist = JSON.parse(localStorage.getItem('warnlist') || '[]');
-              warnlist = warnlist.concat(warncount)
-              obj.errItem = warncount[0].col
-              localStorage.setItem("warnlist",JSON.stringify(warnlist))
+               let warnlist = JSON.parse(localStorage.getItem('warnlist') || '[]');
+               warnlist = warnlist.concat(warncount)
+               obj.errItem = warncount[0].col
+               localStorage.setItem("warnlist",JSON.stringify(warnlist))
 
-              // console.log(warncount);
-              warncount.forEach((v,i)=>{
-                GET('http://39.98.215.185:8088/api/alarmlog/add',{
-                 ...v
-                })
-              })
+               // console.log(warncount);
+               warncount.forEach((v,i)=>{
+                 GET('http://39.98.215.185:8088/api/alarmlog/add',{
+                  ...v
+                 })
+               })
 
-            }
-            dataList.push(obj);
+             }
+             dataList.push(obj);
 
-          })
-          this.setState({
-            dataList:dataList
-          })
-        }
-    })
+           })
+           this.setState({
+             dataList:dataList
+           })
+         }
+     })
+   }
+
   }
 
   popBlock(item){
