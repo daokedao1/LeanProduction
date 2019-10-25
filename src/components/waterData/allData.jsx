@@ -65,8 +65,8 @@ class Demo extends React.Component {
                      nodeid:v['index'],
                      name:obj.arr[i].name,
                      key:objData.value,
-                     curvalue:objData.age,
-                     bzvalue:v[item.value],
+                     curvalue:v[item.value],
+                     bzvalue:objData.age,
                      col:obj.arr[i].value
                    }
                      warncount.push(warnitem);
@@ -90,8 +90,8 @@ class Demo extends React.Component {
                      nodeid:v['index'],
                      name:obj.arr[i].name,
                      key:objData.value,
-                     curvalue:objData.age,
-                     bzvalue:v[item.value],
+                     curvalue:v[item.value],
+                     bzvalue:objData.age,
                      col:obj.arr[i].value
                    }
                      warncount.push(warnitem);

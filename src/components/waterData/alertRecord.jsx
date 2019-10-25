@@ -92,8 +92,8 @@ class Demo extends React.Component {
         { k: 'sortid', v: '序号' },
         { k: 'nodename', v: '报警泵' },
         { k: 'name', v: '报警位置' },
-        { k: 'curvalue', v: '报警值' },
-        { k: 'bzvalue', v: '设定标准值' },
+        { k: 'curvalue', v: '实际数值' },
+        { k: 'bzvalue', v: '报警阀值' },
         { k: 'date', v: '报警时间' },
       ]
       let fileName = this.state.selectDate[0]+' 至 '+this.state.selectDate[1]+'报警记录汇总.xlsx';
@@ -118,12 +118,12 @@ class Demo extends React.Component {
         key: 'name',
     },
     {
-        title: '报警值',
+        title: '实际数值',
         dataIndex: 'curvalue',
         key: 'curvalue',
     },
     {
-        title: '设定标准值',
+        title: '报警阀值',
         dataIndex: 'bzvalue',
         key: 'bzvalue',
     },
