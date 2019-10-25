@@ -55,6 +55,7 @@ class Demo extends React.Component {
               if(item.value==="IMPORT_PRESSURE"||item.value==="LUBRICATING_OIL_LEVEL"){
                 if(v[item.value] < obj.arr[i].age){
                   if(obj['RUNNING_STATE'] == 1&&obj.arr[i].state == 1){
+                    
                     obj.arr[i].block = true;
                     let objData=obj.arr[i];
                     let warnitem  = {
@@ -109,13 +110,19 @@ class Demo extends React.Component {
 
             if(warncount.length>0){
               obj.block = true;
+
               let warnlist = JSON.parse(localStorage.getItem('warnlist') || '[]');
               warnlist = warnlist.concat(warncount)
               obj.errItem = warncount[0].col
               localStorage.setItem("warnlist",JSON.stringify(warnlist))
-             GET('http://39.98.215.185:8088/api/alarmlog/add',{
-              ...warncount[0]
-             })
+
+              // console.log(warncount);
+              warncount.forEach((v,i)=>{
+                GET('http://39.98.215.185:8088/api/alarmlog/add',{
+                 ...v
+                })
+              })
+
             }
             dataList.push(obj);
 
