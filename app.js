@@ -4,7 +4,7 @@ var http = require('http');
 var request = require('request');
 app.post('/login', (req, res) => {
     let opt = {
-           url: "http://119.90.248.34:51029/login",
+           url: "http://119.88.176.134:51029/login",
            method: "POST",
            json: true,
            headers:req.headers,
@@ -22,7 +22,7 @@ app.post('/login', (req, res) => {
 })
 app.post('/wTimeData/**', (req, res) => {
     let opt = {
-           url: "http://119.90.248.34:51029"+req.originalUrl,
+           url: "http://119.88.176.134:51029"+req.originalUrl,
            method: "POST",
            json: true,
            headers:req.headers,
@@ -40,7 +40,7 @@ app.post('/wTimeData/**', (req, res) => {
 })
 app.post('/wHistoryData/**', (req, res) => {
     let opt = {
-           url: "http://119.90.248.34:51029"+req.originalUrl,
+           url: "http://119.88.176.134:51029"+req.originalUrl,
            method: "POST",
            json: true,
            headers:req.headers,
@@ -58,7 +58,7 @@ app.post('/wHistoryData/**', (req, res) => {
 })
 app.post('/wInfo/**', (req, res) => {
     let opt = {
-           url: "http://119.90.248.34:51029"+req.originalUrl,
+           url: "http://119.88.176.134:51029"+req.originalUrl,
            method: "POST",
            json: true,
            headers:req.headers,

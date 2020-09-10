@@ -113,7 +113,7 @@ class Demo extends React.Component {
 <<<<<<< HEAD
           <video className="vio" autoplay="autoplay" data-v-68781f9a="" controls="controls" width="100%" src="/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
 =======
-          <video data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001%E5%90%AF%E5%8A%A8%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%872043.mp4?t=Sun%20Sep%2022%202019%2013:23:27%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)">
+          <video data-v-68781f9a="" controls="controls" width="100%" src="http://119.88.176.134:51029/video/001%E5%90%AF%E5%8A%A8%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%872043.mp4?t=Sun%20Sep%2022%202019%2013:23:27%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)">
 >>>>>>> 9c06d8bff69ad8646818aedd555dd5ca7b2b67ec
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>

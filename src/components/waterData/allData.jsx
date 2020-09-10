@@ -162,7 +162,7 @@ class Demo extends React.Component {
         <p>处理措施：1、&nbsp;&nbsp;&nbsp;&nbsp;{`检查电机润滑脂的注入量及品质"`}</p>
         <p><span className="cuoshi"></span>1、&nbsp;&nbsp;&nbsp;&nbsp;{`检查电机状态`}</p>
         <p><span className="cuoshi"></span>1、&nbsp;&nbsp;&nbsp;&nbsp;{`与专业人员联系`}</p>
-          <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+          <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.88.176.134:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
                 <embed data-v-68781f9a="" width="100%" src="/video/001启动前的准备2043.swf?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)"/>
             </object>
@@ -173,9 +173,9 @@ class Demo extends React.Component {
         <p>{`报警:${activeItem.title}的排出压力传感器报警`}<span className="tips">报警</span></p>
         <p>处理措施：1、&nbsp;&nbsp;{`${activeItem.title}的外输管线流程`}</p>
         <p><span className="cuoshi"></span>2、&nbsp;&nbsp;{`${activeItem.title}的外输管线闸门是否开启`}</p>
-          <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+          <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.88.176.134:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
-                <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Fri Sep 27 2019 21:21:56 GMT+0800 (中国标准时间)"/>
+                <embed data-v-68781f9a="" width="100%" src="http://119.88.176.134:51029/video/001启动前的准备2043.mp4?t=Fri Sep 27 2019 21:21:56 GMT+0800 (中国标准时间)"/>
             </object>
           </video>
       </div>)
@@ -184,9 +184,9 @@ class Demo extends React.Component {
       return (<div>
         <p>{`报警:${activeItem.title}的吸入压力传感器报警`}<span className="tips">报警</span></p>
         <p>处理措施：1、&nbsp;&nbsp;&nbsp;&nbsp;{`${activeItem.title}的来水管线压力、流量`}</p>
-          <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+          <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.88.176.134:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
-                <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Fri Sep 27 2019 21:21:56 GMT+0800 (中国标准时间)"/>
+                <embed data-v-68781f9a="" width="100%" src="http://119.88.176.134:51029/video/001启动前的准备2043.mp4?t=Fri Sep 27 2019 21:21:56 GMT+0800 (中国标准时间)"/>
             </object>
           </video>
       </div>)
@@ -212,9 +212,9 @@ class Demo extends React.Component {
       return (<div>
         <p>{`报警:${activeItem.title}的吸入压力传感器报警`}<span className="tips">报警</span></p>
         <p>处理措施：1、{`${activeItem.title}的来水管线压力、流量`}</p>
-          <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+          <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.88.176.134:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
-                <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Fri Sep 27 2019 21:21:56 GMT+0800 (中国标准时间)"/>
+                <embed data-v-68781f9a="" width="100%" src="http://119.88.176.134:51029/video/001启动前的准备2043.mp4?t=Fri Sep 27 2019 21:21:56 GMT+0800 (中国标准时间)"/>
             </object>
           </video>
       </div>)
@@ -228,14 +228,14 @@ class Demo extends React.Component {
         <p><span className="cuoshi"></span>2、{`${activeItem.title}的曲轴油封`}</p>
         <p><span className="cuoshi"></span>3、{`${activeItem.title}的添加润滑油`}</p>
         <p><span className="cuoshi"></span>4、{`与专业人员联系`}</p>
-          <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/015挡油头拆解2043.mp4?t=Fri Sep 27 2019 21:39:50 GMT+0800 (中国标准时间)">
+          <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.88.176.134:51029/video/015挡油头拆解2043.mp4?t=Fri Sep 27 2019 21:39:50 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
-                <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/015挡油头拆解2043.mp4?t=Fri Sep 27 2019 21:39:50 GMT+0800 (中国标准时间)"/>
+                <embed data-v-68781f9a="" width="100%" src="http://119.88.176.134:51029/video/015挡油头拆解2043.mp4?t=Fri Sep 27 2019 21:39:50 GMT+0800 (中国标准时间)"/>
             </object>
           </video>
-          <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/010曲轴油封拆解2043.mp4?t=Fri Sep 27 2019 21:40:20 GMT+0800 (中国标准时间)">
+          <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.88.176.134:51029/video/010曲轴油封拆解2043.mp4?t=Fri Sep 27 2019 21:40:20 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
-                <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/010曲轴油封拆解2043.mp4?t=Fri Sep 27 2019 21:40:20 GMT+0800 (中国标准时间)"/>
+                <embed data-v-68781f9a="" width="100%" src="http://119.88.176.134:51029/video/010曲轴油封拆解2043.mp4?t=Fri Sep 27 2019 21:40:20 GMT+0800 (中国标准时间)"/>
             </object>
           </video>
       </div>)
@@ -270,9 +270,9 @@ class Demo extends React.Component {
         <p>处理措施：{`1、${activeItem.title}的${this.state.errItem.replace(/[^\d]/g,'')}#缸弹簧`}</p>
         <p><span className="cuoshi"></span>{`2、${activeItem.title}的${this.state.errItem.replace(/[^\d]/g,'')}#缸阀片`}</p>
         <p><span className="cuoshi"></span>{`3、${activeItem.title}的${this.state.errItem.replace(/[^\d]/g,'')}#缸阀体`}</p>
-          <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/009泵头拆解教程2043.mp4?t=Fri Sep 27 2019 21:54:33 GMT+0800 (中国标准时间)">
+          <video className="vio"    data-v-68781f9a="" controls="controls" width="100%" src="http://119.88.176.134:51029/video/009泵头拆解教程2043.mp4?t=Fri Sep 27 2019 21:54:33 GMT+0800 (中国标准时间)">
             <object data-v-68781f9a="" width="100%">
-                <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/009泵头拆解教程2043.mp4?t=Fri Sep 27 2019 21:54:33 GMT+0800 (中国标准时间)"/>
+                <embed data-v-68781f9a="" width="100%" src="http://119.88.176.134:51029/video/009泵头拆解教程2043.mp4?t=Fri Sep 27 2019 21:54:33 GMT+0800 (中国标准时间)"/>
             </object>
           </video>
       </div>)
@@ -283,9 +283,9 @@ class Demo extends React.Component {
       <p>处理措施：{`1、1#注水泵 1#缸阀弹簧可能损坏`}</p>
       <p><span className="cuoshi"></span>{`2、1#注水泵 1#缸的阀片可能损坏`}</p>
       <p><span className="cuoshi"></span>{`3、1#注水泵 1#缸的阀体可能损坏`}</p>
-        <video className="vio"  className="vio"  data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+        <video className="vio"  className="vio"  data-v-68781f9a="" controls="controls" width="100%" src="http://119.88.176.134:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
           <object data-v-68781f9a="" width="100%">
-              <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/009%E6%B3%B5%E5%A4%B4%E6%8B%86%E8%A7%A3%E6%95%99%E7%A8%8B2043.mp4?t=Sun%20Sep%2022%202019%2017:15:02%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)"/>
+              <embed data-v-68781f9a="" width="100%" src="http://119.88.176.134:51029/video/009%E6%B3%B5%E5%A4%B4%E6%8B%86%E8%A7%A3%E6%95%99%E7%A8%8B2043.mp4?t=Sun%20Sep%2022%202019%2017:15:02%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)"/>
           </object>
         </video>
     </div>)
@@ -295,9 +295,9 @@ class Demo extends React.Component {
       <p>处理措施：{`1、更换1#注水泵的挡油头油封`}</p>
       <p><span className="cuoshi"></span>{`2、1#注水泵添加润滑油`}</p>
       <p><span className="cuoshi"></span>{`3、与专业人员联系`}</p>
-        <video className="vio"  className="vio"  data-v-68781f9a="" controls="controls" width="100%" src="http://119.90.248.34:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
+        <video className="vio"  className="vio"  data-v-68781f9a="" controls="controls" width="100%" src="http://119.88.176.134:51029/video/001启动前的准备2043.mp4?t=Sun Sep 22 2019 04:21:35 GMT+0800 (中国标准时间)">
           <object data-v-68781f9a="" width="100%">
-              <embed data-v-68781f9a="" width="100%" src="http://119.90.248.34:51029/video/010%E6%9B%B2%E8%BD%B4%E6%B2%B9%E5%B0%81%E6%8B%86%E8%A7%A32043.mp4?t=Sun%20Sep%2022%202019%2017:12:57%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)"/>
+              <embed data-v-68781f9a="" width="100%" src="http://119.88.176.134:51029/video/010%E6%9B%B2%E8%BD%B4%E6%B2%B9%E5%B0%81%E6%8B%86%E8%A7%A32043.mp4?t=Sun%20Sep%2022%202019%2017:12:57%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)"/>
           </object>
         </video>
     </div>)
